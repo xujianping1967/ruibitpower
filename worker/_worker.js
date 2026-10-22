@@ -320,15 +320,56 @@ export function onRequestGet() {
 
 const API_PATH = '/api/inquiry';
 
+/* Decap CMS OAuth proxy — runs inside this single-file worker because
+   advanced mode ignores the functions/ directory. */
+const SITE_URL = 'https://ruibitpower.com';
+const CALLBACK_URL = `${SITE_URL}/admin/callback`;
+
+async function handleAdminAuth(env) {
+  const params = new URLSearchParams({
+    client_id: env.GITHUB_CLIENT_ID,
+    redirect_uri: CALLBACK_URL,
+    scope: 'repo',
+  });
+  return Response.redirect(`https://github.com/login/oauth/authorize?${params}`, 302);
+}
+
+async function handleAdminCallback(request, env) {
+  const code = new URL(request.url).searchParams.get('code');
+  if (!code) return new Response('Missing code', { status: 400 });
+
+  const tokenResp = await fetch('https://github.com/login/oauth/access_token', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'User-Agent': 'ruibitpower-decap-oauth',
+    },
+    body: JSON.stringify({
+      client_id: env.GITHUB_CLIENT_ID,
+      client_secret: env.GITHUB_CLIENT_SECRET,
+      code,
+      redirect_uri: CALLBACK_URL,
+    }),
+  });
+
+  const data = await tokenResp.json();
+  if (!data.access_token) {
+    return new Response(`OAuth error: ${JSON.stringify(data)}`, { status: 500 });
+  }
+
+  return Response.redirect(`${SITE_URL}/admin/#token=${data.access_token}`, 302);
+}
+
 export default {
   async fetch(request, env) {
     const { pathname } = new URL(request.url);
 
-    /* Trailing slash is not a different endpoint. Without this, /api/inquiry/
-       matches nothing, falls through to the static assets, and the custom 404
-       page is returned — which reads as "the worker is gone" when it is only
-       the path comparison that failed. */
     const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
+
+    /* Decap CMS OAuth routes */
+    if (path === '/admin/auth') return handleAdminAuth(env);
+    if (path === '/admin/callback') return handleAdminCallback(request, env);
 
     if (path === API_PATH) {
       if (request.method === 'POST') return onRequestPost({ request, env });

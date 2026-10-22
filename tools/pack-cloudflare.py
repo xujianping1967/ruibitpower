@@ -2,8 +2,8 @@
 
 Three things this does that a plain Compress-Archive does not:
 
-1. Drops /admin/ — the editor is a local tool. Shipping it would publish an
-   unconfigured Decap shell on the live domain.
+1. Includes /admin/ — the hosted Decap CMS now ships on the live domain,
+   authenticated via GitHub OAuth through _worker.js.
 2. Fails if any file looks like it carries a credential. The Resend key lives in
    the Pages project as a secret, never in the repository, and this is the check
    that keeps it that way.
@@ -23,7 +23,6 @@ DIST = SITE / "dist"
 OUT = SITE.parent / "releases" / "deploy"
 
 REQUIRED = ["_worker.js", "_headers", "_redirects"]
-EXCLUDE_PREFIXES = ("admin/",)
 EXCLUDE_FILES = {"_请先读我.txt"}
 
 TEXT_EXT = {".js", ".mjs", ".html", ".json", ".txt", ".xml", ".css", ".md", ".toml", ".yml", ".yaml"}
@@ -49,7 +48,7 @@ with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:
         if not path.is_file():
             continue
         rel = path.relative_to(DIST).as_posix()
-        if rel.startswith(EXCLUDE_PREFIXES) or rel in EXCLUDE_FILES:
+        if rel in EXCLUDE_FILES:
             skipped += 1
             continue
 
@@ -70,8 +69,6 @@ missing = [n for n in REQUIRED if n not in names]
 
 if missing:
     problems.append("missing required file(s): " + ", ".join(missing))
-if any(n.startswith("admin/") for n in names):
-    problems.append("admin/ leaked into the deploy zip")
 
 if problems:
     target.unlink(missing_ok=True)
@@ -82,6 +79,6 @@ if problems:
 
 size = target.stat().st_size / 1048576
 print(f"pkg  {target}")
-print(f"     {included} files, {size:.2f} MB, excluded {skipped} (admin/, delivery notes)")
+print(f"     {included} files, {size:.2f} MB, excluded {skipped} (delivery notes)")
 print("     _worker.js, _headers, _redirects present")
 print("     no credential-shaped strings found")
