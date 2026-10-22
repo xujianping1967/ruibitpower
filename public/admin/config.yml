@@ -13,11 +13,9 @@
 # To move editing to the hosted site later: set `name: github` plus `repo`, add
 # an OAuth route, and stop excluding admin/ at package time.
 backend:
-  name: github
-  repo: xujianping1967/ruibitpower
+  name: git-gateway
   branch: main
-  base_url: https://ruibitpower.com
-  auth_endpoint: admin/auth
+local_backend: true
 # editorial_workflow is off: the local backend saves straight to disk and cannot
 # hold drafts for review. Backups are the undo path instead.
 media_folder: "public/assets/uploads"
