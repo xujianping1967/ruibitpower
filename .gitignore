@@ -21,3 +21,5 @@ Thumbs.db
 node-compile-cache/
 preview-offline/
 vendor/
+# datasheet build chrome profiles
+_datasheet-build/
