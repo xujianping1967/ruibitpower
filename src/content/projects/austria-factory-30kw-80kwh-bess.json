@@ -1,0 +1,20 @@
+{
+  "slug": "austria-factory-30kw-80kwh-bess",
+  "title": "30kW / 80kWh Factory BESS Reference in Austria",
+  "country": "Austria",
+  "application": "Factory energy storage",
+  "systemType": "C&I cabinet",
+  "capacity": "30kW / 80kWh",
+  "productUsed": "Commercial BESS cabinet / project-specific configuration",
+  "summary": "A 30kW / 80kWh cabinet BESS reference for a factory site in Austria.",
+  "image": "/assets/images/cases/austria-factory-30kw-80kwh-bess.jpg",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "challenge": "Factory loads combine peak demand, production continuity and a protection strategy that has to satisfy local electrical standards. The site needed those three settled together rather than one at a time.",
+  "solution": "A cabinet BESS at 30kW / 80kWh, sized against the plant's load profile, PV status and required backup duration.",
+  "result": "",
+  "seo": {
+    "title": "30kW / 80kWh Factory BESS Reference in Austria | Ruibit Power",
+    "description": "A 30kW / 80kWh cabinet BESS reference for a factory site in Austria."
+  }
+}

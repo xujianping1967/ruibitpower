@@ -1,0 +1,24 @@
+{
+  "slug": "case-study-optimizing-commercial-energy-efficiency-with-dawnice-100kw200kwh-peak-shaving-ess-in-switzerland-may-2026",
+  "title": "Case Study: Optimizing Commercial Energy Efficiency with Dawnice 100kW/200kWh Peak Shaving ESS in Switzerland (May 2026)",
+  "country": "Switzerland",
+  "application": "Industrial peak shaving",
+  "systemType": "C&I",
+  "capacity": "100kW / 200kWh",
+  "inverterPcs": "HZEB-ESS100P-200 all-in-one",
+  "productUsed": "100kW / 200kWh, HZEB-ESS100P-200 All-in-One",
+  "completed": "2026-05",
+  "summary": "A 100kW/200kWh all-in-one system in Switzerland, dispatched for peak shaving and arbitrage.",
+  "image": "/assets/images/cases/case-study-optimizing-commercial-energy-efficiency-with-dawnice-100kw200kwh-peak-shaving-ess-in-switzerland-may-2026.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "Switzerland — industrial peak shaving",
+  "challenge": "Swiss commercial tariffs combine substantial time-of-use rates with demand charges, so a single monthly peak can set much of the bill.",
+  "solution": "A 100kW/200kWh all-in-one ESS that caps peaks and shifts energy into cheaper periods.",
+  "result": "Peak capping reduces the premium capacity charges the facility pays; the case study quotes an estimated payback for that saving.",
+  "seo": {
+    "title": "Optimizing Commercial Energy Efficiency with Dawnice",
+    "description": "A 100kW/200kWh all-in-one system in Switzerland, dispatched for peak shaving and arbitrage."
+  }
+}

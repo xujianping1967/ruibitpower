@@ -1,0 +1,279 @@
+---
+import { getCollection } from 'astro:content';
+import site from '../data/site.json';
+import socialIcons from '../data/social-icons.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
+  /** Doc title without the brand suffix — used for the breadcrumb leaf. */
+  breadcrumbLabel?: string;
+}
+
+const {
+  title = `${site.brand} | Solar Battery & BESS Solutions`,
+  description = site.tagline,
+  image = '/assets/images/og-default.jpg',
+  structuredData,
+  noindex = false,
+  breadcrumbLabel,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, site.domain).toString();
+const absoluteImage = new URL(image, site.domain).toString();
+const absoluteLogo = new URL('/assets/images/logo-512.png', site.domain).toString();
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/products/', label: 'Products' },
+  { href: '/solutions/', label: 'Solutions' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/technology/', label: 'Technology' },
+  { href: '/resources/', label: 'Resources' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/contact/', label: 'Contact', cta: true },
+];
+const isCurrent = (href: string) => currentPath === href || currentPath.startsWith(href);
+
+/* Breadcrumb labels: prefer real content titles over slug-derived text. */
+const staticLabels: Record<string, string> = {
+  products: 'Products',
+  projects: 'Projects',
+  blog: 'Blog',
+  solutions: 'Solutions',
+  technology: 'Technology',
+  resources: 'Resources',
+  about: 'About',
+  contact: 'Contact',
+};
+
+const [productEntries, projectEntries, blogEntries] = await Promise.all([
+  getCollection('products'),
+  getCollection('projects'),
+  getCollection('blog'),
+]);
+
+const slugTitles = new Map<string, string>();
+for (const entry of productEntries) slugTitles.set(entry.data.slug, entry.data.title);
+for (const entry of projectEntries) slugTitles.set(entry.data.slug, entry.data.title);
+for (const entry of blogEntries) slugTitles.set(entry.id, entry.data.title);
+
+const titleize = (segment: string) =>
+  segment.replaceAll('-', ' ').replace(/\b\w/g, (char) => char.toUpperCase());
+
+const labelFor = (segment: string, isLeaf: boolean) => {
+  if (isLeaf && breadcrumbLabel) return breadcrumbLabel;
+  return staticLabels[segment] ?? slugTitles.get(segment) ?? titleize(segment);
+};
+
+const breadcrumbItems = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: 'Home',
+    item: `${site.domain}/`,
+  },
+  ...pathSegments.map((segment, index) => ({
+    '@type': 'ListItem',
+    position: index + 2,
+    name: labelFor(segment, index === pathSegments.length - 1),
+    item: new URL(`${pathSegments.slice(0, index + 1).join('/')}/`, site.domain).toString(),
+  })),
+];
+
+const organizationSchema: Record<string, unknown> = {
+  '@type': 'Organization',
+  '@id': `${site.domain}/#organization`,
+  name: site.brand,
+  legalName: site.legalName,
+  url: site.domain,
+  logo: {
+    '@type': 'ImageObject',
+    url: absoluteLogo,
+    width: 512,
+    height: 512,
+  },
+  image: absoluteLogo,
+  description: site.tagline,
+  email: site.email,
+  telephone: site.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.addressStreet,
+    addressLocality: site.addressCity,
+    addressRegion: site.addressRegion,
+    postalCode: site.addressPostalCode,
+    addressCountry: site.addressCountry,
+  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: site.email,
+      telephone: site.phone,
+      availableLanguage: ['en', 'zh'],
+      areaServed: ['EU', 'AF', 'NA', 'MEA', 'AS'],
+    },
+  ],
+  knowsAbout: [
+    'Battery energy storage systems',
+    'LiFePO4 batteries',
+    'Commercial and industrial energy storage',
+    'Containerized BESS',
+    'PV hybrid energy storage',
+  ],
+};
+
+/* sameAs is what an answer engine uses to confirm this is a real, findable
+   entity. It is derived from the same list the footer renders, so the two can
+   never disagree. */
+if (Array.isArray(site.social) && site.social.length > 0) {
+  organizationSchema.sameAs = site.social.map((entry: { url: string }) => entry.url);
+}
+
+const websiteSchema = {
+  '@type': 'WebSite',
+  '@id': `${site.domain}/#website`,
+  url: site.domain,
+  name: site.brand,
+  description: site.tagline,
+  inLanguage: 'en',
+  publisher: { '@id': `${site.domain}/#organization` },
+};
+
+const schemaGraph: Record<string, unknown>[] = [
+  { '@context': 'https://schema.org', ...organizationSchema },
+  { '@context': 'https://schema.org', ...websiteSchema },
+];
+
+if (pathSegments.length > 0) {
+  schemaGraph.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbItems,
+  });
+}
+
+if (structuredData) {
+  const extra = Array.isArray(structuredData) ? structuredData : [structuredData];
+  schemaGraph.push(...extra);
+}
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0e1726" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.brand} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={absoluteImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.brand} — ${site.tagline}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/cms.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="container nav">
+        {/* The wordmark is outlined SVG, so it needs no webfont. Its alt carries
+            the company name because the visible text is now part of the image. */}
+        <a class="brand" href="/">
+          <img class="brand-logo" src="/assets/images/logo-wordmark.svg" alt={site.brand} width="107" height="26" />
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+        <nav class="nav-links" id="primary-navigation" aria-label="Main navigation">
+          {navItems.map((item) => (
+            <a href={item.href} class={item.cta ? 'nav-cta' : undefined} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="footer-brand">
+        {/* The footer sits on navy, so it uses the reversed cut of the same
+            wordmark rather than a recoloured copy. */}
+        <img class="footer-logo" src="/assets/images/logo-wordmark-inverse.svg" alt={site.brand} width="87" height="21" />
+        <p>{site.tagline}</p>
+
+        <div class="footer-social">
+          {site.social.map((entry) => (
+            <a href={entry.url} target="_blank" rel="noopener me" aria-label={entry.name}>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d={(socialIcons as Record<string, string>)[entry.icon]} />
+              </svg>
+            </a>
+          ))}
+        </div>
+        <p class="footer-legal">{site.legalName}</p>
+      </div>
+      {/* Reuses the header's own items rather than new footer copy, so the two
+          cannot drift apart. */}
+      <nav class="footer-nav" aria-label="Footer">
+        <h2 class="footer-heading">Explore</h2>
+        {navItems.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </nav>
+      <div class="footer-contact">
+        <h2 class="footer-heading">Contact</h2>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={site.whatsappUrl}>WhatsApp {site.whatsapp}</a>
+        <p class="footer-legal">{site.address}</p>
+      </div>
+      {/* The footer used to stop in mid-air after the contact column. A closing
+          line carries the legal entity and the domain — the two things an
+          overseas buyer copies off a footer when checking a supplier. */}
+      <div class="footer-base">
+        <p>&copy; 2026 {site.legalName.replace(/\.$/, '')}. All rights reserved.</p>
+        <p class="footer-legal-links">
+          <a href="/#downloads">Downloads</a>
+          <span aria-hidden="true">·</span>
+          <a href="/privacy/">Privacy notice</a>
+          <span aria-hidden="true">·</span>
+          <a href="/privacy/#cookies" data-consent-settings>Cookie settings</a>
+        </p>
+        <p>{site.domain.replace('https://', '')}</p>
+      </div>
+    </footer>
+    <nav class="mobile-contact-bar" aria-label="Quick contact">
+      <a href={site.whatsappUrl}>WhatsApp</a>
+      <a href={`tel:${site.phone.replaceAll(' ', '')}`}>Call</a>
+    </nav>
+    <script src="/assets/js/main.js" is:inline></script>
+    {/* Consent gate. No non-essential script exists today, so this only runs the
+        dormant guard and the footer settings link; see public/assets/js/consent.js. */}
+    <script src="/assets/js/consent.js" defer></script>
+  </body>
+</html>

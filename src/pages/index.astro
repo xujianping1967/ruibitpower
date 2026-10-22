@@ -1,0 +1,293 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import InquiryBand from '../components/InquiryBand.astro';
+import StatBand from '../components/StatBand.astro';
+import CertGrid from '../components/CertGrid.astro';
+import ServiceCommitments from '../components/ServiceCommitments.astro';
+import trust from '../data/trust.json';
+import site from '../data/site.json';
+import downloads from '../data/downloads.json';
+import home from '../data/home.json';
+import { statSync } from 'node:fs';
+
+/* Sizes are read from the files themselves at build time. A hand-written "6.7
+   MB" would silently drift the first time a document is replaced. */
+/* The documents come from the manufacturer and change without notice; a checked
+   date on the page is the honest signal that they were verified at some point,
+   rather than implying they are live. */
+const DOWNLOAD_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+  'August', 'September', 'October', 'November', 'December'];
+const downloadsChecked = (() => {
+  const [y, m, d] = downloads.updated.split('-').map(Number);
+  return `${d} ${DOWNLOAD_MONTHS[m - 1]} ${y}`;
+})();
+
+const sizeOf = (url: string) => {
+  try {
+    // process.cwd() is the project root during a build; import.meta.url points
+    // at the compiled chunk and resolves to the wrong place.
+    const relative = url.replace(/^\//, '');
+    const bytes = statSync(process.cwd() + '/public/' + relative).size;
+    const mb = bytes / 1048576;
+    return mb >= 1 ? `${mb.toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  } catch {
+    return '';
+  }
+};
+
+const products = (await getCollection('products')).map((entry) => entry.data);
+
+/* Four flagship platforms, one per category, each shown in a staged
+   installation scene. The images are generated from the real product renders —
+   the product itself is unchanged; only the surrounding scene is designed. */
+const flagshipSlugs = [
+  'honey-125kw-261kwh-all-in-one-ess',
+  'sunflower-125kw-261kwh-pv-hybrid-ess',
+  'six-ultra-bs06-s-hv-stackable',
+  'loong-power-bs09-112-dp',
+];
+
+const flagship = flagshipSlugs
+  .map((slug) => products.find((product) => product.slug === slug))
+  .filter((product): product is (typeof products)[number] => Boolean(product))
+  /* WebP: the generated set ships both formats and WebP is 24% smaller
+     (339 KB vs 446 KB for the four cards). Universal browser support. */
+  .map((product) => ({ ...product, cardImage: `/assets/images/home/${product.slug}.webp` }));
+
+const projects = (await getCollection('projects'))
+  .map((entry) => entry.data)
+  .slice(0, home.projects.limit);
+
+const formatEventDate = (value: string) =>
+  new Date(value).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+
+/* The registered name ends in "Ltd." — avoid emitting "Ltd..". */
+const partnerName = site.manufacturingPartner.replace(/\.+\s*$/, '');
+
+/* Copy for every section lives in src/data/home.json so it can be edited in the
+   CMS. Placeholders there are filled here rather than in the CMS: they point at
+   values the editor should not have to retype or keep in sync (the platform
+   count, the response promise). Unknown placeholders are left visible instead
+   of printing "undefined". */
+const fill = (text: string, vars: Record<string, string | number>) =>
+  String(text ?? '').replace(/\{(\w+)\}/g, (match, key) =>
+    key in vars ? String(vars[key]) : match,
+  );
+
+const fillHref = (href: string) =>
+  String(href ?? '').replace(/\{count\}/g, String(products.length));
+
+const copyVars = {
+  hours: site.responsePromise,
+  count: products.length,
+  partner: site.manufacturingPartner.replace(/\.$/, ''),
+  facilityCity: site.facilityCity,
+};
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">{home.hero.eyebrow}</p>
+      <h1>{home.hero.title}</h1>
+      <p>{home.hero.lead}</p>
+      <div class="hero-actions">
+        {home.hero.buttons.map((button) => (
+          <a class={`button ${button.style}`} href={button.href}>{button.label}</a>
+        ))}
+      </div>
+      <p class="hero-note">{fill(home.hero.note, copyVars)}</p>
+    </div>
+    <img
+      src={home.hero.image}
+      alt={home.hero.imageAlt}
+      width="1950"
+      height="650"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </section>
+
+  <StatBand
+    groups={[
+      {
+        owner: 'Ruibit Power',
+        role: 'Authorized Dawnice channel',
+        stats: trust.ruibit.stats,
+      },
+      {
+        owner: 'Dawnice',
+        role: 'Manufacturing partner',
+        stats: trust.dawnice.stats,
+      },
+    ]}
+  />
+
+  <section class="section section-dark manufacturing">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">{home.manufacturing.eyebrow}</p>
+        <h2>{home.manufacturing.title}</h2>
+        <p class="section-lead">{home.manufacturing.lead}</p>
+      </div>
+      <a class="text-link" href={home.manufacturing.link.href}>{home.manufacturing.link.label}</a>
+    </div>
+
+    <div class="manufacturing-layout">
+      <figure class="manufacturing-media">
+        <img
+          src={home.manufacturing.image}
+          alt={home.manufacturing.imageAlt}
+          width="600"
+          height="399"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>{fill(home.manufacturing.caption, copyVars)}</figcaption>
+      </figure>
+
+      <div class="manufacturing-body">
+        <p>{home.manufacturing.body}</p>
+        <ul class="check-list check-list-light">
+          {trust.dawnice.qualityControl.map((item) => <li>{item}</li>)}
+        </ul>
+        <ul class="check-list check-list-light">
+          {home.manufacturing.points.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CertGrid certifications={trust.dawnice.certifications} note={trust.dawnice.certificationNote} />
+
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">{home.projects.eyebrow}</p>
+        <h2>{home.projects.title}</h2>
+        <p class="section-lead">{home.projects.lead}</p>
+      </div>
+      <a class="text-link" href={home.projects.link.href}>{home.projects.link.label}</a>
+    </div>
+
+    <div class="project-grid">
+      {projects.map((project) => (
+        <article class="project-card project-card-tight">
+          <p class="eyebrow">{project.country}</p>
+          <h3><a href={`/projects/${project.slug}/`}>{project.title}</a></h3>
+          <dl>
+            <div><dt>Application</dt><dd>{project.application}</dd></div>
+            <div><dt>Capacity</dt><dd>{project.capacity}</dd></div>
+          </dl>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section-dark lineup">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">{home.lineup.eyebrow}</p>
+        <h2>{home.lineup.title}</h2>
+        <p class="section-lead">{fill(home.lineup.lead, copyVars)}</p>
+      </div>
+      <a class="text-link" href={fillHref(home.lineup.link.href)}>{fill(home.lineup.link.label, copyVars)}</a>
+    </div>
+
+    <div class="feature-grid">
+      {flagship.map((product) => (
+        <FeatureCard
+          slug={product.slug}
+          title={product.title}
+          metrics={product.metrics}
+          image={product.cardImage}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">{home.solutions.eyebrow}</p>
+        <h2>{home.solutions.title}</h2>
+        <p class="section-lead">{home.solutions.lead}</p>
+      </div>
+      <a class="text-link" href={home.solutions.link.href}>{home.solutions.link.label}</a>
+    </div>
+    <div class="solution-grid solution-grid-quiet">
+      {home.solutions.items.map((item) => (
+        <article class="solution-item">
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <ServiceCommitments items={trust.ruibit.serviceCommitments} />
+
+  <section class="section momentum" aria-label="Manufacturing partner developments">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">{home.momentum.eyebrow}</p>
+        <h2>{home.momentum.title}</h2>
+        <p class="section-lead">{fill(home.momentum.lead, copyVars)}</p>
+      </div>
+    </div>
+    <ul class="momentum-list">
+      {trust.dawnice.events.map((event) => (
+        <li class="momentum-item">
+          <time datetime={event.date}>{formatEventDate(event.date)}</time>
+          <h3>{event.title}</h3>
+          <p>{event.detail}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+    <section class="section downloads" id="downloads">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">{home.downloads.eyebrow}</p>
+          <h2>{home.downloads.title}</h2>
+          <p class="section-lead">{home.downloads.lead}</p>
+        </div>
+      </div>
+
+      <div class="download-grid">
+        {downloads.groups.map((group) => (
+          <div class="download-group">
+            <h3>{group.title}</h3>
+            <p class="download-group-lead">{group.lead}</p>
+            <ul class="download-list">
+              {group.items.map((item) => (
+                <li>
+                  <a class="download-item" href={item.file} download>
+                    <span class="download-item-title">{item.title}</span>
+                    <span class="download-item-detail">{item.detail}</span>
+                    <span class="download-item-meta">
+                      <span class="download-tag">PDF</span>
+                      {sizeOf(item.file)}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <p class="download-note">
+        {fill(home.downloads.note, copyVars).split('{contact}')[0]}
+        <a href="/contact/">Ask us for it</a>
+        {fill(home.downloads.note, copyVars).split('{contact}')[1] ?? ''}
+      </p>
+      <p class="download-meta">Revision checked {downloadsChecked}. Older revisions are available on request.</p>
+    </section>
+
+    <InquiryBand />
+  </BaseLayout>

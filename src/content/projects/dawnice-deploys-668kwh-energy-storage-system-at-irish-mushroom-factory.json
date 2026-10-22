@@ -1,0 +1,24 @@
+{
+  "slug": "dawnice-deploys-668kwh-energy-storage-system-at-irish-mushroom-factory",
+  "title": "Dawnice Deploys 668kWh Energy Storage System at Irish Mushroom Factory",
+  "country": "Ireland",
+  "application": "Food processing",
+  "systemType": "C&I",
+  "capacity": "668kWh",
+  "inverterPcs": "Smart EMS",
+  "productUsed": "668kWh, Smart EMS",
+  "completed": "2026-01",
+  "summary": "A 668kWh solar-powered storage system installed and commissioned at a mushroom factory in Ireland.",
+  "image": "/assets/images/cases/dawnice-deploys-668kwh-energy-storage-system-at-irish-mushroom-factory.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "Ireland — food processing / agriculture",
+  "challenge": "Mushroom cultivation runs climate control, lighting and automated handling around the clock. A grid interruption or a price spike hits the crop directly, and rising electricity costs were pressing on the operating margin.",
+  "solution": "A 668kWh solar-plus-storage system, installed and commissioned on site, sized against the factory's continuous load.",
+  "result": "The system carries the factory's continuous demand and supports round-the-clock operation on solar.",
+  "seo": {
+    "title": "Dawnice Deploys 668kWh Energy Storage System at Irish Mushroom",
+    "description": "A 668kWh solar-powered storage system installed and commissioned at a mushroom factory in Ireland."
+  }
+}

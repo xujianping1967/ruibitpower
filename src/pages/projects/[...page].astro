@@ -1,0 +1,87 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Pagination from '../../components/Pagination.astro';
+
+export async function getStaticPaths({ paginate }: any) {
+  /* 23 references today, so the pager is live. The route was paginated from
+     twelve items up, which is why adding case studies never needed a rewrite. */
+  const projects = (await getCollection('projects')).map((entry) => entry.data);
+  return paginate(projects, { pageSize: 12 });
+}
+
+const { page } = Astro.props;
+const projects = page.data;
+const isFirst = page.currentPage === 1;
+
+const title = isFirst
+  ? 'Reference Deployments | Ruibit Power'
+  : `Reference Deployments — Page ${page.currentPage} | Ruibit Power`;
+const description = isFirst
+  ? 'Reference energy storage deployments in Nigeria, Germany, Austria, Israel, and the USA. Capacities from 10 kWh residential to 470 kW solar with storage.'
+  : `Page ${page.currentPage} of reference energy storage deployments: capacity, application and platform used, without client names.`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbLabel={isFirst ? 'Reference deployments' : `Reference deployments — page ${page.currentPage}`}
+>
+  <section class:list={['page-hero', { 'page-hero-slim': !isFirst }]}>
+    <p class="eyebrow">Reference deployments</p>
+    {isFirst ? (
+      <>
+        <h1>Reference project scenarios for energy storage buyers.</h1>
+        <p>
+          Deployments across Europe, Africa, the Middle East, and North America, from 10 kW
+          residential systems to a 470 kW solar-plus-storage reference project. Published figures
+          are capacity and application only — savings, commissioning dates, and client names are not
+          published.
+        </p>
+      </>
+    ) : (
+      <>
+        <h1>Reference deployments — page {page.currentPage}</h1>
+        <p>
+          {page.total} reference projects in total. <a href="/projects/">Back to the first page</a>.
+        </p>
+      </>
+    )}
+  </section>
+
+  <section class="section project-grid">
+    {projects.map((project: any) => (
+      <article class="project-card project-card-media">
+        <img
+          src={project.image}
+          alt={`${project.title} — ${project.country}`}
+          width={project.imageWidth ?? 1200}
+          height={project.imageHeight ?? 900}
+          class={project.imageFit === 'cover' ? 'is-cover' : undefined}
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <p class="eyebrow">{project.country} / {project.application}</p>
+          <h2><a href={`/projects/${project.slug}/`}>{project.title}</a></h2>
+          {/* Capacity and Product used live on the case page, where the full
+              parameter block sits. Repeating them here added a divider and four
+              lines of tabular text between the summary and the link, which made
+              the grid feel busy without helping anyone choose a case. */}
+          <p>{project.summary}</p>
+          <a class="text-link" href={`/projects/${project.slug}/`}>View case</a>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <Pagination
+    current={page.currentPage}
+    last={page.lastPage}
+    total={page.total}
+    from={page.start + 1}
+    to={page.end + 1}
+    noun="projects"
+    base="/projects/"
+  />
+</BaseLayout>

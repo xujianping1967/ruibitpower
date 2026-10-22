@@ -1,0 +1,139 @@
+{
+  "title": "Dawnice EnterFlex-2.0 BS09-64~241-R Rack HV Battery",
+  "slug": "dawnice-enterflex-bs09-64-241-rack",
+  "category": "Rack-mounted commercial battery",
+  "summary": "A floor-standing high-voltage LiFePO4 platform from 64.3kWh to 241.15kWh, parallel-expandable to 2.41MWh for indoor plant rooms and EPC integration.",
+  "heroImage": "/assets/images/products/dawnice-enterflex-bs09-64-241-rack/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/dawnice-enterflex-bs09-64-241-rack/hero-3x2.jpg",
+    "/assets/images/products/dawnice-enterflex-bs09-64-241-rack/01.jpg",
+    "/assets/images/products/dawnice-enterflex-bs09-64-241-rack/02.jpg",
+    "/assets/images/products/dawnice-enterflex-bs09-64-241-rack/03.jpg",
+    "/assets/images/products/dawnice-enterflex-bs09-64-241-rack/04.jpg",
+    "/assets/images/products/dawnice-enterflex-bs09-64-241-rack/05.jpg",
+    "/assets/images/products/dawnice-enterflex-bs09-64-241-rack/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Energy range",
+      "value": "64.3-241.15kWh"
+    },
+    {
+      "label": "Cell",
+      "value": "314Ah"
+    },
+    {
+      "label": "Parallel bank",
+      "value": "Up to 2.41MWh"
+    },
+    {
+      "label": "Design life",
+      "value": "15 years"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Battery chemistry",
+      "value": "LiFePO4"
+    },
+    {
+      "label": "Cell configuration",
+      "value": "3.2V 314Ah, 16S1P per module"
+    },
+    {
+      "label": "Model range",
+      "value": "BS09-64-R/4S to BS09-241-R/15S, 15 capacity steps"
+    },
+    {
+      "label": "Nominal voltage",
+      "value": "204.8V (4 modules) to 768V (15 modules)"
+    },
+    {
+      "label": "Nominal energy",
+      "value": "64.3kWh to 241.15kWh"
+    },
+    {
+      "label": "Usable energy",
+      "value": "57.87kWh to 217.03kWh at 90% DOD"
+    },
+    {
+      "label": "Max charge/discharge current",
+      "value": "157A"
+    },
+    {
+      "label": "Cycle life",
+      "value": ">=8,000 cycles (25 C, 0.5C/0.5C, 90% DOD, 70% EOL)"
+    },
+    {
+      "label": "Design life",
+      "value": ">=15 years at 25 C"
+    },
+    {
+      "label": "Warranty",
+      "value": "5+5 years"
+    },
+    {
+      "label": "Cooling",
+      "value": "Fan cooling"
+    },
+    {
+      "label": "Installation",
+      "value": "Floor-mounted, indoor"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP20"
+    },
+    {
+      "label": "Operating temperature",
+      "value": "Charge 0-55 C, discharge -20-55 C"
+    },
+    {
+      "label": "Parallel capability",
+      "value": "Up to 10 units, 64kWh to 2,410kWh"
+    },
+    {
+      "label": "Communication",
+      "value": "CAN / RS485"
+    },
+    {
+      "label": "Dimensions",
+      "value": "1100 x 792 x 969mm (64.3kWh) to 1100 x 792 x 2226mm (241.15kWh)"
+    },
+    {
+      "label": "Weight",
+      "value": "980kg (64.3kWh) to 2333kg (241.15kWh)"
+    }
+  ],
+  "applications": [
+    "Indoor plant rooms",
+    "Container-integrated projects",
+    "Offices and retail sites",
+    "EPC self-integration"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Does it need a climate-controlled room?",
+      "answer": "No. It is IP20 and fan-cooled, so a dry, ventilated indoor space is enough; the range is 0-55 C charging and -20-55 C discharging."
+    },
+    {
+      "question": "How does it compare with the Loong outdoor cabinets?",
+      "answer": "Same 314Ah cell and 8,000-cycle class, but built for indoor plant rooms and self-integration. The trade is IP20 instead of IP54."
+    },
+    {
+      "question": "What is the largest bank I can build?",
+      "answer": "Ten units at 241.15kWh each, for 2,410kWh in a single parallel bank."
+    }
+  ],
+  "featured": false,
+  "seo": {
+    "title": "Dawnice EnterFlex-2.0 BS09-64~241-R Rack HV Battery | Ruibit Power",
+    "description": "A floor-standing high-voltage LiFePO4 platform from 64.3kWh to 241.15kWh, parallel-expandable to 2.41MWh for indoor plant rooms and EPC integration."
+  }
+}

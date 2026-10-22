@@ -1,0 +1,47 @@
+/index.html /
+/products.html /products/ 301
+/blog.html /blog/ 301
+/projects.html /projects/ 301
+/solutions.html /solutions/ 301
+/technology.html /technology/ 301
+/resources.html /resources/ 301
+/about.html /about/ 301
+/contact.html /contact/ 301
+/powerfly-hzeb-lct-5.html /products/powerfly-hzeb-lct-5/ 301
+/powerfly-hzeb-lct-10.html /products/powerfly-hzeb-lct-10/ 301
+/powerfly-hzeb-lct-20.html /products/powerfly-hzeb-lct-20/ 301
+/six-ultra-bs06-s-hv-stackable.html /products/six-ultra-bs06-s-hv-stackable/ 301
+/dawnice-residential-hybrid-inverter.html /products/dawnice-residential-hybrid-inverter/ 301
+/dw-home-all-in-one-ess.html /products/dw-home-all-in-one-ess/ 301
+/loong-power-bs09-112-dp.html /products/loong-power-bs09-112-dp/ 301
+/loong-power-bs09-225-d.html /products/loong-power-bs09-225-d/ 301
+/honey-wd-ecf260s-dc-outdoor.html /products/honey-wd-ecf260s-dc-outdoor/ 301
+/honey-125kw-261kwh-all-in-one-ess.html /products/honey-125kw-261kwh-all-in-one-ess/ 301
+/sunflower-125kw-261kwh-pv-hybrid-ess.html /products/sunflower-125kw-261kwh-pv-hybrid-ess/ 301
+/dawnice-containerized-bess.html /products/dawnice-containerized-bess/ 301
+
+# Old blog URLs from the previous generation of the site. Each one must point at
+# a page that actually exists after the build — a 301 into another 404 is worse
+# than no redirect at all, because it burns the link equity twice.
+# Verified by tools/audit-redirects.py against dist/.
+
+# concept: what a C&I BESS is and how it works
+/what-is-ci-bess.html /blog/what-is-a-commercial-and-industrial-battery-energy-storage-system/ 301
+/how-commercial-bess-works.html /blog/what-is-a-commercial-and-industrial-battery-energy-storage-system/ 301
+
+# sizing: kWh, kW, duration, worked calculation
+/home-battery-size-guide.html /blog/how-to-size-a-home-battery-from-interval-load-data/ 301
+/kw-vs-kwh-battery-storage.html /blog/commercial-building-bess-demand-management-solar-self-use-and-backup/ 301
+/bess-duration-guide.html /blog/how-to-size-a-c-i-bess-from-15-minute-load-data-a-worked-example/ 301
+
+# home battery architecture and formats
+/48v-vs-512v-home-battery.html /blog/low-voltage-vs-high-voltage-home-batteries-a-system-level-selection-guide/ 301
+/adding-home-battery-to-rooftop-solar.html /blog/what-is-a-residential-battery-energy-storage-system-a-guide-for-importers-and-installers/ 301
+/ac-coupled-vs-dc-coupled-bess.html /blog/ac-coupled-vs-dc-coupled-bess/ 301
+
+# commercial applications and engineering
+/commercial-building-bess-demand-management.html /blog/commercial-building-bess-demand-management-solar-self-use-and-backup/ 301
+/battery-storage-for-ev-charging.html /blog/battery-storage-for-ev-charging/ 301
+/air-cooled-vs-liquid-cooled-bess.html /blog/air-cooled-vs-liquid-cooled-bess-efficiency-maintenance-and-climate-limits/ 301
+/bms-protection-commercial-bess.html /blog/bess-fire-protection-system-explained-detection-isolation-suppression-and-venting/ 301
+

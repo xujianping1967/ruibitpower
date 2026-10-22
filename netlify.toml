@@ -1,0 +1,12 @@
+# Build configuration for Netlify. Response headers are not here: they live in
+# public/_headers, which both Netlify and Cloudflare Pages read from the publish
+# directory. Declaring them in both places would duplicate every header once the
+# site is served by Netlify, because it applies netlify.toml and _headers
+# together. One source, one result.
+
+[build]
+  command = "npm run verify"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"

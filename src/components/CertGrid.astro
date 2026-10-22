@@ -1,0 +1,132 @@
+---
+import site from '../data/site.json';
+import trust from '../data/trust.json';
+
+interface Props {
+  certifications: string[];
+  note?: string;
+}
+
+const { certifications, note } = Astro.props;
+
+const documents = trust.dawnice.certificateDocuments;
+const documentNote = trust.dawnice.certificateDocumentNote;
+const partnerName = site.manufacturingPartner.replace(/\.+\s*$/, '');
+---
+
+<section class="section section-soft" aria-label="Certification and compliance">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Documentation</p>
+      <h2>Certification and compliance</h2>
+      <p class="section-lead">
+        The certificate documents issued by the manufacturing partner, {partnerName}. Select any document to view it
+        larger.
+      </p>
+    </div>
+    <a class="text-link" href="/contact/">Request certificate package</a>
+  </div>
+
+  <ul class="cert-doc-grid">
+    {documents.map((doc) => {
+      const label = doc.detail ? `${doc.label} ${doc.detail}` : doc.label;
+      return (
+        <li class="cert-doc">
+          {/* Works without JavaScript: the anchor opens the document directly.
+              With JavaScript the click is intercepted and shown in a dialog. */}
+          <a
+            class="cert-doc-link"
+            href={doc.file}
+            target="_blank"
+            rel="noopener"
+            data-cert-lightbox
+            data-label={label}
+          >
+            <span class="cert-doc-thumb">
+              <img
+                src={doc.file}
+                alt={`${label} — certificate document issued by ${partnerName}`}
+                width="500"
+                height="500"
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+            <span class="cert-doc-meta">
+              <span class="cert-doc-name">{doc.label}</span>
+              {doc.detail && <span class="cert-doc-detail">{doc.detail}</span>}
+              <span class="cert-doc-scope">{doc.scope}</span>
+            </span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+
+  <p class="section-note">
+    Standards referenced across the range: {certifications.join(' · ')}. {note}
+  </p>
+</section>
+
+<dialog class="cert-lightbox" data-cert-dialog aria-label="Certificate document">
+  <div class="cert-lightbox-inner">
+    <div class="cert-lightbox-bar">
+      <p class="cert-lightbox-caption" data-cert-caption></p>
+      <button class="cert-lightbox-close" type="button" data-cert-close aria-label="Close certificate viewer">
+        Close
+      </button>
+    </div>
+    {/* No `src` until the dialog opens. An empty src is invalid HTML and makes
+        the browser re-request the current page URL as an image. */}
+    <img class="cert-lightbox-image" data-cert-image alt="" width="500" height="500" />
+    <p class="cert-lightbox-hint">
+      Displayed at the resolution supplied by the manufacturing partner. The full certificate is issued on request.
+    </p>
+  </div>
+</dialog>
+
+<script is:inline>
+  (function () {
+    var dialog = document.querySelector('[data-cert-dialog]');
+    /* Without dialog support the anchors keep their default behaviour and open
+       the document directly, so this enhancement is strictly additive. */
+    if (!dialog || typeof dialog.showModal !== 'function') return;
+
+    var image = dialog.querySelector('[data-cert-image]');
+    var caption = dialog.querySelector('[data-cert-caption]');
+    var close = dialog.querySelector('[data-cert-close]');
+    var lastTrigger = null;
+
+    Array.prototype.forEach.call(document.querySelectorAll('a[data-cert-lightbox]'), function (link) {
+      link.addEventListener('click', function (event) {
+        if (event.metaKey || event.ctrlKey || event.shiftKey) return; // let the browser open a tab
+        event.preventDefault();
+        lastTrigger = link;
+        var label = link.getAttribute('data-label') || '';
+        /* Take the URL from the anchor's own href rather than a data attribute:
+           the href is what the offline-copy build rewrites to a relative path,
+           so both the served site and the file:// copy resolve correctly. */
+        image.setAttribute('src', link.getAttribute('href'));
+        image.setAttribute('alt', label);
+        caption.textContent = label;
+        dialog.showModal();
+        close.focus();
+      });
+    });
+
+    close.addEventListener('click', function () {
+      dialog.close();
+    });
+
+    /* Click on the backdrop closes; clicks inside the panel do not. */
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener('close', function () {
+      image.removeAttribute('src');
+      image.setAttribute('alt', '');
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+    });
+  })();
+</script>

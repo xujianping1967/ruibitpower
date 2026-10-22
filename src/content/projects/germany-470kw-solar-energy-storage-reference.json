@@ -1,0 +1,20 @@
+{
+  "slug": "germany-470kw-solar-energy-storage-reference",
+  "title": "470kW Solar Energy Storage Reference Project in Germany",
+  "country": "Germany",
+  "application": "Solar energy storage",
+  "systemType": "C&I",
+  "capacity": "470kW reference project",
+  "productUsed": "Commercial or containerized ESS configuration",
+  "summary": "A 470kW solar-plus-storage reference project in Germany.",
+  "image": "/assets/images/cases/germany-470kw-solar-energy-storage-reference.jpg",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "challenge": "European solar-storage projects carry grid-compliance documentation and long-term reliability requirements that shape the architecture before the equipment is chosen.",
+  "solution": "A commercial cabinet or containerised ESS architecture matched to the 470kW array, with PCS pairing and grid rules confirmed at design stage.",
+  "result": "",
+  "seo": {
+    "title": "470kW Solar Energy Storage Reference Project in Germany",
+    "description": "A 470kW solar-plus-storage reference project in Germany."
+  }
+}

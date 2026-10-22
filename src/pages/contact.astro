@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+import form from '../data/form.json';
+import trust from '../data/trust.json';
+
+const responsePromise = site.responsePromise;
+---
+
+<BaseLayout
+  title="Contact & Request a Quotation | Ruibit Power"
+  description="Send your energy storage requirements for a quotation, with a 24 working-hour target. Include country, application, power, energy and backup duration."
+  breadcrumbLabel="Contact"
+>
+  <section class="page-hero">
+    <p class="eyebrow">Contact</p>
+    <h1>Send your project requirements.</h1>
+    <p>
+      Tell us the country, application, target power and energy, PV status, and backup requirement. We will match the
+      right platform and come back with a configured proposal.
+    </p>
+    <ul class="promise-row">
+      <li><strong>{responsePromise} working hours</strong><span>Quotation target for a complete brief</span></li>
+      <li><strong>English &amp; Chinese</strong><span>Sales and technical support languages</span></li>
+      <li><strong>FOB / CIF / DDP</strong><span>Incoterms supported</span></li>
+    </ul>
+  </section>
+
+  <section class="section contact-layout">
+    {/* `autocomplete="off"` is a hint, not a switch: Chrome's Autofill ignores it
+        for address/contact forms (chromium issue 41163264) and still offers the
+        saved-contact picker. It is kept because Firefox and Safari do honour it,
+        and because the explicit value stops Chrome inferring the field type from
+        the name alone in some versions. The reliable opt-out is browser-side. */}
+    <form
+      class="contact-form"
+      name={form.formName}
+      action={form.formAction}
+      method={form.method}
+      autocomplete="off"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      data-inquiry-endpoint="/api/inquiry"
+      data-success-message={form.successMessage}
+      data-error-message="We could not send your inquiry just now. Please email us directly and we will pick it up from there."
+    >
+      <input type="hidden" name="form-name" value={form.formName} />
+      <input type="hidden" name="recommended_system" value="" />
+      <p class="hidden-field">
+        <label>Do not fill this field <input name="bot-field" autocomplete="off" tabindex="-1" /></label>
+      </p>
+
+      <div class="brief-panel" data-brief-panel hidden>
+        <p class="eyebrow">Your brief</p>
+        <p class="brief-text" data-brief-text></p>
+      </div>
+
+      {form.fields.map((field) => (
+        <label>
+          <span>{field.label}</span>
+          {field.type === 'textarea' ? (
+            <textarea name={field.name} required={field.required} autocomplete="off" spellcheck="false"></textarea>
+          ) : field.type === 'select' ? (
+            <select name={field.name} required={field.required} autocomplete="off">
+              {(field.options || []).map((option) => <option value={option}>{option}</option>)}
+            </select>
+          ) : (
+            <input type={field.type} name={field.name} required={field.required} autocomplete="off" />
+          )}
+        </label>
+      ))}
+      {/* Article 13 notice, at the point of collection. Deliberately not a
+          tick-box: the data is processed to answer the enquiry under Art. 6(1)(b),
+          so consent is not the lawful basis and a mandatory checkbox would
+          misstate it. */}
+      <p class="form-privacy">
+        We use these details only to answer your enquiry and prepare a quotation. Our{' '}
+        <a href="/privacy/">privacy notice</a> explains what we collect, how long we keep it, and
+        how to ask us to delete it.
+      </p>
+      <button class="button primary" type="submit">Send inquiry</button>
+      {/* Deliberately empty and hidden. The confirmation is written here only
+          after the endpoint answers 2xx (or after a 303 back with ?sent=1 on
+          the no-JS path) — it used to sit in the markup as static copy, which
+          told every first-time visitor their inquiry had already been sent. */}
+      <p class="form-note" data-form-status hidden role="status" aria-live="polite"></p>
+      <p class="form-note">
+        Target response: {responsePromise} working hours. Warranty, lead time, and pricing are confirmed in the
+        quotation.
+      </p>
+    </form>
+
+    <aside class="contact-panel">
+      <h2>Direct contact</h2>
+      <p><strong>Email</strong><br /><a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p><strong>Phone / WhatsApp</strong><br /><a href={site.whatsappUrl}>{site.phone}</a></p>
+      <img src="/assets/images/whatsapp-qr.png" alt="Ruibit Power WhatsApp QR code" width="360" height="360" loading="lazy" decoding="async" />
+
+      <h3>Registered entity</h3>
+      <p>{site.legalName}<br />{site.address}</p>
+
+      <h3>Manufacturing facility</h3>
+      <p>{site.manufacturingPartner}<br />{site.facilityAddress}</p>
+
+      <h3>Supply terms</h3>
+      <ul class="mini-list">
+        <li>Quotation target: {responsePromise} working hours</li>
+        <li>Incoterms: FOB, CIF, DDP</li>
+        <li>Payment: T/T and L/C</li>
+        <li>OEM / ODM supported through the manufacturing partner</li>
+      </ul>
+
+      <h3>Certification</h3>
+      <p class="panel-note">
+        Standards referenced: {trust.dawnice.certifications.slice(0, 6).join(', ')} and others. The matching
+        certificate package is confirmed per order configuration.
+      </p>
+    </aside>
+  </section>
+<script is:inline>
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    if (![...params.keys()].length) return;
+
+    const map = {
+      residential: 'Home solar battery',
+      commercial: 'Commercial & industrial BESS',
+      industrial: 'Commercial & industrial BESS',
+      pvhybrid: 'PV hybrid ESS',
+      ev: 'EV charging storage',
+      containerized: 'Containerized BESS',
+      'product-datasheet': 'Other',
+    };
+
+    const pick = (key) => {
+      const value = params.get(key);
+      return value ? value.trim() : '';
+    };
+
+    const application = map[pick('application')] || '';
+    const bits = [];
+    if (pick('power')) bits.push(pick('power') + ' kW');
+    if (pick('energy')) bits.push(pick('energy') + ' kWh');
+    if (pick('pv')) bits.push(pick('pv') + ' kWp PV');
+    if (pick('backup')) bits.push(pick('backup') + ' h backup');
+    if (pick('country')) bits.push(pick('country'));
+    const brief = bits.join(' · ');
+
+    const product = pick('product');
+    const recommended = pick('recommended');
+
+    const select = document.querySelector('.contact-form select[name="application"]');
+    if (select && application) select.value = application;
+
+    const country = document.querySelector('.contact-form input[name="country"]');
+    if (country && pick('country')) country.value = pick('country');
+
+    const message = document.querySelector('.contact-form textarea[name="message"]');
+    if (message) {
+      const lines = [];
+      if (brief) lines.push('Project brief: ' + brief);
+      if (recommended) lines.push('Suggested platform: ' + recommended);
+      if (product) lines.push('Documentation requested for: ' + product);
+      if (lines.length) message.value = lines.join('\n');
+    }
+
+    const hidden = document.querySelector('.contact-form input[name="recommended_system"]');
+    if (hidden) hidden.value = recommended || product;
+
+    const panel = document.querySelector('[data-brief-panel]');
+    const text = document.querySelector('[data-brief-text]');
+    if (panel && text && (brief || recommended || product)) {
+      text.textContent = [brief, recommended && 'Suggested platform: ' + recommended, product && 'Documentation: ' + product]
+        .filter(Boolean)
+        .join(' — ');
+      panel.hidden = false;
+    }
+  })();
+</script>
+<script is:inline>
+  /* Progressive enhancement, not a replacement. With JS the form posts to
+     /api/inquiry and the visitor stays on the page; without it the native POST
+     still goes where the action attribute points.
+     If the endpoint is missing (Netlify, or a Pages project deployed without
+     Functions) it answers 404/405/501 — in that case we hand the submission
+     back to the browser so the host's own form handling takes it. */
+  (function () {
+    const form = document.querySelector('form.contact-form[data-inquiry-endpoint]');
+    if (!form) return;
+
+    const endpoint = form.getAttribute('data-inquiry-endpoint');
+    const status = form.querySelector('[data-form-status]');
+    const button = form.querySelector('button[type="submit"]');
+    const successText = form.getAttribute('data-success-message') || 'Thank you.';
+    const errorText = form.getAttribute('data-error-message') || 'Something went wrong.';
+
+    const show = (message, state) => {
+      if (!status) return;
+      status.textContent = message;
+      status.dataset.state = state;
+      status.hidden = false;
+      /* The button sits at the bottom of a long form; on a phone the message
+         can land off-screen and look like nothing happened. */
+      if (!status.dataset.announced) {
+        status.dataset.announced = '1';
+        status.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      }
+    };
+
+    /* The no-JS path lands back here with ?sent=1. */
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('sent') === '1') {
+      show(successText, 'ok');
+      params.delete('sent');
+      const query = params.toString();
+      window.history.replaceState({}, '', window.location.pathname + (query ? '?' + query : ''));
+    }
+
+    if (!window.fetch || !window.FormData) return;
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const label = button ? button.textContent : '';
+      if (button) {
+        button.disabled = true;
+        button.textContent = 'Sending…';
+      }
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+
+        if ([404, 405, 501].includes(response.status)) {
+          /* No Function on this host — let the platform handle the POST. */
+          form.submit();
+          return;
+        }
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+
+        show(successText, 'ok');
+        form.reset();
+        const panel = document.querySelector('[data-brief-panel]');
+        if (panel) panel.hidden = true;
+      } catch (error) {
+        show(errorText, 'error');
+      } finally {
+        if (button) {
+          button.disabled = false;
+          button.textContent = label;
+        }
+      }
+    });
+  })();
+</script>
+</BaseLayout>
+
+

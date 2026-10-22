@@ -1,0 +1,38 @@
+{
+  "brand": "Ruibit Power",
+  "legalName": "Jiangxi Ruibit Intelligent Technology Co., Ltd.",
+  "domain": "https://ruibitpower.com",
+  "email": "sales@ruibitpower.com",
+  "phone": "+86 189 7035 0893",
+  "whatsapp": "+86 189 7035 0893",
+  "whatsappUrl": "https://wa.me/8618970350893",
+  "tagline": "Solar battery and BESS solutions for homes, businesses, and project developers.",
+  "address": "No. 106 Guangxin Avenue, Xinzhou District, Shangrao City, Jiangxi Province, China 334000",
+  "addressStreet": "No. 106 Guangxin Avenue, Xinzhou District",
+  "addressCity": "Shangrao City",
+  "addressRegion": "Jiangxi Province",
+  "addressPostalCode": "334000",
+  "addressCountry": "CN",
+  "responsePromise": "24",
+  "manufacturingPartner": "Yichun Dawnice Manufacture & Trade Co., Ltd.",
+  "facilityAddress": "Building 1, Xiongxing Technology Industrial Park, No. 111 Yishang Avenue, Yichun Economic Development Zone, Yuanzhou District, Yichun City, Jiangxi Province, China",
+  "facilityCity": "Yichun, Jiangxi Province, China",
+  "partnerProfiles": [
+    {
+      "label": "energydawnice.com",
+      "url": "https://www.energydawnice.com/"
+    },
+    {
+      "label": "Dawnice on Alibaba.com",
+      "url": "https://dawnice.en.alibaba.com"
+    }
+  ],
+  "social": [
+    { "name": "LinkedIn", "icon": "linkedin", "url": "https://www.linkedin.com/in/%E5%B9%B3-%E5%BB%BA-052b48427/" },
+    { "name": "X", "icon": "x", "url": "https://x.com/xujianping1967" },
+    { "name": "Facebook", "icon": "facebook", "url": "https://facebook.com/RuibitEnergy" },
+    { "name": "YouTube", "icon": "youtube", "url": "https://www.youtube.com/@ruibitenergystorage" },
+    { "name": "TikTok", "icon": "tiktok", "url": "https://www.tiktok.com/@jianpingxu67" },
+    { "name": "Instagram", "icon": "instagram", "url": "https://www.instagram.com/ruibit.energy/" }
+  ]
+}

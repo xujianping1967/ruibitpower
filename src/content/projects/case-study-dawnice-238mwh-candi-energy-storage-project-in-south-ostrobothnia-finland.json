@@ -1,0 +1,24 @@
+{
+  "slug": "case-study-dawnice-238mwh-candi-energy-storage-project-in-south-ostrobothnia-finland",
+  "title": "Case Study: Dawnice 2.38MWh C&I Energy Storage Project in South Ostrobothnia, Finland",
+  "country": "Finland",
+  "application": "Industrial park",
+  "systemType": "C&I",
+  "capacity": "2.38MWh / 1125kW",
+  "inverterPcs": "9 × BS07-265-ES-X all-in-one",
+  "productUsed": "2.38MWh (1125kW), 9× BS07-265-ES-X All-in-One",
+  "completed": "2026-06",
+  "summary": "A 2.38MWh C&I storage project in South Ostrobothnia, built from nine cabinets totalling 1125kW.",
+  "image": "/assets/images/cases/case-study-dawnice-238mwh-candi-energy-storage-project-in-south-ostrobothnia-finland.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "Finland — industrial park",
+  "challenge": "South Ostrobothnia works through freezing winters and sharp seasonal swings in demand, while electricity prices stay volatile. The client needed an outdoor system that keeps its capacity in low temperatures.",
+  "solution": "Nine BS07-265 cabinets, 2.38MWh and 1125kW in total, built on 314Ah cells with cell-to-pack construction to raise energy density per cabinet.",
+  "result": "The outdoor layout was chosen for space efficiency on an industrial site; the project was completed in June 2026.",
+  "seo": {
+    "title": "Dawnice 2.38MWh C&I Energy Storage Project in South",
+    "description": "A 2.38MWh C&I storage project in South Ostrobothnia, built from nine cabinets totalling 1125kW."
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "ruibit": {
+    "brand": "Ruibit Power",
+    "companyName": "Jiangxi Ruibit Intelligent Technology Co., Ltd.",
+    "role": "Authorized Dawnice energy storage solution channel",
+    "positioning": "Ruibit Power is an authorized Dawnice energy storage channel supplying residential, commercial and industrial, and containerized battery systems to distributors, EPC teams, and project developers worldwide.",
+    "headline": "Product-led supply with project-level engineering support.",
+    "stats": [
+      {
+        "value": "15",
+        "label": "Product platforms",
+        "note": "Residential batteries, C&I cabinets, PV hybrid and containerized BESS"
+      },
+      {
+        "value": "23",
+        "label": "Reference deployments",
+        "note": "Europe, Africa, the Middle East, and North America"
+      },
+      {
+        "value": "4",
+        "label": "Regions served",
+        "note": "EU, Africa, the Middle East, and North America"
+      },
+      {
+        "value": "10",
+        "label": "Certification standards",
+        "note": "IEC, UL, CE, UN38.3, ISO 9001, MSDS and ROHS"
+      }
+    ],
+    "serviceCommitments": [
+      {
+        "title": "Quotation response",
+        "detail": "Technical review and quotation target within 24 working hours of a complete inquiry."
+      },
+      {
+        "title": "Product warranty",
+        "detail": "Warranty terms are stated per model and per battery platform in the quotation."
+      },
+      {
+        "title": "Minimum order quantity",
+        "detail": "MOQ is confirmed per model; project and distributor volumes are quoted separately."
+      },
+      {
+        "title": "Samples",
+        "detail": "Sample units are available for qualified distributors and project developers."
+      },
+      {
+        "title": "Lead time",
+        "detail": "Lead time is confirmed in writing per model and quantity before order confirmation."
+      },
+      {
+        "title": "Incoterms",
+        "detail": "FOB, CIF, and DDP terms are supported according to destination and project scope."
+      },
+      {
+        "title": "Payment terms",
+        "detail": "T/T and L/C terms are available; final terms are agreed in the sales contract."
+      },
+      {
+        "title": "OEM / ODM",
+        "detail": "Private-label and custom configuration projects are supported through the manufacturing partner."
+      },
+      {
+        "title": "Technical documentation",
+        "detail": "Datasheets, certificates, wiring diagrams, and warranty cards ship with every order."
+      },
+      {
+        "title": "Languages",
+        "detail": "Sales and technical support in English and Chinese; regional support via local service stations."
+      }
+    ],
+    "verificationNote": "Company subject details should be checked against the latest business license, authorization letter, and public storefront records before final publication."
+  },
+
+  "dawnice": {
+    "manufacturer": "Yichun Dawnice Manufacture & Trade Co., Ltd.",
+    "displayName": "Dawnice",
+    "headquarters": "Yichun, Jiangxi Province, China",
+    "cityNote": "Yichun is known as the \"Lithium Capital of Asia\".",
+    "factoryAddress": "Building 1, Xiongxing Technology Industrial Park, No. 111 Yishang Avenue, Yichun Economic Development Zone, Yuanzhou District, Yichun City, Jiangxi Province, China",
+    "website": "https://www.energydawnice.com/",
+    "storefront": "https://dawnice.en.alibaba.com",
+    "stats": [
+      {
+        "value": "2GWh+",
+        "label": "Annual output"
+      },
+      {
+        "value": "150+",
+        "label": "Countries covered"
+      },
+      {
+        "value": "30+",
+        "label": "Local service stations"
+      },
+      {
+        "value": "14+",
+        "label": "Years of lithium battery expertise"
+      },
+      {
+        "value": "6,000 / 8,000",
+        "label": "Cabinet / cell-level cycle life"
+      },
+      {
+        "value": "3,000+",
+        "label": "Clients served"
+      },
+      {
+        "value": "100%",
+        "label": "Lifecycle traceability"
+      },
+      {
+        "value": "20+",
+        "label": "Global partners"
+      }
+    ],
+    "manufacturingClaims": [
+      "Energy storage battery manufacturer with residential, commercial, industrial, and EV charging solution lines.",
+      "2GWh+ annual production capacity across a manufacturing base in Yichun, Jiangxi Province, China.",
+      "Customers served in over 150 countries across six continents, including 3,000+ clients and 28 international distributors as stated in Dawnice public materials.",
+      "Sales and after-sales service networks established in Europe, the Americas, the Middle East, and Africa.",
+      "Over 14 years of lithium battery technology and manufacturing experience.",
+      "OEM and ODM services offered for product customization.",
+      "6,000-cycle life at cabinet level and up to 8,000 at cell level stated across the energy storage product range, with 100% lifecycle traceability."
+    ],
+    "qualityControl": [
+      "Raw material sourcing control before production release.",
+      "In-line production inspection and process records.",
+      "Full-process product testing before shipment.",
+      "Lifecycle traceability from cell batch to finished system.",
+      "Model-specific certificates supplied with the matching configuration."
+    ],
+    "certifications": [
+      "IEC 62619",
+      "IEC 62477",
+      "IEC 63056",
+      "IEC 61000",
+      "UL",
+      "CE",
+      "UN38.3",
+      "MSDS",
+      "ISO 9001",
+      "ROHS"
+    ],
+    "certificateDocuments": [
+      {
+        "file": "/assets/images/certificates/eu-attestation-conformity.webp",
+        "label": "Attestation of Conformity",
+        "detail": "with European Directive",
+        "scope": "European Union"
+      },
+      {
+        "file": "/assets/images/certificates/ce-certificate.webp",
+        "label": "CE Certificate",
+        "scope": "European Union"
+      },
+      {
+        "file": "/assets/images/certificates/ce-certificate-annex.webp",
+        "label": "CE Certificate — Annex",
+        "scope": "European Union"
+      },
+      {
+        "file": "/assets/images/certificates/iec-certificate.webp",
+        "label": "IEC Certificate",
+        "scope": "International standard"
+      },
+      {
+        "file": "/assets/images/certificates/iem-report.webp",
+        "label": "IEM Report",
+        "scope": "Compliance"
+      },
+      {
+        "file": "/assets/images/certificates/msds.webp",
+        "label": "Material Safety Data Sheet",
+        "scope": "Transport"
+      },
+      {
+        "file": "/assets/images/certificates/transport-hazard-identification.webp",
+        "label": "Transportation Hazard Identification Report",
+        "scope": "Transport"
+      },
+      {
+        "file": "/assets/images/certificates/un383.webp",
+        "label": "UN38.3 Test Report",
+        "scope": "Transport"
+      }
+    ],
+    "certificationNote": "Certification applicability depends on product model, order configuration, and destination market. Request the latest matching certificate package before final quotation.",
+    "certificateDocumentNote": "Documents shown are scans published by the manufacturing partner. They are reproduced at the resolution supplied; the model-specific certificate package for your destination is issued on request.",
+    "events": [
+      {
+        "date": "2026-09-29",
+        "title": "Energy Expo Romania 2026",
+        "detail": "Advanced BESS solutions presented to the Romanian and wider Eastern European market."
+      },
+      {
+        "date": "2026-06-27",
+        "title": "The smarter E Europe 2026, Munich",
+        "detail": "Energy storage innovation presented at Europe's largest energy industry platform."
+      },
+      {
+        "date": "2026-06-10",
+        "title": "SNEC 2026, Shanghai",
+        "detail": "Next-generation energy storage solutions for utility and C&I applications."
+      },
+      {
+        "date": "2026-06-06",
+        "title": "Ganfeng LiEnergy 2GWh supply agreement",
+        "detail": "Strategic cell supply agreement securing battery capacity for export projects."
+      }
+    ],
+    "partnerNotes": [
+      "Dawnice public pages reference strategic partners and global distributors.",
+      "Ruibit pages should only show partner logos when permission or official public proof is available.",
+      "Alibaba storefront details should be verified separately before quoting transaction metrics or supplier badges."
+    ]
+  },
+
+  "sourceNotes": [
+    "Ruibit-owned figures are limited to what is published on this site: product platforms, reference deployments, and regions served.",
+    "Manufacturing scale, certification, and global reach figures are Dawnice public materials and must always be labelled as such.",
+    "Avoid claiming project savings, ROI, commissioning dates, or customer names unless there is direct evidence.",
+    "Do not state a delivery date, price, or warranty term that has not been confirmed in writing."
+  ]
+}

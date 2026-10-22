@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InquiryBand from '../components/InquiryBand.astro';
+import StatBand from '../components/StatBand.astro';
+import CertGrid from '../components/CertGrid.astro';
+import ServiceCommitments from '../components/ServiceCommitments.astro';
+import trust from '../data/trust.json';
+import site from '../data/site.json';
+
+const faqs = [
+  {
+    question: 'Is Ruibit Power a manufacturer or a distributor?',
+    answer:
+      'Ruibit Power is an authorized energy storage solution channel for Dawnice, a lithium battery manufacturer based in Yichun, Jiangxi Province, China. Product platforms and manufacturing capability come from Dawnice; Ruibit Power handles product selection, configuration, commercial terms, and project support for international buyers.',
+  },
+  {
+    question: 'Can you supply certificates for my destination market?',
+    answer:
+      'Product documentation references IEC 62619, IEC 62477, IEC 63056, IEC 61000, UL, CE, UN38.3, MSDS, ISO 9001, and ROHS. Certificate applicability depends on the product model, order configuration, and destination market. The matching certificate package is confirmed before final quotation.',
+  },
+  {
+    question: 'What is the minimum order quantity?',
+    answer:
+      'MOQ is confirmed per model. Residential battery platforms and cabinet systems have different minimums, and distributor or project volumes are quoted separately. Send your target model and quantity through the inquiry form for confirmation.',
+  },
+  {
+    question: 'Do you support OEM and ODM projects?',
+    answer:
+      'Yes. Private-label and custom configuration projects are supported through the manufacturing partner. Requirements should be described in the inquiry so the configuration, tooling, and sample timeline can be confirmed.',
+  },
+  {
+    question: 'How quickly will I receive a quotation?',
+    answer:
+      'The target is 24 working hours from a complete inquiry. A complete inquiry includes the country or region, application, target power in kW, target energy in kWh, and backup duration. Having an existing PV capacity or grid code available speeds up the response.',
+  },
+  {
+    question: 'Which regions do you supply?',
+    answer:
+      'Reference deployments cover Europe, Africa, the Middle East, and North America. The manufacturing partner states coverage across more than 150 countries with sales and after-sales networks in Europe, the Americas, the Middle East, and Africa.',
+  },
+];
+
+/* The registered name ends in "Ltd." — avoid emitting "Ltd..". */
+const partnerName = site.manufacturingPartner.replace(/\.+\s*$/, '');
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+};
+---
+
+<BaseLayout
+  title="About Ruibit Power | Dawnice Energy Storage Partner"
+  description="Ruibit Power supplies Dawnice-manufactured battery storage — residential, C&I, PV hybrid and containerized — to distributors, EPC teams and developers."
+  breadcrumbLabel="About"
+  structuredData={faqSchema}
+>
+  <section class="page-hero">
+    <p class="eyebrow">About</p>
+    <h1>{site.legalName}</h1>
+    <p>{trust.ruibit.positioning}</p>
+    <div class="hero-actions">
+      <a class="button primary" href="/contact/">Send an inquiry</a>
+      <a class="button secondary" href="/projects/">Reference deployments</a>
+    </div>
+  </section>
+
+  <StatBand
+    groups={[
+      { owner: 'Ruibit Power', role: 'Authorized Dawnice channel', stats: trust.ruibit.stats },
+      { owner: 'Dawnice', role: 'Manufacturing partner', stats: trust.dawnice.stats },
+    ]}
+  />
+
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Our role</p>
+        <h2>An authorized channel, stated plainly</h2>
+        <p class="section-lead">
+          Ruibit Power is not a factory. We are the commercial and engineering interface between a manufacturer
+          with 2GWh+ annual output and international buyers who need a configured system, not a catalogue part
+          number.
+        </p>
+      </div>
+    </div>
+
+    <div class="trust-panel">
+      <div>
+        <h3>Company subject</h3>
+        <p><strong>{trust.ruibit.companyName}</strong></p>
+        <p>{trust.ruibit.headline}</p>
+        <p class="panel-note">
+          Registered at {site.address}. Manufacturing takes place at the Dawnice facility in {site.facilityCity}.
+        </p>
+      </div>
+      <div>
+        <h3>Manufacturing partner</h3>
+        <p><strong>{trust.dawnice.manufacturer}</strong></p>
+        <p><strong>Headquarters:</strong> {trust.dawnice.headquarters}</p>
+        <p><strong>Facility:</strong> {trust.dawnice.factoryAddress}</p>
+        <p class="panel-note">
+          {trust.dawnice.cityNote} Figures published for Dawnice are attributed to Dawnice and are not Ruibit Power
+          figures.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Manufacturing &amp; quality control</p>
+        <h2>How the systems are built and checked</h2>
+        <p class="section-lead">
+          Manufacturing runs at the Dawnice facility in {site.facilityCity}, with 2GWh+ annual output and 100%
+          lifecycle traceability stated across the energy storage range.
+        </p>
+      </div>
+    </div>
+
+    <div class="manufacturing-layout">
+      <figure class="manufacturing-media">
+        <img
+          src="/assets/images/office.webp"
+          alt="Dawnice manufacturing and headquarters facility in Yichun, Jiangxi Province"
+          width="600"
+          height="399"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>
+          Dawnice facility — {site.facilityCity}. Operated by {partnerName}.
+        </figcaption>
+      </figure>
+      <div class="manufacturing-body">
+        <p>
+          Manufacturing runs in Yichun, Jiangxi Province — a region known as the "Lithium Capital of Asia" — with
+          quality control applied from raw material sourcing through to shipment, and lifecycle traceability from
+          cell batch to finished system.
+        </p>
+        <ul class="check-list check-list-light">
+          {trust.dawnice.qualityControl.map((item) => <li>{item}</li>)}
+        </ul>
+        <ul class="check-list check-list-light">
+          {trust.dawnice.manufacturingClaims.slice(0, 4).map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CertGrid certifications={trust.dawnice.certifications} note={trust.dawnice.certificationNote} />
+
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Manufacturing partner</p>
+        <h2>Verify Dawnice directly</h2>
+        <p class="section-lead">
+          Ruibit Power is happy for buyers to verify the manufacturing basis independently. These are the public
+          manufacturer references.
+        </p>
+      </div>
+    </div>
+    <ul class="link-list">
+      {site.partnerProfiles.map((profile) => (
+        <li>
+          <a href={profile.url} rel="noopener noreferrer nofollow" target="_blank">{profile.label}</a>
+          <span>Public manufacturer reference — opens in a new tab.</span>
+        </li>
+      ))}
+    </ul>
+    <p class="section-note">
+      {trust.sourceNotes[1]}
+    </p>
+  </section>
+
+  <ServiceCommitments
+    items={trust.ruibit.serviceCommitments}
+    eyebrow="Commercial terms"
+    heading="How we work with buyers"
+    lead="Terms below are the standard conditions. Final pricing, lead time, and warranty are confirmed in the quotation."
+  />
+
+  <section class="section section-soft">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">FAQ</p>
+        <h2>Questions buyers ask first</h2>
+      </div>
+    </div>
+    <div class="faq-list">
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <InquiryBand />
+</BaseLayout>

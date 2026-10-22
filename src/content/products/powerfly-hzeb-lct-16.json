@@ -1,0 +1,124 @@
+{
+  "title": "PowerFly HZEB-LCT-16 16.07kWh Wall-Mounted Battery",
+  "slug": "powerfly-hzeb-lct-16",
+  "category": "Residential battery",
+  "summary": "A 16.07kWh 51.2V LiFePO4 battery with 314Ah cells and a 150A rating, sized for larger homes and small commercial backup.",
+  "heroImage": "/assets/images/products/powerfly-hzeb-lct-16/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/powerfly-hzeb-lct-16/hero-3x2.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-16/01.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-16/02.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-16/03.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Capacity",
+      "value": "16.07kWh"
+    },
+    {
+      "label": "Voltage",
+      "value": "51.2V"
+    },
+    {
+      "label": "Max current",
+      "value": "150A"
+    },
+    {
+      "label": "Protection",
+      "value": "IP54"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Nominal energy",
+      "value": "16.07kWh"
+    },
+    {
+      "label": "Usable energy",
+      "value": "14.47kWh at 90% DOD"
+    },
+    {
+      "label": "Battery chemistry",
+      "value": "LiFePO4"
+    },
+    {
+      "label": "Configuration",
+      "value": "3.2V 314Ah, 1P16S"
+    },
+    {
+      "label": "Nominal voltage",
+      "value": "51.2V (44.8-57.6V)"
+    },
+    {
+      "label": "Max charge/discharge current",
+      "value": "150A"
+    },
+    {
+      "label": "Cycle life",
+      "value": ">=8,000 cycles at 90% DOD (25 C)"
+    },
+    {
+      "label": "Warranty",
+      "value": "5+5 years"
+    },
+    {
+      "label": "Communication",
+      "value": "CAN / RS485"
+    },
+    {
+      "label": "Parallel capability",
+      "value": "Up to 15 units"
+    },
+    {
+      "label": "Installation",
+      "value": "Wall-mounted or ground-mounted"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP54"
+    },
+    {
+      "label": "Operating temperature",
+      "value": "Charge 0-55 C, discharge -20-55 C"
+    },
+    {
+      "label": "Dimensions",
+      "value": "460 x 245 x 800mm"
+    },
+    {
+      "label": "Weight",
+      "value": "127kg"
+    }
+  ],
+  "applications": [
+    "Larger homes",
+    "Small commercial backup",
+    "Off-grid cabins",
+    "Retrofit with an existing low-voltage inverter"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What can a 150A battery actually run?",
+      "answer": "150A at 51.2V is 7.68kW at nominal voltage, so it carries a 6kW inverter with margin; at the 44.8V low end the same current gives 6.72kW."
+    },
+    {
+      "question": "How does it compare with the 10.54kWh model?",
+      "answer": "Same platform and cabinet family, but 314Ah cells instead of 206Ah and a 150A rating instead of 100A, so it carries a larger inverter as well as more energy."
+    },
+    {
+      "question": "Can it be installed outdoors?",
+      "answer": "It is IP54 and rated for wall or ground mounting, and the datasheet claims resistance to 200mm of continuous rain. Siting still matters: keep it off a flood path and within the 0-55 C charging window."
+    }
+  ],
+  "featured": false,
+  "seo": {
+    "title": "PowerFly HZEB-LCT-16 16.07kWh Wall-Mounted Battery | Ruibit Power",
+    "description": "A 16.07kWh 51.2V LiFePO4 battery with 314Ah cells and a 150A rating, sized for larger homes and small commercial backup."
+  }
+}

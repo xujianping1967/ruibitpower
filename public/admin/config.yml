@@ -1,0 +1,408 @@
+# Decap CMS, local editing mode.
+#
+# This admin is a local tool: `npm run admin` starts decap-server plus the Astro
+# dev server, and saves land in the working tree. tools/pack-cloudflare.py strips
+# admin/ from the deploy package, so there is no hosted /admin and no OAuth
+# route to keep working.
+#
+# `git-gateway` is the backend Decap's local proxy expects — it is the pairing
+# used in the official proxy documentation. With `name: github` the CMS renders
+# its login screen even when `local_backend: true`, because that backend has no
+# unauthenticated path; verified in a browser against this config.
+#
+# To move editing to the hosted site later: set `name: github` plus `repo`, add
+# an OAuth route, and stop excluding admin/ at package time.
+backend:
+  name: git-gateway
+  branch: main
+local_backend: true
+# editorial_workflow is off: the local backend saves straight to disk and cannot
+# hold drafts for review. Backups are the undo path instead.
+media_folder: "public/assets/uploads"
+public_folder: "/assets/uploads"
+site_url: "https://ruibitpower.com"
+display_url: "https://ruibitpower.com"
+logo_url: "/assets/images/logo-512.png"
+
+collections:
+  - name: products
+    label: Products
+    folder: src/content/products
+    extension: json
+    format: json
+    create: true
+    identifier_field: title
+    slug: "{{slug}}"
+    editor: { preview: false }
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string, pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Lowercase URL slug"] }
+      - { label: Category, name: category, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Hero Image, name: heroImage, widget: image }
+      - { label: Gallery, name: gallery, widget: list, required: false, field: { label: Image, name: image, widget: image } }
+      - label: Metrics
+        name: metrics
+        widget: list
+        required: false
+        fields:
+          - { label: Label, name: label, widget: string }
+          - { label: Value, name: value, widget: string }
+      - label: Specifications
+        name: specs
+        widget: list
+        required: false
+        fields:
+          - { label: Label, name: label, widget: string }
+          - { label: Value, name: value, widget: string }
+      - { label: Applications, name: applications, widget: list, required: false, field: { label: Application, name: application, widget: string } }
+      - label: Downloads
+        name: downloads
+        widget: list
+        required: false
+        fields:
+          - { label: Label, name: label, widget: string }
+          - { label: URL, name: url, widget: string }
+      - label: FAQ
+        name: faqs
+        widget: list
+        required: false
+        fields:
+          - { label: Question, name: question, widget: string }
+          - { label: Answer, name: answer, widget: text }
+      - { label: Publish Date, name: publishDate, widget: datetime, required: false, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Updated Date, name: updatedDate, widget: datetime, required: false, date_format: "YYYY-MM-DD", time_format: false }
+      - label: Sources
+        name: sources
+        widget: list
+        required: false
+        fields:
+          - { label: Label, name: label, widget: string }
+          - { label: URL, name: url, widget: string }
+          - { label: Note, name: note, widget: text, required: false }
+      - { label: Featured on homepage, name: featured, widget: boolean, default: false }
+      - label: SEO
+        name: seo
+        widget: object
+        required: false
+        fields:
+          - { label: SEO Title, name: title, widget: string, required: false }
+          - { label: Meta Description, name: description, widget: text, required: false }
+
+  - name: blog
+    label: Blog
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Category, name: category, widget: string }
+      - { label: Excerpt, name: excerpt, widget: text }
+      - { label: Publish Date, name: publishDate, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Updated Date, name: updatedDate, widget: datetime, required: false, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Author, name: author, widget: string, required: false, default: "Ruibit Power Engineering Team" }
+      - { label: Featured Image, name: featuredImage, widget: image, required: false }
+      - { label: Related Products, name: relatedProducts, widget: list, required: false, field: { label: Product slug, name: product, widget: string } }
+      - label: Sources
+        name: sources
+        widget: list
+        required: false
+        fields:
+          - { label: Label, name: label, widget: string }
+          - { label: URL, name: url, widget: string }
+          - { label: Note, name: note, widget: text, required: false }
+      - label: SEO
+        name: seo
+        widget: object
+        required: false
+        fields:
+          - { label: SEO Title, name: title, widget: string, required: false }
+          - { label: Meta Description, name: description, widget: text, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: projects
+    label: Cases / Projects
+    folder: src/content/projects
+    extension: json
+    format: json
+    create: true
+    identifier_field: title
+    slug: "{{slug}}"
+    editor: { preview: false }
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string, pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Lowercase URL slug"] }
+      - { label: Country, name: country, widget: string }
+      - { label: Application, name: application, widget: string }
+      - { label: System Type, name: systemType, widget: string, required: false }
+      - { label: Capacity, name: capacity, widget: string }
+      - { label: Inverter / PCS, name: inverterPcs, widget: string, required: false }
+      - { label: Product Used, name: productUsed, widget: string, required: false }
+      - { label: Completion Date / Status, name: completed, widget: string, required: false }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Image, name: image, widget: image }
+      - { label: Image Caption, name: imageCaption, widget: string, required: false }
+      - { label: Image Width, name: imageWidth, widget: number, value_type: int, required: false }
+      - { label: Image Height, name: imageHeight, widget: number, value_type: int, required: false }
+      - { label: Image Fit, name: imageFit, widget: select, options: [contain, cover], required: false }
+      - { label: Challenge, name: challenge, widget: text }
+      - { label: Solution, name: solution, widget: text }
+      - { label: Result, name: result, widget: text }
+      - { label: Publish Date, name: publishDate, widget: datetime, required: false, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Updated Date, name: updatedDate, widget: datetime, required: false, date_format: "YYYY-MM-DD", time_format: false }
+      - { label: Source URL, name: sourceUrl, widget: string, required: false }
+      - { label: Source Label, name: sourceLabel, widget: string, required: false }
+      - label: Evidence Type
+        name: evidenceType
+        widget: select
+        required: false
+        options:
+          - { label: Manufacturer-published reference, value: manufacturer-published-reference }
+          - { label: Client-authorized, value: client-authorized }
+          - { label: Public record, value: public-record }
+          - { label: Internal project record, value: internal-project-record }
+      - label: SEO
+        name: seo
+        widget: object
+        required: false
+        fields:
+          - { label: SEO Title, name: title, widget: string, required: false }
+          - { label: Meta Description, name: description, widget: text, required: false }
+
+  - name: settings
+    label: Settings
+    files:
+      - label: Site Settings
+        name: site
+        file: src/data/site.json
+        fields:
+          - { label: Brand, name: brand, widget: string }
+          - { label: Legal Name, name: legalName, widget: string }
+          - { label: Domain, name: domain, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Phone, name: phone, widget: string }
+          - { label: WhatsApp, name: whatsapp, widget: string }
+          - { label: WhatsApp URL, name: whatsappUrl, widget: string }
+          - { label: Tagline, name: tagline, widget: text }
+          - { label: Full Address, name: address, widget: string }
+          - { label: Street, name: addressStreet, widget: string }
+          - { label: City, name: addressCity, widget: string }
+          - { label: Region, name: addressRegion, widget: string }
+          - { label: Postal Code, name: addressPostalCode, widget: string }
+          - { label: Country Code, name: addressCountry, widget: string }
+          - { label: Response Promise (hours), name: responsePromise, widget: string }
+          - { label: Manufacturing Partner, name: manufacturingPartner, widget: string }
+          - { label: Facility Address, name: facilityAddress, widget: text }
+          - { label: Facility City, name: facilityCity, widget: string }
+          - label: Partner Profiles
+            name: partnerProfiles
+            widget: list
+            required: false
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: url, widget: string }
+          - label: Social Profiles
+            name: social
+            widget: list
+            required: false
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Icon, name: icon, widget: string }
+              - { label: URL, name: url, widget: string }
+
+      - label: Inquiry Form
+        name: form
+        file: src/data/form.json
+        fields:
+          - { label: Form Name, name: formName, widget: string }
+          - { label: Form Action, name: formAction, widget: string }
+          - { label: Method, name: method, widget: select, options: [post, get] }
+          - { label: Success Message, name: successMessage, widget: text }
+          - label: Fields
+            name: fields
+            widget: list
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Label, name: label, widget: string }
+              - { label: Type, name: type, widget: select, options: [text, email, tel, textarea, select] }
+              - { label: Required, name: required, widget: boolean, default: false }
+              - { label: Options, name: options, widget: list, required: false, field: { label: Option, name: option, widget: string } }
+
+      - label: Trust Evidence
+        name: trust
+        file: src/data/trust.json
+        fields:
+          - label: Ruibit
+            name: ruibit
+            widget: object
+            fields:
+              - { label: Brand, name: brand, widget: string }
+              - { label: Company Name, name: companyName, widget: string }
+              - { label: Role, name: role, widget: string }
+              - { label: Positioning, name: positioning, widget: text }
+              - { label: Headline, name: headline, widget: string }
+              - label: Statistics
+                name: stats
+                widget: list
+                fields:
+                  - { label: Value, name: value, widget: string }
+                  - { label: Label, name: label, widget: string }
+                  - { label: Note, name: note, widget: text, required: false }
+              - label: Service Commitments
+                name: serviceCommitments
+                widget: list
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Detail, name: detail, widget: text }
+              - { label: Verification Note, name: verificationNote, widget: text }
+          - label: Dawnice
+            name: dawnice
+            widget: object
+            fields:
+              - { label: Manufacturer, name: manufacturer, widget: string }
+              - { label: Display Name, name: displayName, widget: string }
+              - { label: Headquarters, name: headquarters, widget: string }
+              - { label: City Note, name: cityNote, widget: text }
+              - { label: Factory Address, name: factoryAddress, widget: text }
+              - { label: Website, name: website, widget: string }
+              - { label: Storefront, name: storefront, widget: string }
+              - label: Statistics
+                name: stats
+                widget: list
+                fields:
+                  - { label: Value, name: value, widget: string }
+                  - { label: Label, name: label, widget: string }
+              - { label: Manufacturing Claims, name: manufacturingClaims, widget: list, field: { label: Claim, name: claim, widget: text } }
+              - { label: Quality Control, name: qualityControl, widget: list, field: { label: Control, name: control, widget: text } }
+              - { label: Certifications, name: certifications, widget: list, field: { label: Certification, name: certification, widget: string } }
+              - label: Certificate Documents
+                name: certificateDocuments
+                widget: list
+                fields:
+                  - { label: File, name: file, widget: image }
+                  - { label: Label, name: label, widget: string }
+                  - { label: Detail, name: detail, widget: string, required: false }
+                  - { label: Scope, name: scope, widget: string }
+              - { label: Certification Note, name: certificationNote, widget: text }
+              - { label: Certificate Document Note, name: certificateDocumentNote, widget: text }
+              - label: Events
+                name: events
+                widget: list
+                fields:
+                  - { label: Date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Detail, name: detail, widget: text }
+              - { label: Partner Notes, name: partnerNotes, widget: list, field: { label: Note, name: note, widget: text } }
+          - { label: Source Notes, name: sourceNotes, widget: list, field: { label: Source Note, name: sourceNote, widget: text } }
+
+  # Homepage copy. Every string the visitor reads on / lives in src/data/home.json
+  # so it can be edited here; the template only supplies layout. Placeholders in
+  # braces ({count}, {hours}, {partner}, {facilityCity}, {contact}) are filled at
+  # build time from data the editor should not have to keep in sync.
+  - name: homepage
+    label: Homepage
+    files:
+      - name: home
+        label: Homepage sections
+        file: src/data/home.json
+        fields:
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Lead paragraph, name: lead, widget: text }
+              - { label: Quotation note, name: note, widget: string, hint: "Use {hours} for the response promise." }
+              - { label: Image, name: image, widget: image }
+              - { label: Image alt text, name: imageAlt, widget: string }
+              - label: Buttons
+                name: buttons
+                widget: list
+                max: 3
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Link, name: href, widget: string }
+                  - label: Style
+                    name: style
+                    widget: select
+                    options: [primary, secondary]
+          - label: Manufacturing
+            name: manufacturing
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Lead paragraph, name: lead, widget: text }
+              - label: Link
+                name: link
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Link, name: href, widget: string }
+              - { label: Image, name: image, widget: image }
+              - { label: Image alt text, name: imageAlt, widget: string }
+              - { label: Caption, name: caption, widget: string, hint: "Use {facilityCity} and {partner}." }
+              - { label: Body paragraph, name: body, widget: text }
+              - { label: Bullet points, name: points, widget: list, field: { label: Point, name: point, widget: text } }
+          - label: Reference deployments
+            name: projects
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Lead paragraph, name: lead, widget: text }
+              - label: Link
+                name: link
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Link, name: href, widget: string }
+              - { label: How many to show, name: limit, widget: number, min: 1, max: 12, value_type: int }
+          - label: Core lineup
+            name: lineup
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Lead paragraph, name: lead, widget: text, hint: "Use {count} for the number of platforms." }
+              - label: Link
+                name: link
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string, hint: "Use {count}." }
+                  - { label: Link, name: href, widget: string }
+          - label: Solutions
+            name: solutions
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Lead paragraph, name: lead, widget: text }
+              - label: Link
+                name: link
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Link, name: href, widget: string }
+              - label: Solution cards
+                name: items
+                widget: list
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Body, name: body, widget: text }
+          - label: Manufacturing partner news
+            name: momentum
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Lead paragraph, name: lead, widget: text, hint: "Use {partner}." }
+          - label: Downloads
+            name: downloads
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Lead paragraph, name: lead, widget: text }
+              - { label: Closing note, name: note, widget: text, hint: "Use {partner} and {contact}; {contact} becomes the link." }

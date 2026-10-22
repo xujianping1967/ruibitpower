@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InquiryBand from '../components/InquiryBand.astro';
+---
+<BaseLayout title="Technology | Ruibit Power" description="Battery chemistry, BMS, thermal management, PCS integration, and system safety information for Ruibit Power storage products.">
+  <section class="page-hero">
+    <p class="eyebrow">Technology</p>
+    <h1>The core of the system is safety, control, and thermal stability.</h1>
+    <p>Product selection should consider chemistry, BMS architecture, cooling method, installation environment, certification needs, and service access.</p>
+  </section>
+  {/* Four one-sentence capabilities. They carry the shared solution-card
+      treatment so the headings do not inherit the 48px section-heading size,
+      and a four-up grid so the fourth card is not orphaned on its own row. */}
+  <section class="section solution-grid solution-grid-quad">
+    <article class="solution-card"><h2>LiFePO4 chemistry</h2><p>Long-cycle lithium iron phosphate cells for residential and commercial energy storage.</p></article>
+    <article class="solution-card"><h2>BMS protection</h2><p>Battery management for voltage, current, temperature, communication, and system protection.</p></article>
+    <article class="solution-card"><h2>Liquid cooling</h2><p>Used in higher-capacity cabinet systems where thermal consistency affects performance and lifespan.</p></article>
+    <article class="solution-card"><h2>Hybrid integration</h2><p>System design can include PV, battery, PCS/inverter, EMS, monitoring, and load-side controls.</p></article>
+  </section>
+  <InquiryBand />
+</BaseLayout>

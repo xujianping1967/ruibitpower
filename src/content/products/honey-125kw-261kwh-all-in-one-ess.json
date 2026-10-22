@@ -1,0 +1,121 @@
+{
+  "title": "Honey 125kW / 261kWh All-in-One ESS",
+  "slug": "honey-125kw-261kwh-all-in-one-ess",
+  "category": "All-in-one commercial ESS",
+  "summary": "A 125kW / 261kWh liquid-cooled all-in-one ESS cabinet for commercial energy storage and PV applications.",
+  "heroImage": "/assets/images/products/honey-125kw-261kwh-all-in-one-ess/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/honey-125kw-261kwh-all-in-one-ess/hero-3x2.jpg",
+    "/assets/images/products/honey-125kw-261kwh-all-in-one-ess/01.jpg",
+    "/assets/images/products/honey-125kw-261kwh-all-in-one-ess/02.jpg",
+    "/assets/images/products/honey-125kw-261kwh-all-in-one-ess/03.jpg",
+    "/assets/images/products/honey-125kw-261kwh-all-in-one-ess/04.jpg",
+    "/assets/images/products/honey-125kw-261kwh-all-in-one-ess/05.jpg",
+    "/assets/images/products/honey-125kw-261kwh-all-in-one-ess/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Power",
+      "value": "125kW"
+    },
+    {
+      "label": "Energy",
+      "value": "261.248kWh"
+    },
+    {
+      "label": "Cooling",
+      "value": "Liquid cooled"
+    },
+    {
+      "label": "Cycles",
+      "value": "6,000 cycles @ 80% SOH (25 °C / 0.5C); up to 8,000 at cell level"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Rated power",
+      "value": "125kW"
+    },
+    {
+      "label": "Nominal energy",
+      "value": "261.248kWh"
+    },
+    {
+      "label": "Cell chemistry",
+      "value": "LiFePO4"
+    },
+    {
+      "label": "Cell specification",
+      "value": "3.2V / 314Ah"
+    },
+    {
+      "label": "Charge/discharge rate",
+      "value": "0.5C"
+    },
+    {
+      "label": "Thermal management",
+      "value": "Intelligent liquid cooling"
+    },
+    {
+      "label": "Temperature uniformity",
+      "value": "<=3C"
+    },
+    {
+      "label": "Cycle life",
+      "value": "6,000 cycles @ 80% SOH (25 °C / 0.5C); up to 8,000 at cell level"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP54"
+    },
+    {
+      "label": "Fire protection",
+      "value": "Aerosol fire suppression"
+    },
+    {
+      "label": "Dimensions",
+      "value": "1055 x 1300 x 2300mm"
+    },
+    {
+      "label": "Footprint",
+      "value": "1.4m2"
+    }
+  ],
+  "applications": [
+    "Commercial buildings",
+    "PV self-consumption",
+    "Backup and peak shaving"
+  ],
+  "downloads": [
+    {
+      "label": "Datasheet — PDF, 2 pages",
+      "url": "/downloads/honey-125kw-261kwh-all-in-one-ess-datasheet.pdf"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What cooling does it use?",
+      "answer": "Intelligent liquid cooling, holding cell-to-cell temperature spread within 3°C."
+    },
+    {
+      "question": "What is the cycle life?",
+      "answer": "6,000 cycles to 80% state of health at 25°C and 0.5C. The 8,000 figure is cell level only."
+    },
+    {
+      "question": "Where can it be installed?",
+      "answer": "Outdoors, IP54, 1055 x 1300 x 2300 mm. Check door and delivery-route clearance before ordering."
+    }
+  ],
+  "featured": true,
+  "seo": {
+    "title": "Honey 125kW / 261kWh All-in-One ESS | Ruibit Power",
+    "description": "A 125kW / 261kWh liquid-cooled all-in-one ESS cabinet for commercial energy storage and PV applications."
+  },
+  "sources": [
+    {
+      "label": "Manufacturer datasheet (PDF)",
+      "url": "https://ruibitpower.com/downloads/honey-125kw-261kwh-all-in-one-ess-datasheet.pdf",
+      "note": "Figures on this page are taken from this document."
+    }
+  ]
+}

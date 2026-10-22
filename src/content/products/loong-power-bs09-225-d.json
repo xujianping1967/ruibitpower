@@ -1,0 +1,102 @@
+{
+  "title": "Loong Power BS09-225-D Outdoor Cabinet BESS",
+  "slug": "loong-power-bs09-225-d",
+  "category": "Commercial BESS",
+  "summary": "A 225kWh-class outdoor LiFePO4 cabinet for C&I energy storage, peak shaving, and renewable energy integration.",
+  "heroImage": "/assets/images/products/loong-power-bs09-225-d/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/loong-power-bs09-225-d/hero-3x2.jpg",
+    "/assets/images/products/loong-power-bs09-225-d/01.jpg",
+    "/assets/images/products/loong-power-bs09-225-d/02.jpg",
+    "/assets/images/products/loong-power-bs09-225-d/03.jpg",
+    "/assets/images/products/loong-power-bs09-225-d/04.jpg",
+    "/assets/images/products/loong-power-bs09-225-d/05.jpg",
+    "/assets/images/products/loong-power-bs09-225-d/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Energy",
+      "value": "225.07kWh"
+    },
+    {
+      "label": "Cell type",
+      "value": "314Ah"
+    },
+    {
+      "label": "System",
+      "value": "Outdoor cabinet"
+    },
+    {
+      "label": "Cycles",
+      "value": ">=8,000 @ 90% DOD"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Nominal energy",
+      "value": "225.07kWh"
+    },
+    {
+      "label": "System voltage",
+      "value": "716.8V (627.2-806.4V)"
+    },
+    {
+      "label": "Rated current",
+      "value": "157A"
+    },
+    {
+      "label": "Battery chemistry",
+      "value": "LiFePO4"
+    },
+    {
+      "label": "Cell class",
+      "value": "314Ah"
+    },
+    {
+      "label": "System type",
+      "value": "Outdoor cabinet BESS"
+    },
+    {
+      "label": "Cycle life",
+      "value": ">=8,000 cycles at 90% DOD (25 C, 0.5C)"
+    },
+    {
+      "label": "Application",
+      "value": "Commercial and industrial energy storage"
+    },
+    {
+      "label": "Parallel capability",
+      "value": "Up to 10 units"
+    }
+  ],
+  "applications": [
+    "Factories",
+    "Commercial buildings",
+    "Distributed PV sites"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Does outdoor installation require a foundation?",
+      "answer": "Yes, a level reinforced concrete foundation. Installation guidance is provided."
+    },
+    {
+      "question": "How large can it be paralleled?",
+      "answer": "Up to 10 units, expanding capacity to the 2 MWh level."
+    },
+    {
+      "question": "Can it operate in low temperatures?",
+      "answer": "Yes, -30°C to 55°C, with automatic derating above 45°C."
+    }
+  ],
+  "featured": false,
+  "seo": {
+    "title": "Loong Power BS09-225-D Outdoor Cabinet BESS | Ruibit Power",
+    "description": "A 225kWh-class outdoor LiFePO4 cabinet for C&I energy storage, peak shaving, and renewable energy integration."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "germany-30kw-hybrid-inverter-80kwh-lifepo4",
+  "title": "30kW Hybrid Inverter + 80kWh LiFePO4 Battery in Germany",
+  "country": "Germany",
+  "application": "Hybrid solar battery system",
+  "systemType": "Residential hybrid",
+  "capacity": "30kW / 80kWh",
+  "inverterPcs": "Hybrid inverter",
+  "productUsed": "Hybrid inverter + LiFePO4 battery system",
+  "summary": "A 30kW hybrid inverter paired with an 80kWh LiFePO4 battery bank in Germany.",
+  "image": "/assets/images/cases/germany-30kw-hybrid-inverter-80kwh-lifepo4.jpg",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "challenge": "Hybrid systems are decided by compatibility: the PV array, the battery voltage window, the circuits that stay live during an outage, and the monitoring all have to agree before anything is ordered.",
+  "solution": "A 30kW hybrid inverter with an 80kWh LiFePO4 bank, configured as one backup-capable system rather than two separate purchases.",
+  "result": "",
+  "seo": {
+    "title": "30kW Hybrid Inverter + 80kWh LiFePO4 Battery in Germany",
+    "description": "A 30kW hybrid inverter paired with an 80kWh LiFePO4 battery bank in Germany."
+  }
+}

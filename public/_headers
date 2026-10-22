@@ -1,0 +1,59 @@
+# Response headers, in the syntax both Netlify and Cloudflare Pages read.
+#
+# Why this file exists instead of [[headers]] in netlify.toml: the same deploy
+# directory now has to work on either host. Cloudflare merges every matching
+# rule and joins duplicate header names with a comma, while Netlify does not
+# support Cloudflare's "! Header" removal syntax — so a rule pair that relies on
+# the more specific block *replacing* the broader one would produce different
+# results on the two platforms. One matching rule per header avoids the
+# question entirely: nothing here is defined twice.
+#
+# Consequence: /admin/ inherits the site policy, so the policy has to accommodate
+# it — hence unpkg in script-src (the CMS bundle), the GitHub API in connect-src
+# (saves go straight to the repository), and GitHub avatars in img-src. Those
+# three origins are the only third-party entries; everything else stays 'self'.
+# Note that script-src already allows 'unsafe-inline' for the site's own inline
+# scripts, which is a wider hole than these three origins combined.
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https://avatars.githubusercontent.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://unpkg.com; font-src 'self'; connect-src 'self' https://api.github.com https://api.netlify.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+
+# The CMS shell is not content and must never be cached or indexed.
+/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+
+# Machine-readable AI files: short cache so updates propagate quickly.
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/agents.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+# Static assets. Not fingerprinted, so the cache window is deliberately short
+# of a year: a replaced file must reach visitors without a hard refresh.
+/assets/images/*
+  Cache-Control: public, max-age=2592000
+
+/assets/css/*
+  Cache-Control: public, max-age=604800
+
+/assets/js/*
+  Cache-Control: public, max-age=604800
+
+# Datasheet PDFs. Content-Type is declared rather than sniffed because every
+# file under this path is a PDF and a wrong type would render it as text.
+# Inline disposition lets buyers read it in the tab; the product page's button
+# sets the download attribute for a direct save.
+/downloads/*
+  Content-Type: application/pdf
+  Content-Disposition: inline
+  Cache-Control: public, max-age=86400

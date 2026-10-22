@@ -1,0 +1,39 @@
+{
+  "name": "ruibitpower-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "prebuild": "node tools/sync-image-sizes.mjs && node tools/prebuild-sync.mjs",
+    "build": "astro build && node tools/build-worker.mjs",
+    "preview": "astro preview --host 127.0.0.1",
+    "validate:content": "node tools/validate-content.mjs",
+    "audit:site": "node tools/audit-site.mjs",
+    "audit:geo": "node tools/audit-geo.mjs",
+    "audit:redirects": "node tools/run-python.mjs tools/audit-redirects.py",
+    "audit:images": "node tools/audit-images.mjs",
+    "audit:cms": "node tools/audit-cms.mjs",
+    "audit:evidence": "node tools/audit-evidence.mjs",
+    "test:configurator": "node tools/test-configurator.mjs",
+    "verify": "npm run validate:content && npm run audit:cms && npm run audit:evidence && npm run audit:headers && npm run build && npm run audit:site && npm run audit:geo && npm run audit:redirects && npm run audit:images && npm run test:configurator && npm run test:inquiry && npm run test:worker",
+    "audit:headers": "node tools/audit-headers.mjs",
+    "test:inquiry": "node tools/test-inquiry.mjs",
+    "test:worker": "node tools/test-worker.mjs",
+    "backup": "node tools/backup-content.mjs",
+    "admin": "node tools/admin.mjs",
+    "check": "npm run verify",
+    "deploy:zip": "npm run verify && python tools/pack-cloudflare.py"
+  },
+  "dependencies": {
+    "astro": "7.4.0",
+    "sharp": "0.35.5",
+    "yaml": "2.9.1"
+  },
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "devDependencies": {
+    "decap-server": "^3.11.5"
+  }
+}

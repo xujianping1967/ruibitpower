@@ -1,0 +1,90 @@
+{
+  "title": "Dawnice Residential Hybrid Inverter",
+  "slug": "dawnice-residential-hybrid-inverter",
+  "category": "Hybrid inverter",
+  "summary": "Single-phase and split-phase hybrid inverter family for solar battery charging, backup, and residential energy management.",
+  "heroImage": "/assets/images/products/dawnice-residential-hybrid-inverter/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/dawnice-residential-hybrid-inverter/hero-3x2.jpg",
+    "/assets/images/products/dawnice-residential-hybrid-inverter/01.jpg",
+    "/assets/images/products/dawnice-residential-hybrid-inverter/02.jpg",
+    "/assets/images/products/dawnice-residential-hybrid-inverter/03.jpg",
+    "/assets/images/products/dawnice-residential-hybrid-inverter/04.webp",
+    "/assets/images/products/dawnice-residential-hybrid-inverter/05.webp",
+    "/assets/images/products/dawnice-residential-hybrid-inverter/06.webp"
+  ],
+  "metrics": [
+    {
+      "label": "Power range",
+      "value": "1.2-16kW"
+    },
+    {
+      "label": "Modes",
+      "value": "Hybrid / off-grid"
+    },
+    {
+      "label": "Phase",
+      "value": "Single / split"
+    },
+    {
+      "label": "Use",
+      "value": "Residential ESS"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Power range",
+      "value": "1.2-16kW family"
+    },
+    {
+      "label": "Supported systems",
+      "value": "Off-grid and hybrid solar storage"
+    },
+    {
+      "label": "Phase options",
+      "value": "Single-phase and split-phase, model dependent"
+    },
+    {
+      "label": "Battery pairing",
+      "value": "Low-voltage and system-specific configurations"
+    },
+    {
+      "label": "Application",
+      "value": "Residential solar storage and backup"
+    },
+    {
+      "label": "Monitoring",
+      "value": "Model-dependent monitoring and communication"
+    }
+  ],
+  "applications": [
+    "Home solar systems",
+    "Backup power",
+    "Battery retrofit projects"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is split-phase and why does it matter?",
+      "answer": "Split-phase 120/240 V is the standard North American service: 120 V for outlets and lighting, 240 V for dryers, water heaters, EV chargers, and central AC. A single-phase 230 V model cannot deliver that."
+    },
+    {
+      "question": "Does it work off-grid or grid-tied?",
+      "answer": "Both. Off-grid models suit sites with no utility supply; hybrid models run grid-tied for self-consumption and keep a backup output live."
+    },
+    {
+      "question": "Which batteries can it pair with?",
+      "answer": "Low-voltage packs, model dependent. Send the battery datasheet and BMS protocol and we confirm the pairing before quotation."
+    }
+  ],
+  "featured": false,
+  "seo": {
+    "title": "Dawnice Residential Hybrid Inverter | Ruibit Power",
+    "description": "Single-phase and split-phase hybrid inverter family for solar battery charging, backup, and residential energy management."
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "title": "PowerFly HZEB-LCT-10 10.54kWh Wall-Mounted Battery",
+  "slug": "powerfly-hzeb-lct-10",
+  "category": "Residential battery",
+  "summary": "A higher-capacity 51.2V LiFePO4 home battery for villas, backup loads, and expandable residential solar projects.",
+  "heroImage": "/assets/images/products/powerfly-hzeb-lct-10/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/powerfly-hzeb-lct-10/hero-3x2.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-10/01.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-10/02.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-10/03.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-10/04.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-10/05.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-10/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Capacity",
+      "value": "10.54kWh"
+    },
+    {
+      "label": "Voltage",
+      "value": "51.2V"
+    },
+    {
+      "label": "Parallel",
+      "value": "Up to 15 units"
+    },
+    {
+      "label": "Protection",
+      "value": "IP54"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Nominal capacity",
+      "value": "10.54kWh"
+    },
+    {
+      "label": "Nominal voltage",
+      "value": "51.2V"
+    },
+    {
+      "label": "Rated capacity",
+      "value": "206Ah"
+    },
+    {
+      "label": "Cell configuration",
+      "value": "16S1P"
+    },
+    {
+      "label": "Voltage range",
+      "value": "44.8-57.6V"
+    },
+    {
+      "label": "Max charge/discharge current",
+      "value": "100A"
+    },
+    {
+      "label": "Communication",
+      "value": "CAN / RS485 / RS232"
+    },
+    {
+      "label": "Cycle life",
+      "value": ">=6,000 cycles at cabinet level; up to 8,000 at cell level"
+    },
+    {
+      "label": "Installation",
+      "value": "Wall-mounted"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP54"
+    }
+  ],
+  "applications": [
+    "Home backup",
+    "Solar self-consumption",
+    "Distributor residential projects"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How long will 10.5 kWh power my home?",
+      "answer": "For a household using 8-10 kWh a day, essential circuits run 12-24 hours; full home use runs 8-12 hours, depending on load."
+    },
+    {
+      "question": "What is the expected lifespan?",
+      "answer": "6,000 cycles at cabinet level, or 15-20 years under typical residential use. Cell level is rated up to 8,000."
+    },
+    {
+      "question": "Can I add a second unit later?",
+      "answer": "Yes, up to 15 units in parallel. Use matched models rather than mixing capacities in one bank."
+    }
+  ],
+  "featured": true,
+  "seo": {
+    "title": "PowerFly HZEB-LCT-10 10.54kWh Wall-Mounted Battery | Ruibit Power",
+    "description": "A higher-capacity 51.2V LiFePO4 home battery for villas, backup loads, and expandable residential solar projects."
+  }
+}

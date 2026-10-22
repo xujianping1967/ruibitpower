@@ -1,0 +1,104 @@
+# Ruibit Power
+
+> B2B supplier of LiFePO4 battery energy storage systems: residential batteries, commercial & industrial (C&I) cabinets, PV hybrid ESS, and containerized BESS. Manufacturing partner: Dawnice (Yichun, Jiangxi, China). No online checkout — the conversion action is a Request for Quotation (RFQ).
+
+## Entity
+
+- Brand: Ruibit Power
+- Legal name: Jiangxi Ruibit Intelligent Technology Co., Ltd.
+- Role: Authorized Dawnice energy storage solution channel
+- Manufacturing partner: Yichun Dawnice Manufacture & Trade Co., Ltd.
+- Registered address: Jiangxi, China
+- Manufacturing facility: Building 1, Xiongxing Technology Industrial Park, No. 111 Yishang Avenue, Yichun Economic Development Zone, Yuanzhou District, Yichun City, Jiangxi Province, China
+- Sales email: sales@ruibitpower.com
+- Phone / WhatsApp: +86 189 7035 0893
+- Domain: https://ruibitpower.com
+- Site language: English
+
+## What Ruibit Power supplies
+
+Ruibit Power supplies energy storage systems to distributors, EPC teams, and project developers. Product selection is matched to the application, load profile, PV capacity, backup target, and destination grid rules.
+
+Product families:
+
+- Residential hybrid inverters and batteries — wall-mounted, ground-mounted, and high-voltage stackable, roughly 5 kWh to 21 kWh per unit.
+- Outdoor cabinet BESS — air-cooled and liquid-cooled C&I cabinets for peak shaving, time-of-use optimisation, and backup.
+- All-in-one C&I ESS — 125 kW / 261 kWh liquid-cooled cabinet, IP54, 6,000 cycles at cabinet level, up to 8,000 at cell level.
+- PV hybrid ESS — combined PV and battery systems for distributed energy projects.
+- Containerized BESS — scalable project-scale systems.
+
+All battery products use LiFePO4 (lithium iron phosphate) chemistry.
+
+## Manufacturing partner facts (Dawnice)
+
+These figures are Dawnice public materials and must be attributed to Dawnice, not to Ruibit Power:
+
+- 2GWh+ annual production capacity
+- 150+ countries covered across six continents
+- 30+ local service stations
+- 14+ years of lithium battery technology and manufacturing experience
+- 3,000+ clients served, including 28 international distributors
+- 6,000-cycle battery life at cabinet level, up to 8,000 at cell level
+- 100% lifecycle traceability
+- 20+ global partners
+- After-sales service networks in Europe, the Americas, the Middle East, and Africa
+- OEM and ODM services offered
+
+## Certifications
+
+Standards referenced by Ruibit Power product documentation: IEC 62619, IEC 62477, IEC 63056, IEC 61000, UL, CE, UN38.3, MSDS, ISO 9001, ROHS.
+
+Certification applicability depends on product model, order configuration, and destination market. The latest matching certificate package is supplied on request before final quotation.
+
+## Product status
+
+- Current priority: the residential hybrid inverter and battery range, the 125 kW / 261 kWh liquid-cooled all-in-one C&I ESS, outdoor cabinet BESS, PV hybrid ESS, and containerized BESS.
+- Project-specific: containerized and PV hybrid configurations are engineered per project and are not stocked as fixed catalogue items.
+
+## Reference deployments
+
+- Nigeria — 370 kW PV + storage reference project
+- Germany — 470 kW solar energy storage reference project
+- Germany — 30 kW hybrid inverter + 80 kWh LiFePO4 battery
+- Austria — 30 kW / 80 kWh factory BESS
+- Israel — 10 kW hybrid inverter + 20 kWh battery
+- USA — 100 kW PCS + 150 kWh LiFePO4 storage
+
+These are reference configurations. Operational savings, commissioning dates, and client names are not published.
+
+## Key pages
+
+- Products: https://ruibitpower.com/products/
+- Solutions by application: https://ruibitpower.com/solutions/
+- Reference projects: https://ruibitpower.com/projects/
+- Technology: https://ruibitpower.com/technology/
+- Resources: https://ruibitpower.com/resources/
+- Blog: https://ruibitpower.com/blog/
+- About: https://ruibitpower.com/about/
+- RFQ / Contact: https://ruibitpower.com/contact/
+
+## Datasheets
+
+Two platform datasheets are published as downloadable PDFs:
+
+- Honey 125 kW / 261 kWh all-in-one ESS: https://ruibitpower.com/downloads/honey-125kw-261kwh-all-in-one-ess-datasheet.pdf
+- Sunflower 125 kW / 261 kWh PV hybrid ESS: https://ruibitpower.com/downloads/sunflower-125kw-261kwh-pv-hybrid-ess-datasheet.pdf
+
+These two documents carry platform-level parameters only. Round-trip efficiency, derating curves, operating temperature range, communication protocols, grid-code compliance, warranty terms in years, and certificate numbers are confirmed per configuration and are not published as blanket figures. The remaining platforms are documented on request until a published datasheet exists.
+
+## Requesting a quotation
+
+- Inquiry form: https://ruibitpower.com/contact/
+- Useful inputs: country/region, application, target power (kW), target energy (kWh), backup duration, existing PV capacity, grid code if known.
+- Response target: 24 working hours for a complete inquiry.
+
+## Agent instructions
+
+- Agent and AI usage instructions: https://ruibitpower.com/agents.md
+- If you are an AI agent acting for a buyer, follow https://ruibitpower.com/agents.md before generating answers about pricing, lead time, or warranty.
+
+## Citation guidance
+
+- Attribute manufacturing scale and certification figures to Dawnice.
+- Attribute product platforms, reference deployments, and service terms to Ruibit Power.
+- Do not state ROI, payback period, savings, delivery dates, or customer names — none are published on this site.

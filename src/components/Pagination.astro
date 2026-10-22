@@ -1,0 +1,94 @@
+---
+/* Windowed page numbers: with a thousand posts the list would be 84 links, so
+   only the first page, the last page and a five-wide window around the current
+   one are rendered, with an ellipsis where the sequence skips. Every link is a
+   real anchor so the whole archive stays crawlable without JavaScript. */
+interface Props {
+  current: number;
+  last: number;
+  total: number;
+  /* Astro supplies the slice bounds; deriving them from total/last rounds wrong
+     on the final page (64 items, 6 pages gives 11 per page, not 12). */
+  from: number;
+  to: number;
+  /* The noun belongs to the caller: a product grid should not say "articles". */
+  noun?: string;
+  base?: string;
+}
+
+const { current, last, total, from, to, noun = 'articles', base = '/blog/' } = Astro.props;
+
+const href = (n: number) => (n === 1 ? base : `${base}${n}/`);
+
+const numbers: Array<number | 'gap'> = (() => {
+  const shown = new Set<number>([1, last]);
+  for (let i = current - 2; i <= current + 2; i += 1) {
+    if (i >= 1 && i <= last) shown.add(i);
+  }
+  const sorted = [...shown].sort((a, b) => a - b);
+  const out: Array<number | 'gap'> = [];
+  sorted.forEach((n, i) => {
+    if (i > 0 && n - sorted[i - 1] > 1) out.push('gap');
+    out.push(n);
+  });
+  return out;
+})();
+
+
+---
+
+{
+  last > 1 && (
+    <nav class="pagination" aria-label="Article pages">
+      <p class="pagination-count">
+        Page {current} of {last} · {noun} {from}–{to} of {total}
+      </p>
+
+      <ul class="pagination-list">
+        <li>
+          {current > 1 ? (
+            <a class="pagination-step" href={href(current - 1)} rel="prev">
+              <span aria-hidden="true">←</span> Previous
+            </a>
+          ) : (
+            <span class="pagination-step is-disabled" aria-disabled="true">
+              <span aria-hidden="true">←</span> Previous
+            </span>
+          )}
+        </li>
+
+        {numbers.map((item) =>
+          item === 'gap' ? (
+            <li class="pagination-gap" aria-hidden="true">
+              …
+            </li>
+          ) : (
+            <li>
+              {item === current ? (
+                <span class="pagination-number is-current" aria-current="page">
+                  {item}
+                </span>
+              ) : (
+                <a class="pagination-number" href={href(item)} aria-label={`Page ${item}`}>
+                  {item}
+                </a>
+              )}
+            </li>
+          )
+        )}
+
+        <li>
+          {current < last ? (
+            <a class="pagination-step" href={href(current + 1)} rel="next">
+              Next <span aria-hidden="true">→</span>
+            </a>
+          ) : (
+            <span class="pagination-step is-disabled" aria-disabled="true">
+              Next <span aria-hidden="true">→</span>
+            </span>
+          )}
+        </li>
+      </ul>
+    </nav>
+  )
+}

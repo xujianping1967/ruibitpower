@@ -1,0 +1,14 @@
+{
+  "formName": "project-inquiry",
+  "formAction": "/contact/",
+  "method": "post",
+  "successMessage": "Thank you. Your project requirements have been received. Our team will respond within 24 working hours.",
+  "fields": [
+    { "name": "name", "label": "Name", "type": "text", "required": true },
+    { "name": "email", "label": "Email", "type": "email", "required": true },
+    { "name": "phone", "label": "Phone / WhatsApp", "type": "tel", "required": false },
+    { "name": "country", "label": "Country / Region", "type": "text", "required": true },
+    { "name": "application", "label": "Application", "type": "select", "required": true, "options": ["Home solar battery", "Commercial & industrial BESS", "PV hybrid ESS", "EV charging storage", "Containerized BESS", "Other"] },
+    { "name": "message", "label": "Project requirements", "type": "textarea", "required": true }
+  ]
+}

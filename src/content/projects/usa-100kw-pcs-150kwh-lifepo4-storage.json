@@ -1,0 +1,21 @@
+{
+  "slug": "usa-100kw-pcs-150kwh-lifepo4-storage",
+  "title": "100kW PCS + 150kWh LiFePO4 Battery Storage in the USA",
+  "country": "United States",
+  "application": "Commercial battery storage",
+  "systemType": "C&I",
+  "capacity": "100kW / 150kWh",
+  "inverterPcs": "100kW PCS",
+  "productUsed": "PCS + LiFePO4 battery storage configuration",
+  "summary": "A 100kW PCS with 150kWh of LiFePO4 storage, installed in the United States.",
+  "image": "/assets/images/cases/usa-100kw-pcs-150kwh-lifepo4-storage.jpg",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "challenge": "PCS-based commercial projects need sizing, interconnection review and safety documentation settled before equipment is ordered, and each of those constrains the others.",
+  "solution": "A 100kW PCS paired with a 150kWh LiFePO4 bank, configured around the site's demand profile and backup requirement.",
+  "result": "",
+  "seo": {
+    "title": "100kW PCS + 150kWh LiFePO4 Battery Storage in the USA",
+    "description": "A 100kW PCS with 150kWh of LiFePO4 storage, installed in the United States."
+  }
+}

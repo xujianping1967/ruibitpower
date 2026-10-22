@@ -1,0 +1,106 @@
+{
+  "title": "Six Ultra BS06-S HV Stackable Battery",
+  "slug": "six-ultra-bs06-s-hv-stackable",
+  "category": "High-voltage residential battery",
+  "summary": "A modular high-voltage stackable LiFePO4 battery platform for modern hybrid inverter systems.",
+  "heroImage": "/assets/images/products/six-ultra-bs06-s-hv-stackable/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/six-ultra-bs06-s-hv-stackable/hero-3x2.jpg",
+    "/assets/images/products/six-ultra-bs06-s-hv-stackable/01.webp",
+    "/assets/images/products/six-ultra-bs06-s-hv-stackable/02.webp",
+    "/assets/images/products/six-ultra-bs06-s-hv-stackable/03.jpg",
+    "/assets/images/products/six-ultra-bs06-s-hv-stackable/04.jpg",
+    "/assets/images/products/six-ultra-bs06-s-hv-stackable/05.jpg",
+    "/assets/images/products/six-ultra-bs06-s-hv-stackable/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Capacity range",
+      "value": "15.36-46.08kWh"
+    },
+    {
+      "label": "Voltage range",
+      "value": "153.6-460.8V"
+    },
+    {
+      "label": "Clusters",
+      "value": "2-6 modules"
+    },
+    {
+      "label": "Protection",
+      "value": "IP65 / C4"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Nominal capacity",
+      "value": "15.36 / 23.04 / 30.72 / 38.40 / 46.08kWh"
+    },
+    {
+      "label": "Usable capacity",
+      "value": "13.82-41.47kWh"
+    },
+    {
+      "label": "Nominal voltage",
+      "value": "153.6-460.8V"
+    },
+    {
+      "label": "Cell chemistry",
+      "value": "LiFePO4"
+    },
+    {
+      "label": "Module capacity",
+      "value": "100Ah"
+    },
+    {
+      "label": "Rated current",
+      "value": "50A"
+    },
+    {
+      "label": "Communication",
+      "value": "CAN / RS485"
+    },
+    {
+      "label": "Cycle life",
+      "value": "6,000 cycles @ 80% SOH (25 °C / 0.5C); up to 8,000 at cell level"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP65"
+    },
+    {
+      "label": "Anti-corrosion grade",
+      "value": "C4"
+    }
+  ],
+  "applications": [
+    "High-voltage home ESS",
+    "Premium residential solar",
+    "Expandable backup systems"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is the advantage of high voltage over low voltage?",
+      "answer": "Lower current for the same power means smaller cable losses and thinner wiring, and it pairs directly with high-voltage hybrid inverters."
+    },
+    {
+      "question": "How easy is it to add modules later?",
+      "answer": "Modules stack with plug-in connectors and the BMS recognises the added capacity, from 15.36 kWh up to 46.08 kWh."
+    },
+    {
+      "question": "Which inverters are compatible?",
+      "answer": "Any high-voltage hybrid inverter whose battery input covers 153.6-460.8 V and supports CAN or RS485. Send the model and we confirm."
+    }
+  ],
+  "featured": true,
+  "seo": {
+    "title": "Six Ultra BS06-S HV Stackable Battery | Ruibit Power",
+    "description": "A modular high-voltage stackable LiFePO4 battery platform for modern hybrid inverter systems."
+  }
+}

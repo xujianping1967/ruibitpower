@@ -1,0 +1,22 @@
+{
+  "slug": "nigeria-370kw-pv-storage-project",
+  "title": "370kW PV + Storage Reference Project in Nigeria",
+  "country": "Nigeria",
+  "application": "PV plus storage",
+  "systemType": "C&I, PV hybrid",
+  "capacity": "370kW PV reference project",
+  "productUsed": "PV hybrid ESS / project-specific configuration",
+  "summary": "A 370kW solar PV reference project in Nigeria, with battery storage.",
+  "image": "/assets/images/abuja.jpg",
+  "imageFit": "cover",
+  "imageWidth": 600,
+  "imageHeight": 276,
+  "imageCaption": "Dawnice Energy deployment in Nigeria — field installation with the Dawnice Energy team.",
+  "challenge": "Distributed PV in Nigeria has to be planned around weak grid availability and around the load the site cannot afford to lose.",
+  "solution": "A 370kW PV array with battery storage, matching PV input, PCS and backup target to the site's load profile.",
+  "result": "",
+  "seo": {
+    "title": "370kW PV + Storage Reference Project in Nigeria | Ruibit Power",
+    "description": "A 370kW solar PV reference project in Nigeria, with battery storage."
+  }
+}

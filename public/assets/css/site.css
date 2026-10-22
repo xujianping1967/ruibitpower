@@ -1,0 +1,2557 @@
+/* ==========================================================================
+   Ruibit Power — site layer
+   Loaded after styles.css and cms.css. Contains the new trust components and
+   resolves a legacy conflict where .page-hero inherited a dark gradient from
+   styles.css while cms.css set its text colour to --ink.
+   ========================================================================== */
+
+/* --- Refinements to shared primitives ----------------------------------- */
+
+/* The header is sticky, so anchor jumps must clear its height. */
+html {
+  scroll-padding-top: 92px;
+}
+
+/* --- Brand lockup -------------------------------------------------------
+   The mark is now an outlined wordmark, so it is sized by height and left to
+   find its own width. Sizes step down once on small screens so the header
+   keeps its 74px height instead of growing around the logo. */
+.brand-logo {
+  display: block;
+  height: 26px;
+  width: auto;
+}
+
+@media (max-width: 560px) {
+  .brand-logo {
+    height: 22px;
+  }
+}
+
+.footer-logo {
+  display: block;
+  height: 21px;
+  width: auto;
+}
+
+/* The CTA band and the footer butt directly together as two stacked dark bands;
+   a hairline keeps the footer's start legible.
+
+   cms.css laid the footer out as two blocks pushed to opposite edges of the
+   same 1180px rail as everything else, which left a wide empty middle between
+   the brand and a right-aligned run of three contact lines. Three columns —
+   brand, the site's own navigation, contact — fill that width, and the contact
+   lines are left-aligned because the column edge already gives them an
+   alignment and a right-aligned multi-line run is slower to scan. */
+.site-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 40px 56px;
+  align-items: start;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-footer > div,
+.site-footer > nav {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+/* cms.css right-aligns the last block; override it back to left. */
+.site-footer > div:last-child {
+  text-align: left;
+}
+
+.site-footer .footer-heading {
+  margin: 0 0 4px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-footer strong {
+  display: block;
+  color: var(--white);
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.site-footer a {
+  justify-self: start;
+  font-size: 14.5px;
+}
+
+.site-footer .footer-legal {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+}
+
+/* --- Footer: column balance and closing line ---------------------------- */
+
+/* Seven stacked links made the Explore column roughly twice the height of the
+   brand and contact columns, so the footer's bottom edge was ragged. Two
+   sub-columns halve it and the three columns then end within a few pixels of
+   each other. Below 900px the columns stack, where a two-column link list
+   inside a single stacked column reads as a puzzle — it stays one list. */
+@media (min-width: 901px) {
+  .site-footer .footer-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+  }
+
+  /* The nav is a grid, and its own <h2> was the first grid item: it consumed
+     cell 1, which pushed every link one cell along and split the list into
+     "Solutions / Technology / Blog" beside "Products / Projects ...". Spanning
+     the heading across both columns puts the links back in reading order. */
+  .site-footer .footer-nav .footer-heading {
+    grid-column: 1 / -1;
+  }
+}
+
+/* The footer previously stopped in mid-air after the contact column. The base
+   line carries the two things an overseas buyer copies off a supplier site
+   before making contact: the legal entity and the domain. */
+/* The base line is the footer's last div, so cms.css's
+   `.site-footer > div:last-child { display: grid }` (0,2,1) outranks a plain
+   two-class selector and stacked the two lines. The element selector raises
+   this rule to the same weight, and site.css loads after cms.css. */
+.site-footer > div.footer-base {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px 24px;
+  margin-top: 4px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  /* 45% white on #0c1522 measures 4.49:1 — under the 4.5:1 floor for 12.5px
+     text. 52% measures 5.7:1 and still reads as secondary. */
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 12.5px;
+  letter-spacing: 0.01em;
+}
+
+.site-footer .footer-base p {
+  margin: 0;
+}
+
+.section-lead {
+  margin: 16px 0 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.hero-copy h1,
+.page-hero h1,
+.section h2,
+.section-header h2 {
+  text-wrap: balance;
+}
+
+.hero-note {
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+/* --- .page-hero: deterministic light hero (fixes dark-on-dark) ---------- */
+
+.page-hero {
+  padding: 64px 0 40px;
+  color: var(--ink);
+  background: linear-gradient(180deg, #f7fafd 0%, #ffffff 100%);
+  border-bottom: 1px solid var(--line);
+}
+
+/* styles.css sizes interior h1 with the homepage's display scale
+   (clamp(44px, 6vw, 78px) at line-height 1). That is built for a short brand
+   line over a dark image; every interior page instead carries a full sentence
+   of 31-77 characters, which became three or four 78px lines stacked at
+   line-height 1 — a wall of type that pushed the page content below the fold.
+   A card-in-card step down plus real leading reads as a heading again. */
+.page-hero h1 {
+  max-width: 26ch;
+  font-size: clamp(30px, 4.2vw, 52px);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+}
+
+.page-hero p {
+  max-width: 68ch;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.page-hero .eyebrow {
+  color: var(--green-dark);
+}
+
+.page-hero .hero-actions {
+  margin-top: 28px;
+}
+
+/* --- Stat band ---------------------------------------------------------- */
+
+.stat-band {
+  padding: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+}
+
+/* The two owners carry different numbers of figures (4 vs 8), so they are
+   stacked as two bands rather than placed side by side — side-by-side columns
+   of unequal length leave a large empty block under the shorter one. */
+.stat-band-groups {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.stat-band-group {
+  padding: 34px 0;
+}
+
+.stat-band-group + .stat-band-group {
+  border-top: 1px solid var(--line);
+}
+
+.stat-band-owner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 22px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.stat-band-owner em {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stat-band-items {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px 30px;
+}
+
+.stat-band-item strong {
+  display: block;
+  color: var(--blue);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-band-item span {
+  display: block;
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.stat-band-item em {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+}
+
+/* --- Dark sections ------------------------------------------------------ */
+
+/* Dark and pale sections are full-bleed bands whose content sits on exactly the
+   same rail as every white section, rather than inset panels with their own
+   inner padding. As inset panels the 44px padding pushed every heading 44px
+   right of the shared rail, so headings visibly jumped sideways at each band
+   boundary, and the 8px panel radius butted against square white panes.
+   `calc((100% - var(--max)) / 2)` is the same offset `margin-inline: auto`
+   produces for the white sections, so the rails coincide at every width; the
+   bottom bar keeps the band from ever exceeding the viewport. */
+.section-dark,
+.section-soft {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  border-radius: 0;
+  padding-left: max(20px, calc((100% - var(--max)) / 2));
+  padding-right: max(20px, calc((100% - var(--max)) / 2));
+}
+
+.section-dark .section-lead {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.section-dark .eyebrow {
+  color: #6fe0a8;
+}
+
+.section-dark .text-link {
+  color: #6fe0a8;
+}
+
+/* --- Manufacturing block ------------------------------------------------ */
+
+.manufacturing-layout {
+  display: grid;
+  /* The photo column is deliberately narrower than the text column: it keeps
+     the two columns close in height and keeps the 600px facility photo from
+     being upscaled. */
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.18fr);
+  gap: 44px;
+  align-items: center;
+}
+
+.manufacturing-media {
+  margin: 0;
+  /* The facility photo is 600px wide natively — cap the box below that so the
+     browser always downscales it instead of upscaling. */
+  max-width: 460px;
+}
+
+.manufacturing-media img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  object-fit: cover;
+}
+
+.manufacturing-media figcaption {
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.check-list-light {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.check-list-light li {
+  padding: 6px 0;
+}
+
+.check-list-light li::marker {
+  color: #6fe0a8;
+}
+
+.manufacturing-body {
+  display: grid;
+  gap: 22px;
+  align-content: start;
+}
+
+.manufacturing-body p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 15.5px;
+  line-height: 1.62;
+}
+
+/* --- Section header wrapping -------------------------------------------- */
+
+.section-header {
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+/* --- Unified product imagery (3:2) -------------------------------------- */
+
+/* The generated product set is 1200x800 and sits on white. Matching the
+   container ratio to the image means each photo fills its slot exactly — no
+   letterboxing, no white rectangle floating inside a tinted card. */
+.product-card img,
+.product-hero img,
+.product-gallery-main,
+.product-gallery-main img {
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.product-card img {
+  /* styles.css still pins the legacy card image to height:220px, which beats
+     the intended 3:2 slot. Release it and let the ratio drive the box. */
+  height: auto;
+  /* The photos already carry their own margins; extra padding would only
+     shrink the product inside the slot. */
+  padding: 0;
+}
+
+.product-hero img {
+  padding: 0;
+}
+
+.product-gallery img {
+  padding: 0;
+  background: #ffffff;
+  object-fit: contain;
+}
+
+/* The inherited two-column layout put the main image beside a 3-row thumbnail
+   grid, and the shared row height stretched the main slot into a square, which
+   letterboxed the 3:2 photo. Stack instead: main image on top at its native
+   ratio, thumbnails in a single row beneath. */
+.product-gallery {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+img.product-gallery-main {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+}
+
+/* Six thumbnails (the legacy shots behind the unified main image). */
+.product-gallery-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.product-gallery-grid img {
+  /* styles.css pins thumbnails to min-height:210px, which turns them into tall
+     strips once the columns narrow. Square slots match the legacy images. */
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+}
+
+/* --- Project figure ----------------------------------------------------- */
+
+.project-figure {
+  margin: 0 0 34px;
+  /* Source photos are 600px wide. Capping the slot at native width means the
+     browser renders them 1:1 (sharp, never upscaled), and the image keeps its
+     natural ratio so nothing in the frame is cropped away. Replace the slot
+     size together with any higher-resolution source photo. */
+  max-width: 600px;
+}
+
+.project-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.project-figure figcaption {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* --- Certificate documents --------------------------------------------- */
+
+/* These were plain text badges; they are now the actual certificate scans, so
+   a buyer can see a document exists rather than reading a claim that it does. */
+.cert-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cert-doc {
+  display: flex;
+}
+
+.cert-doc-link {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 1px 2px rgba(14, 23, 38, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.cert-doc-link:hover {
+  transform: translateY(-2px);
+  border-color: #c6d4e6;
+  box-shadow: 0 16px 38px rgba(14, 23, 38, 0.1);
+}
+
+.cert-doc-thumb {
+  display: block;
+  /* The scans are square; a tinted well makes the white document page read as
+     a page. The tint is deliberately well below the section band's #f4f7fb —
+     at #eff3f8 the white documents on white panels inside a pale band measured
+     as the flattest block on the page. */
+  aspect-ratio: 1 / 1;
+  padding: 14px;
+  background: #dbe3ee;
+  border-bottom: 1px solid var(--line);
+}
+
+.cert-doc-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cert-doc-meta {
+  /* Column layout so the scope tag can be pinned to the card floor: some
+     documents carry a second line ("with European Directive") and some do not,
+     which left the scope tags at ragged heights across a row. */
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 16px 18px 18px;
+}
+
+.cert-doc-name {
+  display: block;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.cert-doc-detail {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.cert-doc-scope {
+  display: block;
+  margin-top: auto;
+  padding-top: 12px;
+  color: var(--green-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* --- Certificate lightbox ---------------------------------------------- */
+
+.cert-lightbox {
+  position: fixed;
+  inset: 0;
+  /* `width: auto` made the dialog fill the viewport, which left the panel
+     pinned to the left edge with ~880px of empty space beside it. fit-content
+     plus auto margins centres it. */
+  width: fit-content;
+  height: fit-content;
+  max-width: 92vw;
+  max-height: 92vh;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: auto;
+}
+
+.cert-lightbox::backdrop {
+  background: rgba(8, 15, 26, 0.84);
+}
+
+.cert-lightbox-inner {
+  width: min(560px, 92vw);
+  padding: 16px;
+  border-radius: var(--radius);
+  background: #ffffff;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.cert-lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.cert-lightbox-caption {
+  margin: 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.cert-lightbox-close {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cert-lightbox-close:hover {
+  border-color: #c6d4e6;
+  background: var(--soft);
+}
+
+.cert-lightbox-image {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.cert-lightbox-hint {
+  margin: 12px 2px 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* --- Service commitments ------------------------------------------------ */
+
+.commitment-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--line);
+  list-style: none;
+}
+
+.commitment {
+  padding: 26px 22px;
+  background: var(--white);
+}
+
+.commitment h3 {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.commitment p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* --- Homepage feature cards (image-led, 2x2) ---------------------------- */
+
+/* Photograph, then copy — the text never sits on the picture. The image keeps
+   its own 3:2 at the top of the card and the title, spec strip and CTA follow
+   underneath on the card's own fill. An earlier version overlaid the copy on a
+   gradient scrim so the photograph was only ever seen through a darkened band;
+   the underlying render still is, so the scrim and its stops are gone. */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* This block is the MOBILE card. Everything the desktop adds — the hairline,
+   the hover lift, the wider title and the reflowed footer — lives in the
+   `min-width: 769px` block further down, so the mobile card cannot drift when
+   the desktop composition is tuned. */
+.feature-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #101b2a;
+}
+
+.feature-card > img {
+  display: block;
+  flex: none;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.feature-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 22px;
+  color: #ffffff;
+}
+
+.feature-card h3 {
+  margin: 0 0 5px;
+  max-width: 24ch;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.feature-card h3 a {
+  color: inherit;
+}
+
+/* Whole card is clickable; the CTA keeps its own hit area above the overlay. */
+.feature-card h3 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.feature-card-spec {
+  margin: 0 0 13px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Pinned to the card floor so the buttons line up across a row whose titles
+   wrap onto different numbers of lines. */
+.feature-card-cta {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  align-self: flex-start;
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #0e1726;
+}
+
+/* --- Desktop composition for the same card ------------------------------ */
+
+/* The card is 578px wide, but title, spec strip and button only occupied about
+   265px of it down the left edge, parking the button at the bottom left under a
+   large empty rectangle. The title now takes its own row and more of the width,
+   and the spec strip and the CTA share the row beneath it with the button
+   pushed to the trailing edge.
+   `align-content: space-between` spreads those two rows to the top and bottom of
+   the body, so the button line lands on the same y in every card of a row no
+   matter how many lines a title takes. */
+@media (min-width: 769px) {
+  .feature-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(111, 224, 168, 0.4);
+    box-shadow: 0 18px 44px rgba(4, 9, 18, 0.45);
+  }
+
+  /* An explicit two-row grid rather than wrapping flex. The body's base rule is
+     a COLUMN flex container, and adding `flex-wrap: wrap` to it wraps into
+     side-by-side columns instead of rows while `flex: 1 1 100%` resolves against
+     the container's height — which pushed the spec and the CTA into an
+     overflowing second column that `overflow: hidden` then clipped. Grid areas
+     cannot be read that way. */
+  .feature-card-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'title title'
+      'spec  cta';
+    align-content: space-between;
+    align-items: center;
+    gap: 12px 20px;
+    padding: 24px;
+  }
+
+  .feature-card h3 {
+    grid-area: title;
+    margin: 0;
+    max-width: 30ch;
+    font-size: 23px;
+  }
+
+  /* The first column takes the rest of the row, so the button is pushed hard
+     right; the spec may compress to two lines rather than displacing it. */
+  .feature-card-spec {
+    grid-area: spec;
+    min-width: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .feature-card-cta {
+    grid-area: cta;
+    justify-self: end;
+    margin: 0;
+  }
+}
+
+.feature-card-cta:hover {
+  background: #f2f6fb;
+}
+
+/* --- Project cards (listing page, image on top) ------------------------- */
+
+/* cms.css renders .project-card as a two-column grid (0.9fr / 1.1fr) with the
+   image beside the text. That was designed for a full-width card, but the
+   listing grid is three columns wide, so the card is only ~380px and the text
+   column collapses to ~200px — the heading then wraps onto six or seven lines.
+   Stack the card instead: image on top, text beneath. Scoped to a listing-only
+   class so the homepage's compact variant (project-card-tight) is unaffected. */
+.project-card-media {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+}
+
+.project-card-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  padding: 0;
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Real field photographs are not white-backgrounded and have an aspect of their
+   own, so they fill the band instead of letterboxing inside it. */
+.project-card-media img.is-cover {
+  object-fit: cover;
+}
+
+.project-card-media > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px;
+}
+
+/* The inherited heading size is tuned for full-width sections; in a card it
+   needs a card-scale step. */
+.project-card-media h2 {
+  margin: 0 0 12px;
+  font-size: 21px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.project-card-media p {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* Pin the link to the card floor so it lines up across a row of unequal
+   text lengths. */
+.project-card-media > div > .text-link {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* --- Project cards (compact, homepage) ---------------------------------- */
+
+.project-card-tight {
+  display: block;
+  padding: 26px;
+}
+
+.project-card-tight h3 {
+  margin: 0 0 16px;
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.project-card-tight dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.project-card-tight dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.project-card-tight dd {
+  margin: 2px 0 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* cms.css sets the article title at clamp(36px, 5vw, 62px) with line-height
+   1.04 — a single-line display size. The imported articles have 60-95 character
+   titles, so at 1440px that became three 62px lines at near-zero leading: the
+   title alone filled the first screen and outweighed everything under it.
+   Sized against the reading column instead, with leading that can carry three
+   lines, and balanced so the last line is not a lone word. */
+.article-page h1 {
+  max-width: 24ch;
+  font-size: clamp(30px, 4.1vw, 50px);
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* The long-form articles imported from the two Publii sites carry h3s, lists,
+   tables, blockquotes and inline figures that the original twelve short posts
+   never used — cms.css had a single `h2` rule for this container. The body is
+   also set in ink rather than --muted (#5d697c), which is a caption tone that is
+   too light for 1,500 words of continuous reading. */
+.article-content {
+  color: #33404f;
+  font-size: 17.5px;
+  line-height: 1.75;
+}
+
+.article-content > :first-child {
+  margin-top: 0;
+}
+
+.article-content p {
+  margin: 0 0 1.15em;
+}
+
+.article-content h2 {
+  margin: 2.1em 0 0.55em;
+  color: var(--ink);
+  font-size: clamp(23px, 2.3vw, 29px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.article-content h3 {
+  margin: 1.7em 0 0.45em;
+  color: var(--ink);
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.article-content strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 0 0 1.15em;
+  padding-left: 1.4em;
+}
+
+.article-content li {
+  margin-bottom: 0.45em;
+}
+
+.article-content blockquote {
+  margin: 1.7em 0;
+  padding: 2px 0 2px 20px;
+  border-left: 3px solid #c7d6e8;
+  color: #4b5a6e;
+  font-style: italic;
+}
+
+.article-content a {
+  color: var(--green-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* The source artwork is 400px wide, so it is shown at its natural size, centred,
+   rather than stretched across the 812px column where it would soften. */
+.article-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.9em auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #f8fafc;
+}
+
+/* Four-column tables of figures cannot shrink below ~780px, which is wider than
+   a phone. The table gets its own scroller (added by the importer) so the column
+   is revealed by scrolling the table, not the whole page. */
+.article-content .table-wrap {
+  margin: 1.7em 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article-content .table-wrap table {
+  margin: 0;
+}
+
+.article-content table {
+  width: 100%;
+  margin: 1.7em 0;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.article-content th,
+.article-content td {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-content th {
+  background: var(--soft);
+  color: var(--ink);
+  font-weight: 800;
+}
+
+/* Table scroll hint. Only rendered on posts that contain a table, and only
+   shown on small screens, where the table genuinely cannot fit. */
+.scroll-hint {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .article-content {
+    font-size: 16.5px;
+  }
+
+  .article-content th,
+  .article-content td {
+    padding: 7px 9px;
+    /* 13.5px kept a four-column parameter table at roughly 780px against a
+       333px container. 12.5px removes about 60px of that overflow without
+       taking the cells below a readable size. */
+    font-size: 12.5px;
+  }
+
+  .scroll-hint {
+    display: block;
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
+  }
+
+  /* Parameter tables stack into label/value rows instead of scrolling. A four
+     column spec table is 780px wide and cannot be read by swiping: the reader
+     sees two columns and has to remember the rest. Stacking costs vertical
+     space, which a phone has, and removes horizontal scroll entirely. Only
+     tables tagged "spec" get this treatment; procedural tables keep their
+     table form. */
+  .article-content table.spec,
+  .article-content table.spec tbody,
+  .article-content table.spec tr,
+  .article-content table.spec td {
+    display: block;
+    width: 100%;
+  }
+
+  .article-content table.spec {
+    border: 0;
+    background: none;
+    /* styles.css pins every article table to min-width: 780px so it scrolls as
+       a grid. That floor survives display:block and keeps the stacked layout
+       780px wide, so it has to be lifted for spec tables only. */
+    min-width: 0;
+    width: 100%;
+  }
+
+  .article-content table.spec thead {
+    display: none;
+  }
+
+  .article-content table.spec tr {
+    margin: 0 0 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .article-content table.spec td {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    padding: 3px 0;
+    border: 0;
+  }
+
+  .article-content table.spec td::before {
+    content: attr(data-label);
+    flex: 0 0 38%;
+    color: var(--muted);
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* The first cell of each row is the row's own label, so it reads at body
+     weight rather than as another uppercase field name. */
+  .article-content table.spec td:first-child::before {
+    content: none;
+  }
+
+  .article-content table.spec td:first-child {
+    display: block;
+    padding: 0 0 6px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* Footer links were 22.5px tall, below the 24px WCAG 2.2 minimum and well
+     under the 44px comfortable target. */
+  .site-footer .footer-nav a,
+  .site-footer .footer-contact a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /* iOS Safari zooms the whole page when a focused control's font-size is
+     below 16px, and leaves it zoomed afterwards. The contact form inherits
+     13px from the desktop layout, so every field on a phone triggered that
+     zoom. */
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    font-size: 16px;
+  }
+}
+
+/* Touch targets in the mobile menu: the panel links were 21.7px tall and the
+   toggle measured 42x42, both under the 44px comfortable minimum. */
+@media (max-width: 980px) {
+  .menu-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .nav-links.is-open a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 0;
+  }
+}
+
+/* --- Article cards (Resources and Blog listings) ------------------------ */
+
+/* cms.css gives .article-card 24px of padding and lets the heading inherit
+   `.section h2` — clamp(30px, 4vw, 48px). That is a section-heading size; inside
+   a 378px card it wrapped a normal article title onto five or six lines. The
+   card also shipped no image, even though every post has a featuredImage, so the
+   whole card was a column of oversized text. Image band on top, card-scale copy
+   below, link pinned to the floor. */
+.article-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-2px);
+  border-color: #c6d4e6;
+  box-shadow: 0 18px 44px rgba(14, 23, 38, 0.1);
+}
+
+/* The same image treatment as .product-card, so a product render reads the same
+   wherever it appears. The sources are 600x600, so 4:3 with contain letterboxes
+   slightly rather than cropping the product. */
+.article-card img {
+  display: block;
+  flex: none;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(13, 128, 83, 0.08), transparent 34%),
+    linear-gradient(180deg, #f8fafc, #eef3f7);
+  border-bottom: 1px solid var(--line);
+}
+
+.article-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 22px;
+}
+
+.article-card h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.article-card h2 a {
+  color: inherit;
+}
+
+/* The whole card is the target, not just the heading text. */
+.article-card h2 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.article-card-excerpt {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* Pin the link to the card floor so it lines up across a row of uneven
+   excerpts, and keep it above the card-wide overlay. */
+.article-card-body .text-link {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 14px;
+}
+
+/* --- Solution cards ----------------------------------------------------- */
+
+.solution-card {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 10px 30px rgba(14, 23, 38, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.solution-card:hover {
+  transform: translateY(-2px);
+  border-color: #c6d4e6;
+  box-shadow: 0 18px 44px rgba(14, 23, 38, 0.1);
+}
+
+.solution-card h2 {
+  margin: 0 0 12px;
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.solution-card p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.solution-lead {
+  color: var(--ink) !important;
+  font-weight: 700;
+}
+
+.solution-product {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 13px !important;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.solution-card .text-link {
+  margin-top: auto;
+}
+
+/* Four one-sentence capabilities on the Technology page. `.solution-grid` is a
+   three-column grid, so four cards left a single orphan on the second row; and
+   as bare <article> elements their headings inherited `.section h2` — the 48px
+   section-heading size, inside a card. Four-up at desktop, two-up on tablets. */
+.solution-grid-quad {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.solution-grid-quad .solution-card {
+  padding: 24px;
+}
+
+.solution-grid-quad .solution-card h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.solution-grid-quad .solution-card p {
+  margin: 0;
+  font-size: 14.5px;
+}
+
+.solution-grid-quiet article {
+  box-shadow: 0 10px 30px rgba(14, 23, 38, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.solution-grid-quiet article:hover {
+  transform: translateY(-2px);
+  border-color: #c6d4e6;
+  box-shadow: 0 18px 44px rgba(14, 23, 38, 0.1);
+}
+
+.solution-item h3 {
+  margin: 0 0 10px;
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+/* --- Momentum (partner developments) ------------------------------------ */
+
+.momentum-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.momentum-item {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.momentum-item time {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--green-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.momentum-item h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.momentum-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* --- Documentation list (product page) --------------------------------- */
+
+.doc-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.doc-list li {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.doc-list h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.doc-list p {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.doc-list .text-link {
+  margin-top: auto;
+}
+
+/* --- Configurator ------------------------------------------------------- */
+
+.cfg-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.cfg-form {
+  display: grid;
+  gap: 18px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.cfg-form label {
+  display: grid;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.cfg-form label em {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cfg-form input,
+.cfg-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cfd8e6;
+  border-radius: 7px;
+  color: var(--ink);
+  font: inherit;
+  background: var(--white);
+}
+
+.cfg-form input:focus-visible,
+.cfg-form select:focus-visible {
+  border-color: var(--green);
+}
+
+.cfg-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cfg-result {
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 20px 55px rgba(14, 23, 38, 0.1);
+}
+
+.cfg-eyebrow {
+  margin: 0 0 12px;
+  color: var(--green-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cfg-title {
+  margin: 0 0 10px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.cfg-band {
+  margin: 0 0 16px;
+  color: var(--blue);
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.cfg-why {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.cfg-unit {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--blue);
+  border-radius: 4px;
+  background: #edf4fb;
+  color: #315070;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.cfg-summary {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  background: var(--soft);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cfg-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.cfg-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* --- Process list ------------------------------------------------------- */
+
+.process-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+  list-style: none;
+}
+
+.process-step {
+  position: relative;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.process-step::before {
+  counter-increment: step;
+  content: "0" counter(step);
+  display: block;
+  margin-bottom: 16px;
+  color: var(--green-dark);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.process-step h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.process-step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* --- Contact page ------------------------------------------------------- */
+
+.promise-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  margin: 30px 0 0;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.promise-row li {
+  display: grid;
+  gap: 4px;
+}
+
+.promise-row strong {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.promise-row span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.brief-panel {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius);
+  background: var(--soft);
+}
+
+.brief-panel .eyebrow {
+  margin-bottom: 8px;
+}
+
+.brief-text {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.mini-list {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.panel-note {
+  margin-top: 12px !important;
+  color: var(--muted) !important;
+  font-size: 13px !important;
+  line-height: 1.55;
+}
+
+.contact-panel h3 {
+  margin: 26px 0 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.contact-panel p {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* --- Link list (partner verification) ----------------------------------- */
+
+.link-list {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--line);
+  list-style: none;
+}
+
+.link-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 18px;
+  padding: 20px 24px;
+  background: var(--white);
+}
+
+.link-list a {
+  color: var(--green-dark);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.link-list a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.link-list span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* --- Dark tone consistency --------------------------------------------- */
+
+/* Four near-identical dark values were in play (#111d2d hero, #101b2a sections
+   and CTA, #0b1220 cards, #0c1522 footer). Collapse them to two: one panel tone
+   and a slightly darker footer anchor. The feature card sets the panel tone at
+   source now, so it no longer needs an override here. */
+.hero {
+  background: #101b2a;
+}
+
+/* --- Page foot: CTA band + footer --------------------------------------- */
+
+/* The foot of the page did not match the top. The hero and the section bands
+   run edge to edge, but both the CTA band and the footer inherited the same
+   `width: min(var(--max), calc(100% - 40px))` inset that .section uses, so the
+   page ended in a narrow dark column with white margins beside it. Both now
+   span the viewport, with their content on the same rail as every other band
+   (the formula equals the offset `margin-inline: auto` gives a centred
+   container, and the floor keeps narrow viewports at the standard gutter). */
+.cta-band,
+.site-footer {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-left: max(20px, calc((100% - var(--max)) / 2));
+  padding-right: max(20px, calc((100% - var(--max)) / 2));
+}
+
+/* On an 8,448px page the conversion band was the smallest block on it (307px,
+   3.6%) — the moment of conversion should not be the quietest section. */
+.cta-band {
+  padding-top: 72px;
+  padding-bottom: 72px;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+/* cms.css centres the action against the whole copy block, which — with a
+   260px-tall text column — left the button floating in the empty right half
+   with no line to align to. Anchoring it to the bottom puts it on the same
+   baseline as the response-time promise, so it reads as the end of that
+   sentence rather than as a loose object. Desktop only: cms.css switches the
+   band to a column below 900px, where `align-items: end` would mean
+   right-aligning every child. */
+@media (min-width: 901px) {
+  .cta-band {
+    align-items: end;
+  }
+
+  .cta-actions {
+    flex: 0 0 auto;
+    padding-bottom: 2px;
+  }
+}
+
+/* The band's copy ran the full width of the strip — about 975px of line for a
+   paragraph set at 17px — because the action column is narrow and nothing
+   capped the text column. */
+.cta-band > div:first-child {
+  max-width: 62ch;
+}
+
+/* `.cta-band h2` carried only a max-width, so its size fell through to the
+   browser default (~24px): the smallest heading on the page, heading the one
+   block that actually asks for the enquiry. */
+.cta-band h2 {
+  max-width: 24ch;
+  font-size: clamp(26px, 3.4vw, 38px);
+  line-height: 1.15;
+}
+
+/* The band is not a `.section-dark`, so its eyebrow fell through to --green
+   (#0d8053), which measures 3.49:1 on the band's #101b2a — under the 4.5:1
+   floor for 13px text. The light green the dark sections already use measures
+   10.6:1 here. */
+.cta-band .eyebrow {
+  color: #6fe0a8;
+}
+
+/* --- Stat band hierarchy ------------------------------------------------ */
+
+/* The band styled all twelve figures identically, so eight partner numbers
+   competed on equal terms with four of our own and the block read as a data
+   dump. The first group now carries the emphasis. */
+.stat-band-group:first-child .stat-band-item strong {
+  font-size: 38px;
+}
+
+.stat-band-group:last-child .stat-band-item strong {
+  color: var(--muted);
+  font-size: 25px;
+}
+
+.stat-band-group:last-child .stat-band-item span {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* --- CTA band promise --------------------------------------------------- */
+
+.cta-promise {
+  margin-top: 14px !important;
+  color: rgba(255, 255, 255, 0.62) !important;
+  font-size: 14px;
+}
+
+/* --- Trust grid variants ------------------------------------------------ */
+
+.trust-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* site.css loads after cms.css, so this rule beat the single-column collapse in
+   cms.css's 900px block at equal specificity and the 404 page's three route
+   cards overflowed a 390px viewport by 5px. Collapse at the same breakpoint. */
+@media (max-width: 900px) {
+  .trust-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trust-grid h3 a:hover {
+  color: var(--green-dark);
+}
+
+/* --- Spec table polish -------------------------------------------------- */
+
+.spec-row strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  /* The overlay copy block is a fixed ~172px tall. In two columns a card is only
+     (container - 20) / 2 wide, so below this breakpoint a 3:2 card drops to
+     ~280px tall and the copy would take 60%+ of it — the photograph stops
+     carrying the card. One column keeps the cards wide, so the same copy is a
+     quarter of the frame instead. */
+  .feature-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cert-doc-grid,
+  .commitment-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .momentum-list,
+  .process-list,
+  .doc-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .solution-grid-quad {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  /* cms.css turns .nav into a column at this breakpoint, which pushes the
+     brand and the menu button onto separate rows. Keep them on one row and let
+     the absolutely-positioned dropdown handle the links. */
+  .nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* cms.css collapses the footer with `flex-direction: column`, which does
+     nothing to a grid — without this the three columns would stay side by side
+     on a phone. */
+  .site-footer {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .stat-band-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .manufacturing-layout,
+  .cfg-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-doc-grid,
+  .commitment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* cms.css drops this grid to a single column here. For a text-only card that
+     was fine; with the image band back, one column means an 860px-wide card
+     under a 645px-tall image. Keep two columns until there is really no room. */
+  .article-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* The "photograph on top, copy beneath" card used to be a mobile-only override
+   that switched on below 768px; it is now the base layout at every width, and
+   the desktop composition is the override instead. That is also why there is no
+   mobile block here: with the base carrying the mobile values, mobile cannot
+   drift when the desktop is tuned, and no pinning rules are needed to hold it. */
+
+@media (max-width: 600px) {
+  /* The bands now derive their own gutter, so no override is needed to keep the
+     trailing link inside the viewport. */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .manufacturing-media {
+    max-width: none;
+  }
+
+  .article-grid,
+  .solution-grid-quad {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* The fixed WhatsApp / Call bar sits over the bottom of the viewport on
+     small screens, so page heroes need clearance for their call-to-action. */
+  .hero,
+  .page-hero {
+    padding-bottom: 86px;
+  }
+
+  /* The certificate grid stays two-up. Stacked single-column it ran to 4,036px
+     on a 375px viewport — 22% of the whole mobile page. */
+  .cert-doc-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cert-doc-name {
+    font-size: 13.5px;
+  }
+
+  .cert-doc-detail {
+    font-size: 12px;
+  }
+
+  .commitment-grid,
+  .momentum-list,
+  .process-list,
+  .doc-list,
+  .cfg-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* The hero h1 now falls through to the clamp above, which lands on its 30px
+     floor here. The old fixed 38px was a leftover from the display-scale
+     heading and set a 68-character sentence as six 38px lines. */
+  .page-hero h1 {
+    font-size: clamp(28px, 7.4vw, 34px);
+  }
+
+  .cfg-form,
+  .cfg-result {
+    padding: 22px;
+  }
+}
+
+/* --- Reduced motion ----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .solution-card:hover,
+  .solution-grid-quiet article:hover,
+  .feature-card:hover,
+  .button:hover,
+  .btn:hover {
+    transform: none;
+  }
+}
+
+
+
+/* --- Card heading level and mobile hero rail --------------------------- */
+
+/* The product card used an h3 directly under the page h1, skipping a level.
+   It is an h2 now. The size is pinned here because .section h2 would otherwise
+   apply the 30-48px section scale inside a 330px card; these values reproduce
+   the previous rendering exactly (18.72px at 1.55 line-height). */
+.product-card .product-card-title {
+  margin: 18.72px 0;
+  font-size: 1.17em;
+  line-height: inherit;
+  letter-spacing: normal;
+  color: #0e1726;
+}
+
+@media (max-width: 640px) {
+  /* .container insets to 28px at this width, but .hero-copy and .page-hero
+     kept their 40px inset, so the wordmark sat 6px left of the headline on a
+     phone. Both now use the container's rail. */
+  .hero-copy,
+  .page-hero {
+    width: min(var(--max), calc(100% - 28px));
+  }
+}
+
+
+/* --- Footer social row -------------------------------------------------- */
+
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* Quiet discs on the navy footer: the icon carries the colour, the disc only
+   lifts off the background. Chosen over white discs because six white circles
+   under a dark footer read as buttons competing with the CTA above them. */
+.site-footer .footer-social a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  color: #b9d2e8;
+  text-decoration: none;
+  justify-self: auto;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+/* #b9d2e8 on rgba(255,255,255,.07) over #0c1522 measures 9.8:1, well past the
+   3:1 floor for non-text graphics. */
+.site-footer .footer-social a:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.site-footer .footer-social a:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+.footer-social svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .site-footer .footer-social a {
+    width: 44px;
+    height: 44px;
+  }
+
+  .footer-social svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Consent panel
+   Only rendered when the page contains a script tagged data-consent, or when a
+   visitor opens the settings link in the footer. The site currently loads no
+   non-essential script, so in normal browsing this panel never appears.
+   Sits above the fixed mobile contact bar (56px) rather than covering it.
+   --------------------------------------------------------------------------- */
+.consent-panel {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 60;
+  width: min(420px, calc(100% - 48px));
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(14, 23, 38, 0.18);
+}
+
+.consent-title {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 850;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.consent-body {
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.consent-body a {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
+.consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.consent-actions .btn {
+  flex: 1 1 auto;
+  justify-content: center;
+  padding: 11px 18px;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .consent-panel {
+    left: 12px;
+    right: 12px;
+    bottom: 68px;
+    width: auto;
+    padding: 20px;
+  }
+}
+
+/* Date line under the hero copy on the legal page. */
+.legal-updated {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Footer legal row: privacy notice and cookie settings sit inside the existing
+   flex row, so they inherit the footer's own contrast ratio. */
+.footer-base .footer-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.footer-base .footer-legal-links a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.footer-base .footer-legal-links a:hover,
+.footer-base .footer-legal-links a:focus-visible {
+  border-bottom-color: currentColor;
+}
+
+/* Collection-point notice above the contact form's submit button. */
+.form-privacy {
+  margin: 4px 0 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.form-privacy a {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
+/* Legal pages wrap .article-body in a .section, and cms.css sets
+   `.section h2 { margin: 0 }` at the same specificity but one layer later, so
+   every section heading sat flush against the paragraph above it. Match the
+   article rhythm explicitly; the extra class wins without !important. */
+.section .article-body h2 {
+  margin: 42px 0 14px;
+}
+
+.section .article-body h3 {
+  margin: 28px 0 10px;
+}
+
+.section .article-body > :first-child {
+  margin-top: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Blog pagination
+   Twelve cards a page. With a thousand posts the archive would otherwise be a
+   single 40 000px document, which is slow to paint and impossible to link to.
+   --------------------------------------------------------------------------- */
+.page-hero-slim {
+  padding-bottom: 14px;
+}
+
+.page-hero-slim h1 {
+  font-size: clamp(26px, 3.4vw, 40px);
+  line-height: 1.12;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0 84px;
+}
+
+.pagination-count {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.pagination-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pagination-number,
+.pagination-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.pagination-number:hover,
+.pagination-step:hover {
+  border-color: var(--ink);
+}
+
+.pagination-number.is-current {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+}
+
+.pagination-step.is-disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+.pagination-step.is-disabled:hover {
+  border-color: var(--line);
+}
+
+.pagination-gap {
+  padding: 0 4px;
+  color: var(--muted);
+}
+
+/* The numbered window would wrap into two rows on a phone and read as clutter;
+   the count line plus the two steps carry the same information. */
+@media (max-width: 640px) {
+  .pagination-number,
+  .pagination-gap {
+    display: none;
+  }
+
+  .pagination-list {
+    gap: 10px;
+  }
+
+  .pagination-step {
+    min-width: 132px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Case study cards
+   Summaries run from 69 to 154 characters, so an unclamped paragraph leaves
+   cards in the same row at different heights and pushes the Capacity block
+   around. Clamping to three lines fixes the text block; the flex column pins
+   Capacity/Product and the link to the bottom so every card ends flush.
+   --------------------------------------------------------------------------- */
+.project-card-media > div > p:not(.eyebrow) {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* The listing card no longer carries a Capacity/Product block; those fields live
+   in the .project-specs table on the case page. */
+
+/* The detail page repeats the same fields in a wide column; clamping there would
+   hide content, so the clamp stays scoped to the listing card. */
+.project-detail dl dd {
+  overflow-wrap: anywhere;
+}
+
+/* ---------------------------------------------------------------------------
+   Case study parameters
+   The same seven rows on every case page. Two columns on desktop, one on a
+   phone, using the same bordered-row rhythm as the product specification
+   tables so the two sections do not look like different sites.
+   --------------------------------------------------------------------------- */
+.project-specs {
+  margin: 0 0 34px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.project-specs > div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+  gap: 18px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-specs > div:last-child {
+  border-bottom: 0;
+}
+
+.project-specs dt {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.project-specs dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .project-specs > div {
+    grid-template-columns: 1fr;
+    gap: 3px;
+    padding: 12px 16px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Downloads
+   Twelve documents in two groups, no opt-in form. The reference site hides them
+   behind collapsing panels; here every file is one click from the page, because
+   a specification sheet a buyer cannot find does not build trust.
+   --------------------------------------------------------------------------- */
+.download-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+}
+
+.download-group h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 850;
+  color: var(--ink);
+}
+
+.download-group-lead {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.download-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.download-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px 18px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.download-item-title {
+  font-size: 15px;
+  font-weight: 750;
+  color: var(--ink);
+  transition: color 0.15s ease;
+}
+
+.download-item-detail {
+  grid-column: 1;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.download-item-meta {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+.download-tag {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.download-item:hover .download-item-title,
+.download-item:focus-visible .download-item-title {
+  color: var(--green-dark);
+}
+
+.download-note {
+  margin: 26px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.download-note a {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .download-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+  }
+}
+
+@media (max-width: 520px) {
+  .download-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .download-item-meta {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 4px;
+  }
+}
+
+/* Date line under the download lists. */
+.download-meta {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+/* Provenance. Kept quiet: it is a footnote for a buyer checking a number, not a
+   second call to action. */
+.article-source {
+  margin: 28px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.source-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.source-list li {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.source-list span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Form status. Hidden until a submission actually succeeds or fails, so the
+   confirmation can never be mistaken for the state of an unsent form. */
+.form-note[data-state='ok'] {
+  margin: 14px 0 0;
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius);
+  background: #f3faf6;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 600;
+}
+
+.form-note[data-state='error'] {
+  color: #a13228;
+}

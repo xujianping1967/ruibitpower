@@ -1,0 +1,109 @@
+{
+  "title": "Sunflower 125kW / 261kWh PV Hybrid ESS",
+  "slug": "sunflower-125kw-261kwh-pv-hybrid-ess",
+  "category": "PV hybrid ESS",
+  "summary": "An integrated PV hybrid energy storage system combining 125kW backup output with 261kWh-class battery capacity.",
+  "heroImage": "/assets/images/products/sunflower-125kw-261kwh-pv-hybrid-ess/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/sunflower-125kw-261kwh-pv-hybrid-ess/hero-3x2.jpg",
+    "/assets/images/products/sunflower-125kw-261kwh-pv-hybrid-ess/01.jpg",
+    "/assets/images/products/sunflower-125kw-261kwh-pv-hybrid-ess/02.jpg",
+    "/assets/images/products/sunflower-125kw-261kwh-pv-hybrid-ess/03.jpg",
+    "/assets/images/products/sunflower-125kw-261kwh-pv-hybrid-ess/04.jpg",
+    "/assets/images/products/sunflower-125kw-261kwh-pv-hybrid-ess/05.jpg",
+    "/assets/images/products/sunflower-125kw-261kwh-pv-hybrid-ess/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Backup power",
+      "value": "125kW"
+    },
+    {
+      "label": "Battery",
+      "value": "261kWh class"
+    },
+    {
+      "label": "PV input",
+      "value": "Up to 250kW"
+    },
+    {
+      "label": "Protection",
+      "value": "IP54 / C4"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Backup output",
+      "value": "125kW"
+    },
+    {
+      "label": "Battery capacity",
+      "value": "261kWh class"
+    },
+    {
+      "label": "PV input",
+      "value": "Up to 250kW usable PV input"
+    },
+    {
+      "label": "Thermal management",
+      "value": "Liquid cooling"
+    },
+    {
+      "label": "Cycle life",
+      "value": "6,000 cycles @ 80% SOH (25 °C / 0.5C); up to 8,000 at cell level"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP54"
+    },
+    {
+      "label": "Anti-corrosion grade",
+      "value": "C4"
+    },
+    {
+      "label": "Application",
+      "value": "PV hybrid energy storage"
+    },
+    {
+      "label": "Weight",
+      "value": "2620kg"
+    }
+  ],
+  "applications": [
+    "PV hybrid projects",
+    "Commercial backup",
+    "Distributed energy projects"
+  ],
+  "downloads": [
+    {
+      "label": "Datasheet — PDF, 2 pages",
+      "url": "/downloads/sunflower-125kw-261kwh-pv-hybrid-ess-datasheet.pdf"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How much PV can it take?",
+      "answer": "Up to 250 kW usable PV input against a 261 kWh battery, roughly two to one."
+    },
+    {
+      "question": "What is the cycle life?",
+      "answer": "6,000 cycles to 80% state of health at 25°C and 0.5C; cell level is rated up to 8,000."
+    },
+    {
+      "question": "Can it be installed outdoors?",
+      "answer": "Yes, IP54 with C4 corrosion protection and liquid cooling."
+    }
+  ],
+  "featured": true,
+  "seo": {
+    "title": "Sunflower 125kW / 261kWh PV Hybrid ESS | Ruibit Power",
+    "description": "An integrated PV hybrid energy storage system combining 125kW backup output with 261kWh-class battery capacity."
+  },
+  "sources": [
+    {
+      "label": "Manufacturer datasheet (PDF)",
+      "url": "https://ruibitpower.com/downloads/sunflower-125kw-261kwh-pv-hybrid-ess-datasheet.pdf",
+      "note": "Figures on this page are taken from this document."
+    }
+  ]
+}

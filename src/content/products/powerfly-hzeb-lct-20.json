@@ -1,0 +1,106 @@
+{
+  "title": "PowerFly HZEB-LCT-20 20.992kWh Ground-Mounted Battery",
+  "slug": "powerfly-hzeb-lct-20",
+  "category": "Residential battery",
+  "summary": "A 20kWh-class 51.2V LiFePO4 battery for larger homes and small commercial backup applications.",
+  "heroImage": "/assets/images/products/powerfly-hzeb-lct-20/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/powerfly-hzeb-lct-20/hero-3x2.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-20/01.webp",
+    "/assets/images/products/powerfly-hzeb-lct-20/02.webp",
+    "/assets/images/products/powerfly-hzeb-lct-20/03.webp",
+    "/assets/images/products/powerfly-hzeb-lct-20/04.webp",
+    "/assets/images/products/powerfly-hzeb-lct-20/05.webp",
+    "/assets/images/products/powerfly-hzeb-lct-20/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Capacity",
+      "value": "20.992kWh"
+    },
+    {
+      "label": "Voltage",
+      "value": "51.2V"
+    },
+    {
+      "label": "Current",
+      "value": "200A"
+    },
+    {
+      "label": "Parallel",
+      "value": "Up to 15 units"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Nominal capacity",
+      "value": "20.992kWh"
+    },
+    {
+      "label": "Nominal voltage",
+      "value": "51.2V"
+    },
+    {
+      "label": "Rated capacity",
+      "value": "410Ah"
+    },
+    {
+      "label": "Cell configuration",
+      "value": "16S2P"
+    },
+    {
+      "label": "Voltage range",
+      "value": "44.8-57.6V"
+    },
+    {
+      "label": "Max charge/discharge current",
+      "value": "200A"
+    },
+    {
+      "label": "Communication",
+      "value": "CAN / RS485 / RS232"
+    },
+    {
+      "label": "Cycle life",
+      "value": ">=6,000 cycles at cabinet level; up to 8,000 at cell level"
+    },
+    {
+      "label": "Installation",
+      "value": "Ground-mounted"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP21"
+    }
+  ],
+  "applications": [
+    "Large home backup",
+    "Small office storage",
+    "Solar battery expansion"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is 20 kWh enough for a whole home?",
+      "answer": "Essential circuits run 24-48 hours; full home use including AC runs 12-24 hours, depending on daily consumption."
+    },
+    {
+      "question": "How is it installed?",
+      "answer": "As a ground-mounted cabinet on a level floor. IP21 means indoor or sheltered space only, not an exposed wall."
+    },
+    {
+      "question": "Can I connect multiple units?",
+      "answer": "Yes, parallel connection is supported. Confirm the final bank size with us, because cabinet count and cable sizing are project-specific."
+    }
+  ],
+  "featured": false,
+  "seo": {
+    "title": "PowerFly HZEB-LCT-20 20.992kWh Ground-Mounted Battery | Ruibit Power",
+    "description": "A 20kWh-class 51.2V LiFePO4 battery for larger homes and small commercial backup applications."
+  }
+}

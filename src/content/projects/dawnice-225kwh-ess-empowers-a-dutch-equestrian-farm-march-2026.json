@@ -1,0 +1,24 @@
+{
+  "slug": "dawnice-225kwh-ess-empowers-a-dutch-equestrian-farm-march-2026",
+  "title": "Dawnice 225kWh ESS Empowers a Dutch Equestrian Farm (March 2026)",
+  "country": "Netherlands",
+  "application": "Equestrian farm",
+  "systemType": "C&I",
+  "capacity": "125kW / 225kWh",
+  "inverterPcs": "Solis 125kW",
+  "productUsed": "125kW / 225kWh, Solis 125kW",
+  "completed": "2026-03",
+  "summary": "A 225kWh outdoor battery with a 125kW Solis inverter at an equestrian facility in the Netherlands.",
+  "image": "/assets/images/cases/dawnice-225kwh-ess-empowers-a-dutch-equestrian-farm-march-2026.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "Netherlands — equestrian farm / agriculture",
+  "challenge": "Agricultural businesses in the Netherlands face strict carbon emission rules and volatile energy prices, and a working stable cannot absorb interruptions to its daily routine.",
+  "solution": "A 225kWh outdoor energy storage system paired with a 125kW Solis hybrid inverter.",
+  "result": "Commissioned in March 2026 as an on-site microgrid for the facility.",
+  "seo": {
+    "title": "Dawnice 225kWh ESS Empowers a Dutch Equestrian Farm",
+    "description": "A 225kWh outdoor battery with a 125kW Solis inverter at an equestrian facility in the Netherlands."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "slug": "usa-100kwh-stacked-residential-energy-storage",
+  "title": "USA 100kWh Stacked Residential Energy Storage",
+  "country": "United States",
+  "application": "Residential",
+  "systemType": "Residential",
+  "capacity": "100kWh",
+  "productUsed": "100kWh system",
+  "summary": "A 100kWh stacked LiFePO4 system installed for a residence in the USA.",
+  "image": "/assets/images/cases/usa-100kwh-stacked-residential-energy-storage.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "United States — residential",
+  "challenge": "",
+  "solution": "A 100kWh stacked LiFePO4 storage system for home backup and energy independence.",
+  "result": "",
+  "seo": {
+    "title": "USA 100kWh Stacked Residential Energy Storage | Ruibit Power",
+    "description": "A 100kWh stacked LiFePO4 system installed for a residence in the USA."
+  }
+}

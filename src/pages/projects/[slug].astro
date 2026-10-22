@@ -1,0 +1,135 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InquiryBand from '../../components/InquiryBand.astro';
+import site from '../../data/site.json';
+import sourcesData from '../../data/sources.json';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { project: entry.data },
+  }));
+}
+
+const { project } = Astro.props;
+
+/* Completion dates are stored as YYYY-MM so they sort and stay unambiguous;
+   the page prints them the way a reader expects. */
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+  'August', 'September', 'October', 'November', 'December'];
+/* Energy-only strings can be called a battery capacity; anything carrying a
+   power figure as well describes the whole system. */
+const capacityIsEnergy =
+  /\d\s*(?:kWh|MWh)/i.test(project.capacity) && !/\d\s*(?:kW|MW)(?!h)/i.test(project.capacity);
+
+const completedLabel = (() => {
+  const match = /^(\d{4})-(\d{2})$/.exec(project.completed ?? '');
+  return match ? `${MONTHS[Number(match[2]) - 1]} ${match[1]}` : (project.completed ?? '');
+})();
+
+/* Drop the brand suffix on case pages so the differentiating words survive
+   SERP truncation. */
+const pageTitle = (project.seo?.title ?? project.title).replace(/\s*\|\s*Ruibit Power\s*$/, '').trim();
+
+/* Provenance for the case study. Only URLs that answered 200 on the origin site
+   were written to sources.json; entries sourced from the sales team's own notes
+   carry nothing and render nothing. */
+const sourceUrl =
+  (sourcesData.projects as Record<string, string>)[project.slug] ?? project.sources?.[0]?.url ?? '';
+const sourceHost = sourceUrl ? new URL(sourceUrl).hostname.replace(/^www\./, '') : '';
+const projectSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: project.title,
+  description: project.summary,
+  image: new URL(project.image, site.domain).toString(),
+  about: project.application,
+  author: {
+    '@type': 'Organization',
+    name: 'Ruibit Power',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Ruibit Power',
+  },
+};
+---
+<BaseLayout title={pageTitle} description={project.seo?.description || project.summary} image={project.image} structuredData={projectSchema} breadcrumbLabel={project.title}>
+  <article class="article-page">
+    <header>
+      <p class="eyebrow">{project.country} / {project.application}</p>
+      <h1>{project.title}</h1>
+      <p>{project.summary}</p>
+    </header>
+    <figure class="project-figure">
+      <img
+        src={project.image}
+        alt={project.imageCaption || project.title}
+        width={project.imageWidth ?? 1200}
+        height={project.imageHeight ?? 675}
+        loading="lazy"
+        decoding="async"
+      />
+      {project.imageCaption && <figcaption>{project.imageCaption}</figcaption>}
+    </figure>
+    <div class="article-content">
+      {/* Same block on every case so the twenty-three pages compare at a glance
+          instead of leaving the reader to dig the parameters out of the prose.
+          Rows without a value are omitted rather than filled with "—". */}
+      <h2>At a glance</h2>
+      <dl class="project-specs">
+        <div><dt>Country</dt><dd>{project.country}</dd></div>
+        {project.application && <div><dt>Application</dt><dd>{project.application}</dd></div>}
+        {project.systemType && <div><dt>System type</dt><dd>{project.systemType}</dd></div>}
+        {/* The row name follows the units actually present. "370kW PV" has no
+            battery at all, and "30kW / 80kWh" mixes inverter power with pack
+            energy, so neither can sit under "Battery capacity"; only a value
+            that is energy and nothing else can. */}
+        <div>
+          <dt>{capacityIsEnergy ? 'Battery capacity' : 'System size'}</dt>
+          <dd>{project.capacity}</dd>
+        </div>
+        {project.inverterPcs && <div><dt>Inverter / PCS</dt><dd>{project.inverterPcs}</dd></div>}
+        {project.productUsed && <div><dt>Product used</dt><dd>{project.productUsed}</dd></div>}
+        {
+          project.completed && (
+            <div>
+              <dt>Completed</dt>
+              <dd>{completedLabel}</dd>
+            </div>
+          )
+        }
+      </dl>
+      {/* Not every reference states all three; several of the migrated case
+          studies only describe the installation. Rendering an empty heading with
+          an empty paragraph reads as a broken page, so each block is conditional. */}
+      {project.challenge && (
+        <>
+          <h2>Challenge</h2>
+          <p>{project.challenge}</p>
+        </>
+      )}
+      {project.solution && (
+        <>
+          <h2>Solution</h2>
+          <p>{project.solution}</p>
+        </>
+      )}
+      {project.result && (
+        <>
+          <h2>Result</h2>
+          <p>{project.result}</p>
+        </>
+      )}
+    </div>
+    {sourceUrl && (
+      <p class="article-source">
+        Case record first published on{' '}
+        <a href={sourceUrl} rel="nofollow noopener" target="_blank">{sourceHost}</a>.
+      </p>
+    )}
+  </article>
+  <InquiryBand />
+</BaseLayout>

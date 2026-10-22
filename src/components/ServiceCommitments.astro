@@ -1,0 +1,39 @@
+---
+interface Item {
+  title: string;
+  detail: string;
+}
+
+interface Props {
+  items: Item[];
+  heading?: string;
+  eyebrow?: string;
+  lead?: string;
+}
+
+const {
+  items,
+  heading = 'What you get when you send an inquiry',
+  eyebrow = 'Service terms',
+  lead = 'Commercial terms are confirmed in the quotation. These are the standard conditions we work to.',
+} = Astro.props;
+---
+
+<section class="section" aria-label="Service and commercial terms">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2>{heading}</h2>
+      <p class="section-lead">{lead}</p>
+    </div>
+  </div>
+
+  <ul class="commitment-grid">
+    {items.map((item) => (
+      <li class="commitment">
+        <h3>{item.title}</h3>
+        <p>{item.detail}</p>
+      </li>
+    ))}
+  </ul>
+</section>

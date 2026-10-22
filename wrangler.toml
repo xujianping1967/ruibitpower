@@ -1,0 +1,35 @@
+# Cloudflare Pages project.
+#
+#   npx wrangler pages deploy dist
+#
+# Netlify ignores this file.
+#
+# Mail transport is chosen at runtime, first match wins:
+#
+#   1. RESEND_API_KEY            — works on a free Pages project (production)
+#   2. send_email binding EMAIL  — Workers only; Pages does not offer it
+#   3. CF_EMAIL_API_TOKEN + CF_ACCOUNT_ID — Email Sending API, Workers Paid
+#
+# Secrets are set out of band, never in this file:
+#
+#   npx wrangler pages secret put RESEND_API_KEY
+#   npx wrangler pages secret put CF_EMAIL_API_TOKEN   # only for transport 3
+#
+# Dashboard uploads ignore this file entirely — add the same names under
+# Settings → Variables and Secrets.
+
+name = "ruibitpower-site"
+compatibility_date = "2026-10-01"
+pages_build_output_dir = "dist"
+
+[vars]
+MAIL_TO = "sales@ruibitpower.com"
+# Must be an address at a domain verified by whichever provider is in use. A
+# verified subdomain only authorises addresses at that subdomain: verifying
+# inquiry.ruibitpower.com does not permit sending as website@ruibitpower.com.
+MAIL_FROM = "website@inquiry.ruibitpower.com"
+# Optional: enables the per-IP hourly cap. Without it the limiter is skipped
+# rather than failing the request.
+# [[kv_namespaces]]
+# binding = "INQUIRY_KV"
+# id = "<namespace id>"

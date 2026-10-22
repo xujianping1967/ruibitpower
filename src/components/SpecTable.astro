@@ -1,0 +1,19 @@
+---
+const { specs = [] } = Astro.props;
+---
+{specs.length > 0 && (
+  <section class="section">
+    <div class="section-header">
+      <p class="eyebrow">Technical data</p>
+      <h2>Core specifications</h2>
+    </div>
+    <div class="spec-table">
+      {specs.map((spec: { label: string; value: string }) => (
+        <div class="spec-row">
+          <span>{spec.label}</span>
+          <strong>{spec.value}</strong>
+        </div>
+      ))}
+    </div>
+  </section>
+)}

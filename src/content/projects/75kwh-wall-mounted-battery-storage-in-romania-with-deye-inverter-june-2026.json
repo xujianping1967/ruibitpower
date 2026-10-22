@@ -1,0 +1,24 @@
+{
+  "slug": "75kwh-wall-mounted-battery-storage-in-romania-with-deye-inverter-june-2026",
+  "title": "75kWh Wall-Mounted Battery Storage in Romania with Deye Inverter (June 2026)",
+  "country": "Romania",
+  "application": "Premium residential",
+  "systemType": "Residential",
+  "capacity": "75kWh (5×15kWh Wall-Mounted)",
+  "inverterPcs": "Deye hybrid",
+  "productUsed": "75kWh (5×15kWh Wall-Mounted), Deye",
+  "completed": "2026-06",
+  "summary": "Five 15kWh wall-mounted modules, 75kWh in total, with a Deye inverter in Romania.",
+  "image": "/assets/images/cases/75kwh-wall-mounted-battery-storage-in-romania-with-deye-inverter-june-2026.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "Romania — premium residential",
+  "challenge": "Romania's support policies for distributed PV raised interest in self-consumption, and the client wanted substantial capacity for a premium household.",
+  "solution": "Five 15kWh wall-mounted modules paralleled through the BMS for 75kWh, behind a Deye inverter.",
+  "result": "Capacity grows by adding modules, and the wall format keeps the bank out of the living space.",
+  "seo": {
+    "title": "75kWh Wall-Mounted Battery Storage in Romania with Deye Inverter",
+    "description": "Five 15kWh wall-mounted modules, 75kWh in total, with a Deye inverter in Romania."
+  }
+}

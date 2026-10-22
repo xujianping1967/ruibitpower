@@ -1,0 +1,43 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+  note?: string;
+}
+
+interface Group {
+  owner: string;
+  role?: string;
+  stats: Stat[];
+}
+
+interface Props {
+  groups: Group[];
+}
+
+const { groups } = Astro.props;
+---
+
+<section class="stat-band" aria-label="Company and manufacturing capability">
+  <div class="container">
+    <div class="stat-band-groups">
+      {groups.map((group) => (
+        <div class="stat-band-group">
+          <p class="stat-band-owner">
+            <span>{group.owner}</span>
+            {group.role && <em>{group.role}</em>}
+          </p>
+          <div class="stat-band-items">
+            {group.stats.map((stat) => (
+              <div class="stat-band-item">
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+                {stat.note && <em>{stat.note}</em>}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,122 @@
+{
+  "title": "Honey WD-ECF260S DC Outdoor Liquid-Cooled Cabinet",
+  "slug": "honey-wd-ecf260s-dc-outdoor",
+  "category": "DC outdoor cabinet",
+  "summary": "A 261.248kWh DC-side liquid-cooled outdoor cabinet for higher-density commercial storage projects.",
+  "heroImage": "/assets/images/products/honey-wd-ecf260s-dc-outdoor/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/honey-wd-ecf260s-dc-outdoor/hero-3x2.jpg",
+    "/assets/images/products/honey-wd-ecf260s-dc-outdoor/01.jpg",
+    "/assets/images/products/honey-wd-ecf260s-dc-outdoor/02.jpg",
+    "/assets/images/products/honey-wd-ecf260s-dc-outdoor/03.jpg",
+    "/assets/images/products/honey-wd-ecf260s-dc-outdoor/04.jpg",
+    "/assets/images/products/honey-wd-ecf260s-dc-outdoor/05.jpg",
+    "/assets/images/products/honey-wd-ecf260s-dc-outdoor/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Capacity",
+      "value": "261.248kWh"
+    },
+    {
+      "label": "Cooling",
+      "value": "Liquid cooled"
+    },
+    {
+      "label": "Footprint",
+      "value": "1.4m2"
+    },
+    {
+      "label": "Protection",
+      "value": "IP54"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Nominal energy",
+      "value": "261.248kWh"
+    },
+    {
+      "label": "Battery chemistry",
+      "value": "LiFePO4"
+    },
+    {
+      "label": "Cell class",
+      "value": "314Ah"
+    },
+    {
+      "label": "Rated DC voltage",
+      "value": "832VDC"
+    },
+    {
+      "label": "DC voltage range",
+      "value": "728-949VDC"
+    },
+    {
+      "label": "System side",
+      "value": "DC outdoor cabinet"
+    },
+    {
+      "label": "Thermal management",
+      "value": "Intelligent liquid cooling"
+    },
+    {
+      "label": "Temperature uniformity",
+      "value": "<=3C"
+    },
+    {
+      "label": "Cycle life",
+      "value": "6,000 cycles @ 80% SOH (25 °C / 0.5C)"
+    },
+    {
+      "label": "Operating temperature",
+      "value": "-20C to 55C"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP54"
+    },
+    {
+      "label": "Anti-corrosion grade",
+      "value": "C4"
+    },
+    {
+      "label": "Footprint",
+      "value": "About 1.4m2"
+    },
+    {
+      "label": "Weight",
+      "value": "2450kg"
+    }
+  ],
+  "applications": [
+    "C&I storage",
+    "DC-side integration",
+    "High-density cabinet projects"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Does it include a PCS?",
+      "answer": "No. It is the DC-side cabinet; the PCS is specified and supplied separately."
+    },
+    {
+      "question": "Why choose liquid cooling?",
+      "answer": "Smaller temperature spread, longer life, smaller footprint, and lower noise than air cooling."
+    },
+    {
+      "question": "Can it be installed outdoors?",
+      "answer": "Yes, an IP54 outdoor cabinet of about 1.4 m2, rated -20°C to 55°C."
+    }
+  ],
+  "featured": false,
+  "seo": {
+    "title": "Honey WD-ECF260S DC Outdoor Liquid-Cooled Cabinet | Ruibit Power",
+    "description": "A 261.248kWh DC-side liquid-cooled outdoor cabinet for higher-density commercial storage projects."
+  }
+}

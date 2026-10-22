@@ -1,0 +1,106 @@
+{
+  "title": "PowerFly HZEB-LCT-5 5.12kWh Wall-Mounted Battery",
+  "slug": "powerfly-hzeb-lct-5",
+  "category": "Residential battery",
+  "summary": "A compact 51.2V LiFePO4 wall-mounted battery for home solar backup and expandable residential storage.",
+  "heroImage": "/assets/images/products/powerfly-hzeb-lct-5/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/powerfly-hzeb-lct-5/hero-3x2.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-5/01.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-5/02.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-5/03.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-5/04.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-5/05.jpg",
+    "/assets/images/products/powerfly-hzeb-lct-5/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Capacity",
+      "value": "5.12kWh"
+    },
+    {
+      "label": "Voltage",
+      "value": "51.2V"
+    },
+    {
+      "label": "Parallel",
+      "value": "Up to 15 units"
+    },
+    {
+      "label": "Protection",
+      "value": "IP54"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Nominal capacity",
+      "value": "5.120kWh"
+    },
+    {
+      "label": "Nominal voltage",
+      "value": "51.2V"
+    },
+    {
+      "label": "Rated capacity",
+      "value": "100Ah"
+    },
+    {
+      "label": "Cell configuration",
+      "value": "16S1P"
+    },
+    {
+      "label": "Voltage range",
+      "value": "44.8-57.6V"
+    },
+    {
+      "label": "Max charge/discharge current",
+      "value": "100A"
+    },
+    {
+      "label": "Communication",
+      "value": "CAN / RS485 / RS232"
+    },
+    {
+      "label": "Cycle life",
+      "value": ">=5,000 cycles at 90% DOD"
+    },
+    {
+      "label": "Installation",
+      "value": "Wall-mounted"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP54"
+    }
+  ],
+  "applications": [
+    "Home solar backup",
+    "Rooftop PV self-consumption",
+    "Small residential storage"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Can I expand the capacity later?",
+      "answer": "Yes. Up to 15 units can be paralleled, for 76.8 kWh in total."
+    },
+    {
+      "question": "Is it compatible with my existing inverter?",
+      "answer": "CAN, RS485, and RS232 are supported. Most 48 V and 51.2 V hybrid inverters connect; send the model and we confirm."
+    },
+    {
+      "question": "How long does installation take?",
+      "answer": "Typically 2-4 hours, including wall mounting, electrical connections, and configuration."
+    }
+  ],
+  "featured": true,
+  "seo": {
+    "title": "PowerFly HZEB-LCT-5 5.12kWh Wall-Mounted Battery | Ruibit Power",
+    "description": "A compact 51.2V LiFePO4 wall-mounted battery for home solar backup and expandable residential storage."
+  }
+}

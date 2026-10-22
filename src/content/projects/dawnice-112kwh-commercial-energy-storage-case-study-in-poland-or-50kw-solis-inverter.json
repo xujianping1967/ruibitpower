@@ -1,0 +1,24 @@
+{
+  "slug": "dawnice-112kwh-commercial-energy-storage-case-study-in-poland-or-50kw-solis-inverter",
+  "title": "Dawnice 112kWh Commercial Energy Storage Case Study in Poland",
+  "country": "Poland",
+  "application": "Commercial and industrial",
+  "systemType": "C&I",
+  "capacity": "112kWh",
+  "inverterPcs": "Solis 50kW",
+  "productUsed": "112kWh, Solis 50kW",
+  "completed": "2026-07",
+  "summary": "A 112kWh Dawnice outdoor cabinet paired with a 50kW Solis inverter, installed without taking up indoor floor space.",
+  "image": "/assets/images/cases/dawnice-112kwh-commercial-energy-storage-case-study-in-poland-or-50kw-solis-inverter.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "Poland — commercial / industrial",
+  "challenge": "Poland's grid electricity prices pushed the client to look for self-sufficiency. The site needed to store daytime PV output, cut import during peak-tariff hours, and do it without surrendering floor space inside the building.",
+  "solution": "A 112kWh outdoor-rated cabinet integrated with a 50kW Solis inverter. The PV array was mounted so that it also serves as the property boundary fence.",
+  "result": "Stored PV is shifted into the evening and peak import is reduced, with the battery kept outdoors against the building wall.",
+  "seo": {
+    "title": "Dawnice 112kWh Commercial Energy Storage Case Study in Poland",
+    "description": "A 112kWh Dawnice outdoor cabinet paired with a 50kW Solis inverter, installed without taking up indoor floor space."
+  }
+}

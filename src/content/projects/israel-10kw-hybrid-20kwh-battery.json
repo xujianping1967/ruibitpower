@@ -1,0 +1,21 @@
+{
+  "slug": "israel-10kw-hybrid-20kwh-battery",
+  "title": "10kW Hybrid Inverter + 20kWh Battery Reference in Israel",
+  "country": "Israel",
+  "application": "Residential and small commercial",
+  "systemType": "Residential",
+  "capacity": "10kW / 20kWh",
+  "inverterPcs": "Hybrid inverter",
+  "productUsed": "Hybrid inverter + residential battery configuration",
+  "summary": "A 10kW hybrid inverter with 20kWh of battery storage in Israel.",
+  "image": "/assets/images/cases/israel-10kw-hybrid-20kwh-battery.jpg",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "challenge": "Small hybrid systems are settled by backup-load selection. Which circuits stay live, and for how long, sets the battery size far more than total household consumption does.",
+  "solution": "A 10kW hybrid inverter and a 20kWh battery bank, sized from the backed-up circuits rather than from the whole-house figure.",
+  "result": "",
+  "seo": {
+    "title": "10kW Hybrid Inverter + 20kWh Battery Reference in Israel",
+    "description": "A 10kW hybrid inverter with 20kWh of battery storage in Israel."
+  }
+}

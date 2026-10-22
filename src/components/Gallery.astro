@@ -1,0 +1,17 @@
+---
+const { title, images = [] } = Astro.props;
+const first = images[0];
+/* The main slot is the 1200x800 unified 3:2 product render. The remaining
+   gallery shots are the legacy 600px-square images, so they declare 600x600 and
+   the slot is reserved at that ratio. */
+---
+{first && (
+  <section class="product-gallery" aria-label={`${title} image gallery`}>
+      <img class="product-gallery-main" src={first} alt={title} width="1200" height="800" loading="lazy" decoding="async" />
+    <div class="product-gallery-grid">
+      {images.slice(1).map((image: string, index: number) => (
+          <img src={image} alt={`${title} view ${index + 2}`} width="600" height="600" loading="lazy" decoding="async" />
+      ))}
+    </div>
+  </section>
+)}

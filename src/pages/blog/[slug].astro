@@ -1,0 +1,93 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InquiryBand from '../../components/InquiryBand.astro';
+import site from '../../data/site.json';
+import imageSizeData from '../../data/image-sizes.json';
+import sourcesData from '../../data/sources.json';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+/* Astro 5 replaced the method entry.render() with the standalone render(). */
+const { Content } = await render(entry);
+const post = entry.data;
+const heroSize = (imageSizeData as any)[post.featuredImage ?? ''] as number[] | undefined;
+
+/* Provenance. `sources.json` holds only URLs that answered 200 on the origin
+   site at build-check time; the schema also allows a per-article `sources`
+   array for anything added later through the CMS. Rendering nothing when both
+   are empty is deliberate — a placeholder "Source: —" is worse than silence. */
+const sourceUrl =
+  (sourcesData.blog as Record<string, string>)[entry.id] ?? post.sources?.[0]?.url ?? '';
+const sourceHost = sourceUrl ? new URL(sourceUrl).hostname.replace(/^www\./, '') : '';
+
+/* Tables tagged "spec" are stacked into label/value rows on small screens and
+   never scroll. Any other table keeps its grid and scrolls sideways, so only
+   pages with at least one of those need the note. */
+const hasWideTables = /<table>/.test(entry.body ?? '');
+
+/* Drop the brand suffix on article pages: SERP truncation costs the
+   differentiating words at the end of the headline. Brand signals come from
+   the URL, logo, and Organization structured data. */
+const pageTitle = (post.seo?.title ?? post.title).replace(/\s*\|\s*Ruibit Power\s*$/, '').trim();
+const postSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.excerpt,
+  image: post.featuredImage ? new URL(post.featuredImage, site.domain).toString() : undefined,
+  datePublished: post.publishDate.toISOString(),
+  /* Only claimed when the article was actually revised. Copying publishDate into
+     this field made every article report the same value for both — thirteen
+     pages that had never been touched looked identical in the structured data,
+     which is exactly the pattern a templated, unmaintained blog shows. The real
+     revision times come from the source database; posts with none are left
+     without a dateModified rather than given a false one. */
+  dateModified: post.updatedDate?.toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: 'Ruibit Power',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Ruibit Power',
+  },
+};
+---
+<BaseLayout title={pageTitle} description={post.seo?.description || post.excerpt} image={post.featuredImage} structuredData={postSchema} breadcrumbLabel={post.title}>
+  <article class="article-page">
+    <header>
+      <p class="eyebrow">{post.category}</p>
+      <h1>{post.title}</h1>
+      <p>{post.excerpt}</p>
+      <time datetime={post.publishDate.toISOString()}>{post.publishDate.toLocaleDateString('en-US')}</time>
+    </header>
+      {/* No width/height here: the source artwork runs 288-400px wide while this
+          claimed 1200x675, so the attribute described a file that does not
+          exist. `.article-page > img` sets the box with aspect-ratio 16/9, which
+          also reserves the space before the image decodes. The alt is empty
+          because the article's own h1 sits directly above it. */}
+      {post.featuredImage && <img src={post.featuredImage} alt="" width={heroSize?.[0]} height={heroSize?.[1]} loading="lazy" decoding="async" />}
+    {hasWideTables && (
+      <p class="scroll-hint">Tables in this article scroll sideways on small screens.</p>
+    )}
+    <div class="article-content">
+      <Content />
+    </div>
+    {sourceUrl && (
+      <p class="article-source">
+        First published on{' '}
+        <a href={sourceUrl} rel="nofollow noopener" target="_blank">{sourceHost}</a>.
+        Specifications and figures are as stated by the manufacturer at the time of publication.
+      </p>
+    )}
+  </article>
+  <InquiryBand />
+</BaseLayout>

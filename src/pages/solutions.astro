@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InquiryBand from '../components/InquiryBand.astro';
+import Configurator from '../components/Configurator.astro';
+import trust from '../data/trust.json';
+
+const solutions = [
+  {
+    title: 'Home solar storage',
+    lead: 'Wall-mounted, stackable, and all-in-one systems for backup and rooftop solar self-consumption.',
+    detail:
+      'Sized from roughly 5 kWh per unit with parallel expansion. Choose wall-mounted for tight plant rooms, or high-voltage stackable clusters where a single cabinet needs to cover a whole home.',
+    product: 'PowerFly and Six Ultra BS06-S platforms',
+    href: '/products/powerfly-hzeb-lct-10/',
+  },
+  {
+    title: 'Commercial buildings',
+    lead: 'Outdoor cabinet BESS for peak shaving, time-of-use optimization, and backup power.',
+    detail:
+      'Cabinet systems for offices, retail, hotels, and light industrial sites. Sized against the load profile and the tariff structure rather than against floor area.',
+    product: 'Honey outdoor cabinet ESS',
+    href: '/products/honey-wd-ecf260s-dc-outdoor/',
+  },
+  {
+    title: 'EV charging sites',
+    lead: 'Battery-buffered charging systems that reduce grid pressure and improve PV utilization.',
+    detail:
+      'Buffering charging demand avoids transformer upgrades and demand-charge spikes, and lets PV production be shifted into the evening charging peak.',
+    product: 'Honey all-in-one C&I ESS',
+    href: '/products/honey-125kw-261kwh-all-in-one-ess/',
+  },
+  {
+    title: 'PV hybrid ESS',
+    lead: 'Integrated PV and battery solutions for distributed energy projects.',
+    detail:
+      'Combined PV, battery, PCS, and EMS for sites that generate and store on the same connection. Common in distributed generation and microgrid projects.',
+    product: 'Sunflower PV hybrid ESS',
+    href: '/products/sunflower-125kw-261kwh-pv-hybrid-ess/',
+  },
+  {
+    title: 'Industrial energy storage',
+    lead: 'Liquid-cooled cabinets and containerized systems for higher-capacity deployments.',
+    detail:
+      'Liquid cooling keeps cell temperature spread tight on higher-capacity systems, which is where cycle life and safety margins are decided.',
+    product: 'Honey liquid-cooled and BS09 DC platforms',
+    href: '/products/honey-125kw-261kwh-all-in-one-ess/',
+  },
+  {
+    title: 'Distributor programs',
+    lead: 'Product selection, configuration support, and documentation for channel partners.',
+    detail:
+      'Structured for distributors and integrators who need repeatable product selection, documentation packages, and OEM or private-label options.',
+    product: 'Full portfolio',
+    href: '/contact/',
+  },
+];
+
+const process = [
+  {
+    title: 'Send the project brief',
+    detail: 'Country, application, target power and energy, PV status, and backup duration.',
+  },
+  {
+    title: 'Platform recommendation',
+    detail: 'We match the brief to a product family and confirm the sizing assumptions with you.',
+  },
+  {
+    title: 'Quotation and documentation',
+    detail: 'Configuration, commercial terms, datasheet, and the matching certificate package.',
+  },
+  {
+    title: 'Delivery and commissioning support',
+    detail: 'Shipping terms, documentation for customs and interconnection, and technical follow-up.',
+  },
+];
+---
+
+<BaseLayout
+  title="Energy Storage Solutions by Application | Ruibit Power"
+  description="Home solar storage, commercial building BESS, EV charging storage, PV hybrid ESS and containerized systems — matched to your load profile and grid rules."
+  breadcrumbLabel="Solutions"
+>
+  <section class="page-hero">
+    <p class="eyebrow">Solutions</p>
+    <h1>Storage solutions organized by application, not only by model number.</h1>
+    <p>
+      Match the battery platform to the project need: backup power, self-consumption, demand management, PV
+      smoothing, or site-level resilience. Each solution below maps to a documented product family.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="solution-grid">
+      {solutions.map((item) => (
+        <article class="solution-card">
+          <h2>{item.title}</h2>
+          <p class="solution-lead">{item.lead}</p>
+          <p>{item.detail}</p>
+          <p class="solution-product">{item.product}</p>
+          <a class="text-link" href={item.href}>View platform</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <Configurator />
+
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">How it works</p>
+        <h2>From brief to configured system</h2>
+        <p class="section-lead">
+          Four steps from first contact to delivery. Quotation target is {trust.ruibit.serviceCommitments[0].title.toLowerCase()}
+          within {trust.ruibit.serviceCommitments[0].detail.match(/\d+/)?.[0]} working hours.
+        </p>
+      </div>
+    </div>
+    <ol class="process-list">
+      {process.map((step) => (
+        <li class="process-step">
+          <h3>{step.title}</h3>
+          <p>{step.detail}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <InquiryBand />
+</BaseLayout>

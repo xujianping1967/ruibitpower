@@ -1,0 +1,42 @@
+---
+interface Metric {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  slug: string;
+  title: string;
+  metrics: Metric[];
+  image: string;
+}
+
+const { slug, title, metrics, image } = Astro.props;
+
+/* Three spec values read better on a card than a sentence. A value that is
+   itself a unit ("125kW", "153.6-460.8V", "Up to 250kW") stands alone, but a
+   bare counted quantity ("Up to 5") reads like a sentence cut in half, so it
+   carries its metric label with it ("Up to 5 clusters"). The pattern therefore
+   requires the comparator and the number to be the whole value. */
+const COUNTED_VALUE = /^(?:up to|max\.?|over|under|≥|≤|<|>)\s*[\d.,]+\s*$/i;
+const specLine = metrics
+  .slice(0, 3)
+  .map(({ label, value }) => (COUNTED_VALUE.test(value.trim()) ? `${value} ${label.toLowerCase()}` : value))
+  .join(' · ');
+const href = `/products/${slug}/`;
+---
+
+<article class="feature-card">
+  {/* The alt is the product name only. The earlier wording ("installed at a
+      project site") asserted a real installation, which these staged renders
+      are not. */}
+  <img src={image} alt={title} width="1200" height="800" loading="lazy" decoding="async" />
+  {/* Copy is deliberately limited to the product name plus one short spec line.
+      It sits underneath the photograph, never over it. The category is still on
+      the product page and in the product listing; the description is there too. */}
+  <div class="feature-card-body">
+    <h3><a href={href}>{title}</a></h3>
+    {specLine && <p class="feature-card-spec">{specLine}</p>}
+    <a class="button feature-card-cta" href="/contact/">Request quotation</a>
+  </div>
+</article>

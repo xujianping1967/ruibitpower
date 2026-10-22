@@ -1,0 +1,24 @@
+{
+  "slug": "kenya-candi-solar-case-study-64kwh-dawnice-battery-and-50kw-deye-inverter-march-2026",
+  "title": "Kenya C&I Solar Case Study: 64kWh Dawnice Battery & 50kW Deye Inverter (March 2026)",
+  "country": "Kenya",
+  "application": "Commercial backup and peak shaving",
+  "systemType": "C&I",
+  "capacity": "64kWh Rack-Mounted",
+  "inverterPcs": "Deye 50kW three-phase",
+  "productUsed": "64kWh Rack-Mounted, Deye 50kW Three-Phase Hybrid",
+  "completed": "2026-03",
+  "summary": "A 64kWh rack-mounted battery with a 50kW Deye inverter for a Kenyan commercial site.",
+  "image": "/assets/images/cases/kenya-candi-solar-case-study-64kwh-dawnice-battery-and-50kw-deye-inverter-march-2026.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "Kenya — commercial (backup + peak shaving)",
+  "challenge": "Kenyan businesses face high peak-time tariffs and occasional grid instability that stops production mid-shift.",
+  "solution": "A 64kWh rack-mounted LiFePO4 battery with a 50kW Deye inverter, using the rack format for airflow and cooling.",
+  "result": "The modular rack keeps capacity expandable while maintaining airflow around the modules.",
+  "seo": {
+    "title": "Kenya C&I Case Study: 64kWh Battery & 50kW Deye",
+    "description": "A 64kWh rack-mounted battery with a 50kW Deye inverter for a Kenyan commercial site."
+  }
+}

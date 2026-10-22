@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "eyebrow": "Ruibit Power / Dawnice energy storage",
+    "title": "Solar battery and BESS systems for real project delivery.",
+    "lead": "Residential batteries, commercial cabinets, PV hybrid ESS, and containerized storage — supplied through an authorized Dawnice channel with engineering support from brief to commissioning.",
+    "note": "Quotation target: {hours} working hours for a complete brief.",
+    "image": "/assets/images/hero-bess.webp",
+    "imageAlt": "Commercial battery energy storage cabinets installed at a utility site",
+    "buttons": [
+      { "label": "Request a quotation", "href": "/contact/", "style": "primary" },
+      { "label": "Explore products", "href": "/products/", "style": "secondary" }
+    ]
+  },
+  "manufacturing": {
+    "eyebrow": "Manufacturing & quality control",
+    "title": "Built on Dawnice manufacturing in Yichun, Jiangxi.",
+    "lead": "Ruibit Power supplies through an authorized channel with Dawnice — a lithium battery manufacturer in Yichun, Jiangxi Province, with 2GWh+ annual output, battery platforms rated 6,000 cycles at cabinet level and up to 8,000 at cell level, and customers in over 150 countries.",
+    "link": { "label": "Company profile", "href": "/about/" },
+    "image": "/assets/images/office.webp",
+    "imageAlt": "Dawnice manufacturing and headquarters facility in Yichun, Jiangxi Province",
+    "caption": "Dawnice facility — {facilityCity}. Operated by {partner}.",
+    "body": "Two thirds of a storage system's cost sits in the cells and the enclosure. Manufacturing control at that stage is what determines whether the cycle-life and safety figures hold up in year five, not year one.",
+    "points": [
+      "2GWh+ annual production capacity at the Yichun facility.",
+      "Over 14 years of lithium battery manufacturing experience.",
+      "Platforms rated 6,000 cycles at cabinet level, up to 8,000 at cell level, with 100% lifecycle traceability."
+    ]
+  },
+  "projects": {
+    "eyebrow": "Reference deployments",
+    "title": "Projects delivered across four regions",
+    "lead": "Reference configurations from Europe, Africa, the Middle East, and North America, covering residential through factory-scale storage.",
+    "link": { "label": "All reference projects", "href": "/projects/" },
+    "limit": 6
+  },
+  "lineup": {
+    "eyebrow": "Core lineup",
+    "title": "Four platforms, four kinds of site",
+    "lead": "{count} platforms in total, from roughly 5 kWh residential batteries to project-scale containerized storage. Every platform uses LiFePO4 chemistry.",
+    "link": { "label": "View all {count} products", "href": "/products/" }
+  },
+  "solutions": {
+    "eyebrow": "Solutions",
+    "title": "Organized by application, not only by model number",
+    "lead": "Match the battery platform to the project need: backup power, self-consumption, demand management, PV smoothing, or site-level resilience.",
+    "link": { "label": "Explore solutions", "href": "/solutions/" },
+    "items": [
+      {
+        "title": "Home solar storage",
+        "body": "Wall-mounted, stackable, and all-in-one systems for backup and rooftop solar self-consumption."
+      },
+      {
+        "title": "Commercial buildings",
+        "body": "Outdoor cabinet BESS for peak shaving, time-of-use optimization, and backup power."
+      },
+      {
+        "title": "EV charging sites",
+        "body": "Battery-buffered charging systems that reduce grid pressure and improve PV utilization."
+      },
+      {
+        "title": "PV hybrid ESS",
+        "body": "Integrated PV and battery solutions for distributed energy projects."
+      },
+      {
+        "title": "Industrial energy storage",
+        "body": "Liquid-cooled cabinets and containerized systems for higher-capacity deployments."
+      },
+      {
+        "title": "Distributor programs",
+        "body": "Product selection, configuration support, and documentation for channel partners."
+      }
+    ]
+  },
+  "momentum": {
+    "eyebrow": "Manufacturing partner",
+    "title": "Dawnice, in the market",
+    "lead": "Recent public developments from {partner} — the manufacturing basis behind Ruibit Power supply."
+  },
+  "downloads": {
+    "eyebrow": "Downloads",
+    "title": "Datasheets and manuals",
+    "lead": "The specification sheets and installation manuals behind the platforms we supply, free to download without a form. Every file is the current published revision.",
+    "note": "Documents are published by {partner}. Looking for a specification that is not listed? {contact} — we send the datasheet for the configuration you are quoting."
+  }
+}

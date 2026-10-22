@@ -1,0 +1,106 @@
+{
+  "title": "Loong Power BS09-112-D-P Outdoor Cabinet BESS",
+  "slug": "loong-power-bs09-112-dp",
+  "category": "Commercial BESS",
+  "summary": "A 112.53kWh outdoor cabinet energy storage system for commercial buildings, PV sites, and EV charging support.",
+  "heroImage": "/assets/images/products/loong-power-bs09-112-dp/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/loong-power-bs09-112-dp/hero-3x2.jpg",
+    "/assets/images/products/loong-power-bs09-112-dp/01.jpg",
+    "/assets/images/products/loong-power-bs09-112-dp/02.jpg",
+    "/assets/images/products/loong-power-bs09-112-dp/03.jpg",
+    "/assets/images/products/loong-power-bs09-112-dp/04.jpg",
+    "/assets/images/products/loong-power-bs09-112-dp/05.jpg",
+    "/assets/images/products/loong-power-bs09-112-dp/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Capacity",
+      "value": "112.53kWh"
+    },
+    {
+      "label": "Voltage",
+      "value": "358.4V"
+    },
+    {
+      "label": "Current",
+      "value": "157A"
+    },
+    {
+      "label": "Protection",
+      "value": "IP54"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Nominal energy",
+      "value": "112.53kWh"
+    },
+    {
+      "label": "Cell capacity",
+      "value": "314Ah"
+    },
+    {
+      "label": "Nominal voltage",
+      "value": "358.4V"
+    },
+    {
+      "label": "Voltage range",
+      "value": "313.6-403.2V"
+    },
+    {
+      "label": "Rated current",
+      "value": "157A"
+    },
+    {
+      "label": "Depth of discharge",
+      "value": "Up to 100%"
+    },
+    {
+      "label": "Cycle life",
+      "value": ">=8,000 cycles (0.5C / 0.5C, 25 C, 90% DOD, 70% EOL)"
+    },
+    {
+      "label": "Operating temperature",
+      "value": "-30C to 55C"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP54"
+    },
+    {
+      "label": "Parallel capability",
+      "value": "Up to 10 cabinets"
+    }
+  ],
+  "applications": [
+    "Commercial backup",
+    "PV self-consumption",
+    "EV charging buffer"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is a PCS required?",
+      "answer": "Yes. The cabinet is DC storage at 358.4 V and 157 A, so pair it with a compatible PCS."
+    },
+    {
+      "question": "Can it be installed outdoors?",
+      "answer": "Yes, IP54 outdoor cabinet rated -30°C to 55°C."
+    },
+    {
+      "question": "Can capacity be expanded?",
+      "answer": "Yes, up to 10 cabinets in parallel, 1,125 kWh in total."
+    }
+  ],
+  "featured": true,
+  "seo": {
+    "title": "Loong Power BS09-112-D-P Outdoor Cabinet BESS | Ruibit Power",
+    "description": "A 112.53kWh outdoor cabinet energy storage system for commercial buildings, PV sites, and EV charging support."
+  }
+}

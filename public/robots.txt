@@ -1,0 +1,56 @@
+# Ruibit Power — https://ruibitpower.com
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+# /_astro/ holds the hashed CSS and JS this site needs to render. Blocking it
+# costs crawl budget on pages that cannot be evaluated and gains no privacy:
+# those files are already referenced from every public page.
+
+# --- AI / LLM crawlers ---
+# Explicitly allowed: this is a B2B supplier site that benefits from
+# being cited in AI-generated answers. See /llms.txt and /agents.md.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# --- Search crawlers ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Host: https://ruibitpower.com
+Sitemap: https://ruibitpower.com/sitemap.xml

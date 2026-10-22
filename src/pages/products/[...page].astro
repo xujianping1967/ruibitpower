@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Pagination from '../../components/Pagination.astro';
+
+export async function getStaticPaths({ paginate }: any) {
+  /* Same twelve-per-page rule as the blog: past a couple of dozen models a
+     single grid becomes a scroll with no landmarks. Page size lives here and is
+     mirrored in the sitemap generator. */
+  const products = (await getCollection('products')).map((entry) => entry.data);
+  return paginate(products, { pageSize: 12 });
+}
+
+const { page } = Astro.props;
+const products = page.data;
+const isFirst = page.currentPage === 1;
+
+const title = isFirst
+  ? 'Battery Storage Products | Ruibit Power'
+  : `Battery Storage Products — Page ${page.currentPage} | Ruibit Power`;
+const description = isFirst
+  ? 'LiFePO4 battery storage from 5 kWh residential units to 241 kWh rack cabinets, 265 kWh PV-genset hybrids, and containerized BESS.'
+  : `Page ${page.currentPage} of the Ruibit Power battery storage catalogue: residential, commercial and containerised platforms with full specification tables.`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbLabel={isFirst ? 'Battery storage products' : `Battery storage products — page ${page.currentPage}`}
+>
+  <section class:list={['page-hero', { 'page-hero-slim': !isFirst }]}>
+    <p class="eyebrow">Product portfolio</p>
+    {isFirst ? (
+      <>
+        <h1>Battery storage systems for home, commercial, and project-scale applications.</h1>
+        <p>
+          {page.total} platforms spanning roughly 5 kWh residential batteries to 241 kWh rack
+          cabinets and 265 kWh PV-genset hybrids, up to project-scale containerized storage — all
+          using LiFePO4 chemistry. Every specification table lists the parameters needed to compare
+          against your load profile.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="/contact/">Request a quotation</a>
+          <a class="button secondary" href="/solutions/">Not sure which platform?</a>
+        </div>
+      </>
+    ) : (
+      <>
+        <h1>Battery storage catalogue — page {page.currentPage}</h1>
+        <p>
+          {page.total} platforms in total. <a href="/products/">Back to the first page</a>.
+        </p>
+      </>
+    )}
+  </section>
+
+  <section class="section">
+    <div class="product-grid">
+      {products.map((product: any) => <ProductCard product={product} />)}
+    </div>
+  </section>
+
+  <Pagination
+    current={page.currentPage}
+    last={page.lastPage}
+    total={page.total}
+    from={page.start + 1}
+    to={page.end + 1}
+    noun="products"
+    base="/products/"
+  />
+</BaseLayout>

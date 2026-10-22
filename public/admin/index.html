@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ruibit Power CMS</title>
+    <!-- This page is not content. It is excluded from the sitemap and
+         also carries the directive in its own head, so a crawler that
+         ignores Netlify's X-Robots-Tag still stays out. -->
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="referrer" content="no-referrer" />
+  </head>
+  <body>
+    <!-- Pinned to one exact release: a caret range let the CDN serve any future
+         3.x build into this page without a deploy on our side. The integrity
+         hash is of that exact file, so a substituted or tampered bundle is
+         refused by the browser rather than executed. When upgrading, change
+         both the version and the hash together. -->
+    <script
+      src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"
+      integrity="sha384-A/Gdn928CNLufmnGWGs9RM4Q9o8bSNLeJERqBFrBjwzL7FRpoLT3MPF8Tl0+Wd2p"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+{
+  "updated": "2026-10-20",
+  "groups": [
+    {
+      "id": "datasheets",
+      "title": "Product datasheets",
+      "lead": "Specification sheets for the cabinet, rack, stackable and wall-mounted platforms.",
+      "items": [
+        {
+          "title": "Cabinet C&I storage, 100kWh",
+          "detail": "DC-side cabinet platform: cell configuration, voltage window, thermal design.",
+          "file": "/downloads/dawnice-ci-100kwh-datasheet.pdf"
+        },
+        {
+          "title": "Stackable high-voltage battery, 5kWh",
+          "detail": "Modular HV stack: 153.6-460.8V range, 100Ah modules, parallel limits.",
+          "file": "/downloads/dawnice-stackable-hv-5kwh-datasheet.pdf"
+        },
+        {
+          "title": "Rack-mounted HV battery, 15kWh",
+          "detail": "Rack format for plant rooms: module count, dimensions, airflow.",
+          "file": "/downloads/dawnice-rack-15kwh-hv-datasheet.pdf"
+        },
+        {
+          "title": "Wall-mounted battery, 21kWh",
+          "detail": "HZEB-LCT platform: 51.2V, 410Ah, wall or floor mounting.",
+          "file": "/downloads/dawnice-wall-mounted-lct-20-datasheet.pdf"
+        },
+        {
+          "title": "Honey all-in-one C&I, 125kW / 261kWh",
+          "detail": "Liquid-cooled all-in-one cabinet: AC output, thermal uniformity, enclosure.",
+          "file": "/downloads/honey-125kw-261kwh-all-in-one-ess-datasheet.pdf"
+        },
+        {
+          "title": "Sunflower PV-hybrid C&I, 125kW / 261kWh",
+          "detail": "PV input to 250kW with storage: array sizing, backup output, modes.",
+          "file": "/downloads/sunflower-125kw-261kwh-pv-hybrid-ess-datasheet.pdf"
+        }
+      ]
+    },
+    {
+      "id": "manuals",
+      "title": "User manuals",
+      "lead": "Installation, commissioning and operation manuals for the platforms we supply.",
+      "items": [
+        {
+          "title": "Solar inverter, DWA-5.5KLP1-EU",
+          "detail": "Single-phase hybrid inverter: wiring, battery pairing, commissioning.",
+          "file": "/downloads/dawnice-inverter-dwa-5-5klp1-manual.pdf"
+        },
+        {
+          "title": "Simple rack system, HZEB-HCT-86",
+          "detail": "Rack assembly, BMS addressing and parallel configuration.",
+          "file": "/downloads/dawnice-simple-rack-hct-86-manual.pdf"
+        },
+        {
+          "title": "Commercial cabinet, HZEB-HCT-200",
+          "detail": "C&I cabinet installation, protection settings and maintenance schedule.",
+          "file": "/downloads/dawnice-ci-hct-200-manual.pdf"
+        },
+        {
+          "title": "Stackable battery, HZEB-LCT-10",
+          "detail": "Low-voltage stack: module order, cabling, BMS limits.",
+          "file": "/downloads/dawnice-stackable-lct-10-manual.pdf"
+        },
+        {
+          "title": "Wall-mounted battery, HZEB-LCT-5 / 10 / 16",
+          "detail": "Wall or floor mounting, clearances, breaker wiring.",
+          "file": "/downloads/dawnice-wall-mounted-lct-5-10-16-manual.pdf"
+        },
+        {
+          "title": "Rack battery pack, HZEB-HCT-5 / 10 / 15",
+          "detail": "Pack-level manual: module handling, terminal torque, storage conditions.",
+          "file": "/downloads/dawnice-rack-battery-pack-manual.pdf"
+        }
+      ]
+    }
+  ]
+}

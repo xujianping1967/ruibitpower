@@ -1,0 +1,130 @@
+{
+  "title": "Dawnice Containerized BESS ESS500 / ESS1000",
+  "slug": "dawnice-containerized-bess",
+  "category": "Containerized BESS",
+  "summary": "A containerized energy storage platform for MWh-scale commercial, industrial, and utility-side projects.",
+  "heroImage": "/assets/images/products/dawnice-containerized-bess/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/dawnice-containerized-bess/hero-3x2.jpg",
+    "/assets/images/products/dawnice-containerized-bess/01.jpg",
+    "/assets/images/products/dawnice-containerized-bess/02.jpg",
+    "/assets/images/products/dawnice-containerized-bess/03.jpg",
+    "/assets/images/products/dawnice-containerized-bess/04.jpg",
+    "/assets/images/products/dawnice-containerized-bess/05.jpg",
+    "/assets/images/products/dawnice-containerized-bess/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Power",
+      "value": "500kW / 1000kW"
+    },
+    {
+      "label": "Energy",
+      "value": "1.045 / 2.089MWh"
+    },
+    {
+      "label": "Cooling",
+      "value": "Intelligent air cooling"
+    },
+    {
+      "label": "Protection",
+      "value": "IP54 / C5"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Models",
+      "value": "ESS500-1045 / ESS1000-2089"
+    },
+    {
+      "label": "Rated power",
+      "value": "500kW / 1000kW"
+    },
+    {
+      "label": "AC output",
+      "value": "400V, 785A / 1570A"
+    },
+    {
+      "label": "Nominal energy",
+      "value": "1.045MWh / 2.089MWh"
+    },
+    {
+      "label": "Cell chemistry",
+      "value": "LiFePO4"
+    },
+    {
+      "label": "Cell specification",
+      "value": "3.2V / 314Ah"
+    },
+    {
+      "label": "Nominal voltage",
+      "value": "665.6V"
+    },
+    {
+      "label": "Voltage range",
+      "value": "582.4-748.8V"
+    },
+    {
+      "label": "Charge/discharge rate",
+      "value": "0.5C"
+    },
+    {
+      "label": "Container size",
+      "value": "20 ft / 40 ft HQ"
+    },
+    {
+      "label": "Cycle life",
+      "value": ">=8000 cycles"
+    },
+    {
+      "label": "Thermal management",
+      "value": "Intelligent air cooling"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP54"
+    },
+    {
+      "label": "Anti-corrosion grade",
+      "value": "C5"
+    },
+    {
+      "label": "Fire protection",
+      "value": "FM200 / NOVEC1230"
+    },
+    {
+      "label": "EMS communication",
+      "value": "RS485 / TCP/IP"
+    }
+  ],
+  "applications": [
+    "MWh-scale C&I storage",
+    "Utility-side projects",
+    "EPC energy storage projects"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is it shipped as a standard container?",
+      "answer": "Yes. ESS500 ships in a standard 20 ft container and ESS1000 in a 40 ft HQ, on normal container logistics."
+    },
+    {
+      "question": "Does it include the PCS?",
+      "answer": "Yes. The AC side is specified at 400 V with 500 kW or 1 MW output; an isolation transformer is not part of the standard scope."
+    },
+    {
+      "question": "What fire suppression is included?",
+      "answer": "FM200 or NOVEC1230 gas suppression, in an IP54 enclosure with C5 corrosion protection."
+    }
+  ],
+  "featured": false,
+  "seo": {
+    "title": "Dawnice Containerized BESS ESS500 / ESS1000 | Ruibit Power",
+    "description": "A containerized energy storage platform for MWh-scale commercial, industrial, and utility-side projects."
+  }
+}

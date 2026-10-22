@@ -1,0 +1,24 @@
+{
+  "slug": "30kwh-dawnice-battery-and-sunsynk-inverter-case-study-uk-march-2026",
+  "title": "30kWh Dawnice Battery & Sunsynk Inverter Case Study",
+  "country": "United Kingdom",
+  "application": "Residential, time-of-use arbitrage",
+  "systemType": "Residential",
+  "capacity": "30kWh (3×10kWh Wall-Mounted)",
+  "inverterPcs": "Sunsynk hybrid",
+  "productUsed": "30kWh (3×10kWh Wall-Mounted), Sunsynk Hybrid",
+  "completed": "2026-03",
+  "summary": "Three 10kWh wall-mounted batteries, 30kWh in total, paired with a Sunsynk hybrid inverter in the UK.",
+  "image": "/assets/images/cases/30kwh-dawnice-battery-and-sunsynk-inverter-case-study-uk-march-2026.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "United Kingdom — residential (tou arbitrage)",
+  "challenge": "Rising UK tariffs pushed the client toward self-consumption, but the capacity had to fit a house without giving up a plant room.",
+  "solution": "Three 10kWh wall-mounted modules running as a 30kWh bank behind a Sunsynk hybrid inverter.",
+  "result": "The wall format carries the capacity on the wall, which is what made the size acceptable in a domestic installation.",
+  "seo": {
+    "title": "30kWh Dawnice Battery & Sunsynk Inverter Case Study",
+    "description": "Three 10kWh wall-mounted batteries, 30kWh in total, paired with a Sunsynk hybrid inverter in the UK."
+  }
+}

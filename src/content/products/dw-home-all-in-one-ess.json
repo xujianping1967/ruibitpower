@@ -1,0 +1,86 @@
+{
+  "title": "DW-Home All-in-One Residential ESS",
+  "slug": "dw-home-all-in-one-ess",
+  "category": "All-in-one home ESS",
+  "summary": "A configured all-in-one home energy storage system combining battery, inverter, protection, and enclosure design.",
+  "heroImage": "/assets/images/products/dw-home-all-in-one-ess/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/dw-home-all-in-one-ess/hero-3x2.jpg",
+    "/assets/images/products/dw-home-all-in-one-ess/01.jpg",
+    "/assets/images/products/dw-home-all-in-one-ess/02.jpg",
+    "/assets/images/products/dw-home-all-in-one-ess/03.jpg",
+    "/assets/images/products/dw-home-all-in-one-ess/04.jpg",
+    "/assets/images/products/dw-home-all-in-one-ess/05.jpg",
+    "/assets/images/products/dw-home-all-in-one-ess/06.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Type",
+      "value": "All-in-one ESS"
+    },
+    {
+      "label": "Use",
+      "value": "Home solar + backup"
+    },
+    {
+      "label": "Design",
+      "value": "Integrated cabinet"
+    },
+    {
+      "label": "Config",
+      "value": "Project-specific"
+    }
+  ],
+  "specs": [
+    {
+      "label": "System type",
+      "value": "Configured residential all-in-one ESS"
+    },
+    {
+      "label": "Core components",
+      "value": "Battery, inverter, protection, and cabinet integration"
+    },
+    {
+      "label": "Battery chemistry",
+      "value": "LiFePO4"
+    },
+    {
+      "label": "Application",
+      "value": "Home solar storage and backup"
+    },
+    {
+      "label": "Configuration",
+      "value": "Model and capacity selected by project requirements"
+    }
+  ],
+  "applications": [
+    "New home solar storage",
+    "Premium residential backup",
+    "Installer-ready ESS"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do I need to buy a separate inverter?",
+      "answer": "No. Battery, inverter, and protection are integrated and pre-wired in one cabinet. You connect PV, grid, and the load panel."
+    },
+    {
+      "question": "How is it different from buying separate components?",
+      "answer": "An all-in-one is pre-integrated, pre-tested, and covered by one warranty. Separate components give more freedom in sizing and brand, but need system design and more installation work."
+    },
+    {
+      "question": "How do I choose the capacity?",
+      "answer": "Send daily kWh, peak load, backup hours, and PV size. Those four set the model and the runtime estimate."
+    }
+  ],
+  "featured": true,
+  "seo": {
+    "title": "DW-Home All-in-One Residential ESS | Ruibit Power",
+    "description": "A configured all-in-one home energy storage system combining battery, inverter, protection, and enclosure design."
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "title": "Dawnice HZEB-HCT-125TS/265 PV-Storage-Genset Hybrid",
+  "slug": "dawnice-hzeb-hct-125ts-265-genset-hybrid",
+  "category": "PV genset hybrid ESS",
+  "summary": "A 125kW / 265.267kWh all-in-one platform that couples PV, battery storage, and a diesel generator, with 20ms source transfer and black-start capability.",
+  "heroImage": "/assets/images/products/dawnice-hzeb-hct-125ts-265-genset-hybrid/hero-3x2.jpg",
+  "gallery": [
+    "/assets/images/products/dawnice-hzeb-hct-125ts-265-genset-hybrid/hero-3x2.jpg",
+    "/assets/images/products/dawnice-hzeb-hct-125ts-265-genset-hybrid/01.jpg",
+    "/assets/images/products/dawnice-hzeb-hct-125ts-265-genset-hybrid/02.jpg",
+    "/assets/images/products/dawnice-hzeb-hct-125ts-265-genset-hybrid/03.jpg",
+    "/assets/images/products/dawnice-hzeb-hct-125ts-265-genset-hybrid/04.jpg"
+  ],
+  "metrics": [
+    {
+      "label": "Battery energy",
+      "value": "265.267kWh"
+    },
+    {
+      "label": "AC output",
+      "value": "125kW"
+    },
+    {
+      "label": "PV input",
+      "value": "120kW"
+    },
+    {
+      "label": "Source transfer",
+      "value": "<=20ms"
+    }
+  ],
+  "specs": [
+    {
+      "label": "Battery chemistry",
+      "value": "LiFePO4"
+    },
+    {
+      "label": "Configuration",
+      "value": "1P264S"
+    },
+    {
+      "label": "Rated battery voltage",
+      "value": "844.8VDC"
+    },
+    {
+      "label": "Battery voltage range",
+      "value": "739.2-950.4VDC"
+    },
+    {
+      "label": "Rated battery energy",
+      "value": "265.267kWh"
+    },
+    {
+      "label": "Max charge/discharge rate",
+      "value": "0.5C"
+    },
+    {
+      "label": "Cycle life",
+      "value": "8,000 cycles at 90% DOD (25 C, 0.5C, 70% EOL)"
+    },
+    {
+      "label": "PV input power",
+      "value": "120kW"
+    },
+    {
+      "label": "PV MPPT range",
+      "value": "200-700V (open circuit 200-900V, start-up 250V)"
+    },
+    {
+      "label": "AC output",
+      "value": "125kW, 230/400V, 50/60Hz"
+    },
+    {
+      "label": "Grid connection",
+      "value": "3W+N+PE three-phase four-wire"
+    },
+    {
+      "label": "Power factor",
+      "value": "0.99"
+    },
+    {
+      "label": "AC current distortion",
+      "value": "THDi <2% at rated power"
+    },
+    {
+      "label": "Isolation transformer",
+      "value": "400/400V, 150kVA"
+    },
+    {
+      "label": "Operating temperature",
+      "value": "-30 C to 55 C (derating above 45 C)"
+    },
+    {
+      "label": "Ingress protection",
+      "value": "IP54"
+    },
+    {
+      "label": "Cooling",
+      "value": "Intelligent air cooling (battery compartment air conditioning, electrical compartment fan)"
+    },
+    {
+      "label": "Dimensions",
+      "value": "1750 x 1420 x 2135mm"
+    },
+    {
+      "label": "Weight",
+      "value": "3500kg"
+    }
+  ],
+  "applications": [
+    "Mining and remote industrial sites",
+    "Cold storage",
+    "Industrial parks",
+    "Islands and weak-grid areas"
+  ],
+  "downloads": [
+    {
+      "label": "Request datasheet",
+      "url": "/contact/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Can it run without the diesel generator?",
+      "answer": "Yes. It runs grid-tied or islanded on PV and battery alone; the generator is an input, not a requirement."
+    },
+    {
+      "question": "How fast does it transfer between sources?",
+      "answer": "Within 20ms, fast enough that most loads ride through without a UPS."
+    },
+    {
+      "question": "What PV array can it accept?",
+      "answer": "Up to 120kW, with an MPPT window of 200-700V and open-circuit input up to 900V."
+    }
+  ],
+  "featured": false,
+  "seo": {
+    "title": "Dawnice HZEB-HCT-125TS/265 PV-Storage-Genset Hybrid | Ruibit Power",
+    "description": "A 125kW / 265.267kWh all-in-one platform that couples PV, battery storage, and a diesel generator, with 20ms source transfer and black-start capability."
+  }
+}

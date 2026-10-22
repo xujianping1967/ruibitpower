@@ -1,0 +1,24 @@
+{
+  "slug": "case-study-maximizing-revenue-with-4-units-of-dawnice-100kw200kwh-all-in-one-ess-in-israel-may-2026",
+  "title": "Case Study: Maximizing Revenue with 4 Units of Dawnice 100kW/200kWh All-In-One ESS in Israel (May 2026)",
+  "country": "Israel",
+  "application": "Factory supply and grid trading",
+  "systemType": "C&I",
+  "capacity": "400kW / 800kWh (4 units)",
+  "inverterPcs": "4 × 100kW/200kWh all-in-one",
+  "productUsed": "400kW / 800kWh (4 units), 4× 100kW/200kWh All-in-One",
+  "completed": "2026-05",
+  "summary": "Four 100kW/200kWh all-in-one units combined into a 400kW/800kWh microgrid for a factory in Israel.",
+  "image": "/assets/images/cases/case-study-maximizing-revenue-with-4-units-of-dawnice-100kw200kwh-all-in-one-ess-in-israel-may-2026.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "Israel — factory + grid trading",
+  "challenge": "Israel's commercial sector works with wide peak-to-valley tariff gaps and heavy grid strain at peak, so both the factory supply and the tariff spread matter.",
+  "solution": "Four all-in-one cabinets, 400kW / 800kWh in total, split under a \"1+3\" arrangement so one unit covers factory supply while three work the tariff spread.",
+  "result": "The split lets part of the fleet trade while the rest keeps the factory running; the site uses high-density 280Ah LiFePO4 cells in a 1P224S layout.",
+  "seo": {
+    "title": "Maximizing Revenue with 4 Units of Dawnice 100kW/200kWh",
+    "description": "Four 100kW/200kWh all-in-one units combined into a 400kW/800kWh microgrid for a factory in Israel."
+  }
+}

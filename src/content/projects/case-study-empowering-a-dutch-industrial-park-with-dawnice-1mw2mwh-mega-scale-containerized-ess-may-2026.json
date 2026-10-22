@@ -1,0 +1,24 @@
+{
+  "slug": "case-study-empowering-a-dutch-industrial-park-with-dawnice-1mw2mwh-mega-scale-containerized-ess-may-2026",
+  "title": "Case Study: Empowering a Dutch Industrial Park with Dawnice 1MW/2MWh Mega-Scale Containerized ESS (May 2026)",
+  "country": "Netherlands",
+  "application": "Industrial park",
+  "systemType": "C&I, containerised",
+  "capacity": "1MW / 2MWh Container",
+  "inverterPcs": "2 × Megarevo 500kW",
+  "productUsed": "1MW / 2MWh Container, 2× Megarevo 500kW PCS",
+  "completed": "2026-05",
+  "summary": "A 1MW/2MWh containerised system for a Dutch industrial park, built inside a 20ft enclosure.",
+  "image": "/assets/images/cases/case-study-empowering-a-dutch-industrial-park-with-dawnice-1mw2mwh-mega-scale-containerized-ess-may-2026.jpg",
+  "imageFit": "cover",
+  "imageWidth": 1200,
+  "imageHeight": 800,
+  "imageCaption": "Netherlands — industrial park",
+  "challenge": "Dutch industrial users face strict carbon footprint standards alongside volatile time-of-use tariffs, so the park needed scale and grid interaction in one package.",
+  "solution": "A standard 20ft container carrying 1MW/2MWh, with two 500kW Megarevo grid-tied inverters running in parallel for redundancy.",
+  "result": "The project entered pre-commissioning in May 2026; the IP54 enclosure uses front-to-rear active thermal flow for outdoor siting.",
+  "seo": {
+    "title": "Empowering a Dutch Industrial Park with Dawnice 1MW/2MWh",
+    "description": "A 1MW/2MWh containerised system for a Dutch industrial park, built inside a 20ft enclosure."
+  }
+}
