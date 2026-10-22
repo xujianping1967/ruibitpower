@@ -20,6 +20,8 @@ Thumbs.db
 # misc
 node-compile-cache/
 preview-offline/
-vendor/
+# vendor/ is NOT ignored: it holds two hand-written ESM bridges (yaml,
+# picomatch) that astro.config.mjs aliases to. Without them a clean clone fails
+# with "require is not defined" during astro sync.
 # datasheet build chrome profiles
 _datasheet-build/
